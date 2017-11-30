@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */; };
+		2E7AA0A61FCFB84200E51EA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A51FCFB84200E51EA9 /* ViewController.swift */; };
+		2E7AA0A81FCFB84200E51EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */; };
+		2E7AA0AB1FCFB84200E51EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */; };
+		2E7AA0B71FCFB84200E51EA9 /* Pacman_AgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0B61FCFB84200E51EA9 /* Pacman_AgentTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2E7AA0B31FCFB84200E51EA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E7AA0981FCFB84200E51EA9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E7AA09F1FCFB84200E51EA9;
+			remoteInfo = "Pacman Agent";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2E7AA0A01FCFB84200E51EA9 /* Pacman Agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pacman Agent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2E7AA0A51FCFB84200E51EA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2E7AA0AA1FCFB84200E51EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2E7AA0AC1FCFB84200E51EA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E7AA0AD1FCFB84200E51EA9 /* Pacman_Agent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pacman_Agent.entitlements; sourceTree = "<group>"; };
+		2E7AA0B21FCFB84200E51EA9 /* Pacman AgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pacman AgentTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E7AA0B61FCFB84200E51EA9 /* Pacman_AgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pacman_AgentTests.swift; sourceTree = "<group>"; };
+		2E7AA0B81FCFB84200E51EA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E7AA09D1FCFB84200E51EA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E7AA0AF1FCFB84200E51EA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E7AA0971FCFB84200E51EA9 = {
+			isa = PBXGroup;
+			children = (
+				2E7AA0A21FCFB84200E51EA9 /* Pacman Agent */,
+				2E7AA0B51FCFB84200E51EA9 /* Pacman AgentTests */,
+				2E7AA0A11FCFB84200E51EA9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2E7AA0A11FCFB84200E51EA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2E7AA0A01FCFB84200E51EA9 /* Pacman Agent.app */,
+				2E7AA0B21FCFB84200E51EA9 /* Pacman AgentTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2E7AA0A21FCFB84200E51EA9 /* Pacman Agent */ = {
+			isa = PBXGroup;
+			children = (
+				2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */,
+				2E7AA0A51FCFB84200E51EA9 /* ViewController.swift */,
+				2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */,
+				2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */,
+				2E7AA0AC1FCFB84200E51EA9 /* Info.plist */,
+				2E7AA0AD1FCFB84200E51EA9 /* Pacman_Agent.entitlements */,
+			);
+			path = "Pacman Agent";
+			sourceTree = "<group>";
+		};
+		2E7AA0B51FCFB84200E51EA9 /* Pacman AgentTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E7AA0B61FCFB84200E51EA9 /* Pacman_AgentTests.swift */,
+				2E7AA0B81FCFB84200E51EA9 /* Info.plist */,
+			);
+			path = "Pacman AgentTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2E7AA09F1FCFB84200E51EA9 /* Pacman Agent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E7AA0BB1FCFB84200E51EA9 /* Build configuration list for PBXNativeTarget "Pacman Agent" */;
+			buildPhases = (
+				2E7AA09C1FCFB84200E51EA9 /* Sources */,
+				2E7AA09D1FCFB84200E51EA9 /* Frameworks */,
+				2E7AA09E1FCFB84200E51EA9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pacman Agent";
+			productName = "Pacman Agent";
+			productReference = 2E7AA0A01FCFB84200E51EA9 /* Pacman Agent.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2E7AA0B11FCFB84200E51EA9 /* Pacman AgentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E7AA0BE1FCFB84200E51EA9 /* Build configuration list for PBXNativeTarget "Pacman AgentTests" */;
+			buildPhases = (
+				2E7AA0AE1FCFB84200E51EA9 /* Sources */,
+				2E7AA0AF1FCFB84200E51EA9 /* Frameworks */,
+				2E7AA0B01FCFB84200E51EA9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E7AA0B41FCFB84200E51EA9 /* PBXTargetDependency */,
+			);
+			name = "Pacman AgentTests";
+			productName = "Pacman AgentTests";
+			productReference = 2E7AA0B21FCFB84200E51EA9 /* Pacman AgentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2E7AA0981FCFB84200E51EA9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Jack Arendt";
+				TargetAttributes = {
+					2E7AA09F1FCFB84200E51EA9 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					2E7AA0B11FCFB84200E51EA9 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2E7AA09F1FCFB84200E51EA9;
+					};
+				};
+			};
+			buildConfigurationList = 2E7AA09B1FCFB84200E51EA9 /* Build configuration list for PBXProject "Pacman Agent" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2E7AA0971FCFB84200E51EA9;
+			productRefGroup = 2E7AA0A11FCFB84200E51EA9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2E7AA09F1FCFB84200E51EA9 /* Pacman Agent */,
+				2E7AA0B11FCFB84200E51EA9 /* Pacman AgentTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2E7AA09E1FCFB84200E51EA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7AA0A81FCFB84200E51EA9 /* Assets.xcassets in Resources */,
+				2E7AA0AB1FCFB84200E51EA9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E7AA0B01FCFB84200E51EA9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2E7AA09C1FCFB84200E51EA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7AA0A61FCFB84200E51EA9 /* ViewController.swift in Sources */,
+				2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E7AA0AE1FCFB84200E51EA9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7AA0B71FCFB84200E51EA9 /* Pacman_AgentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E7AA0B41FCFB84200E51EA9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E7AA09F1FCFB84200E51EA9 /* Pacman Agent */;
+			targetProxy = 2E7AA0B31FCFB84200E51EA9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E7AA0AA1FCFB84200E51EA9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2E7AA0B91FCFB84200E51EA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2E7AA0BA1FCFB84200E51EA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		2E7AA0BC1FCFB84200E51EA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Pacman Agent/Pacman_Agent.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 35RV9RPQY7;
+				INFOPLIST_FILE = "Pacman Agent/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jackarendt.pacman-agent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		2E7AA0BD1FCFB84200E51EA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Pacman Agent/Pacman_Agent.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 35RV9RPQY7;
+				INFOPLIST_FILE = "Pacman Agent/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jackarendt.pacman-agent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		2E7AA0BF1FCFB84200E51EA9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 35RV9RPQY7;
+				INFOPLIST_FILE = "Pacman AgentTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jackarendt.Pacman-AgentTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pacman Agent.app/Contents/MacOS/Pacman Agent";
+			};
+			name = Debug;
+		};
+		2E7AA0C01FCFB84200E51EA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 35RV9RPQY7;
+				INFOPLIST_FILE = "Pacman AgentTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jackarendt.Pacman-AgentTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pacman Agent.app/Contents/MacOS/Pacman Agent";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E7AA09B1FCFB84200E51EA9 /* Build configuration list for PBXProject "Pacman Agent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E7AA0B91FCFB84200E51EA9 /* Debug */,
+				2E7AA0BA1FCFB84200E51EA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E7AA0BB1FCFB84200E51EA9 /* Build configuration list for PBXNativeTarget "Pacman Agent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E7AA0BC1FCFB84200E51EA9 /* Debug */,
+				2E7AA0BD1FCFB84200E51EA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E7AA0BE1FCFB84200E51EA9 /* Build configuration list for PBXNativeTarget "Pacman AgentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E7AA0BF1FCFB84200E51EA9 /* Debug */,
+				2E7AA0C01FCFB84200E51EA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E7AA0981FCFB84200E51EA9 /* Project object */;
+}
