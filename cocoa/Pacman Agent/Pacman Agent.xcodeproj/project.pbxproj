@@ -12,6 +12,10 @@
 		2E7AA0A81FCFB84200E51EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */; };
 		2E7AA0AB1FCFB84200E51EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */; };
 		2E7AA0B71FCFB84200E51EA9 /* Pacman_AgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0B61FCFB84200E51EA9 /* Pacman_AgentTests.swift */; };
+		2E7AA0C21FD068FF00E51EA9 /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0C11FD068FF00E51EA9 /* ApplicationManager.swift */; };
+		2E7AA0C41FD0F30500E51EA9 /* WindowCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0C31FD0F30500E51EA9 /* WindowCapture.swift */; };
+		2E7AA0C81FD1FEEB00E51EA9 /* WindowCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0C71FD1FEEB00E51EA9 /* WindowCaptureHelper.m */; };
+		2E7AA0CA1FD3191500E51EA9 /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0C91FD3191500E51EA9 /* NSImage+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,13 @@
 		2E7AA0B21FCFB84200E51EA9 /* Pacman AgentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pacman AgentTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7AA0B61FCFB84200E51EA9 /* Pacman_AgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pacman_AgentTests.swift; sourceTree = "<group>"; };
 		2E7AA0B81FCFB84200E51EA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E7AA0C11FD068FF00E51EA9 /* ApplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
+		2E7AA0C31FD0F30500E51EA9 /* WindowCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCapture.swift; sourceTree = "<group>"; };
+		2E7AA0C51FD1FEEB00E51EA9 /* Pacman Agent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pacman Agent-Bridging-Header.h"; sourceTree = "<group>"; };
+		2E7AA0C61FD1FEEB00E51EA9 /* WindowCaptureHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowCaptureHelper.h; sourceTree = "<group>"; };
+		2E7AA0C71FD1FEEB00E51EA9 /* WindowCaptureHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowCaptureHelper.m; sourceTree = "<group>"; };
+		2E7AA0C91FD3191500E51EA9 /* NSImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extensions.swift"; sourceTree = "<group>"; };
+		2E7AA0CB1FD31D3100E51EA9 /* Pacman Agent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pacman Agent.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,12 +87,19 @@
 		2E7AA0A21FCFB84200E51EA9 /* Pacman Agent */ = {
 			isa = PBXGroup;
 			children = (
+				2E7AA0CB1FD31D3100E51EA9 /* Pacman Agent.entitlements */,
 				2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */,
 				2E7AA0A51FCFB84200E51EA9 /* ViewController.swift */,
+				2E7AA0C11FD068FF00E51EA9 /* ApplicationManager.swift */,
+				2E7AA0C91FD3191500E51EA9 /* NSImage+Extensions.swift */,
+				2E7AA0C31FD0F30500E51EA9 /* WindowCapture.swift */,
+				2E7AA0C61FD1FEEB00E51EA9 /* WindowCaptureHelper.h */,
+				2E7AA0C71FD1FEEB00E51EA9 /* WindowCaptureHelper.m */,
 				2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */,
 				2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */,
 				2E7AA0AC1FCFB84200E51EA9 /* Info.plist */,
 				2E7AA0AD1FCFB84200E51EA9 /* Pacman_Agent.entitlements */,
+				2E7AA0C51FD1FEEB00E51EA9 /* Pacman Agent-Bridging-Header.h */,
 			);
 			path = "Pacman Agent";
 			sourceTree = "<group>";
@@ -145,7 +163,13 @@
 				TargetAttributes = {
 					2E7AA09F1FCFB84200E51EA9 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					2E7AA0B11FCFB84200E51EA9 = {
 						CreatedOnToolsVersion = 9.1;
@@ -198,7 +222,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7AA0A61FCFB84200E51EA9 /* ViewController.swift in Sources */,
+				2E7AA0C81FD1FEEB00E51EA9 /* WindowCaptureHelper.m in Sources */,
 				2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */,
+				2E7AA0C41FD0F30500E51EA9 /* WindowCapture.swift in Sources */,
+				2E7AA0CA1FD3191500E51EA9 /* NSImage+Extensions.swift in Sources */,
+				2E7AA0C21FD068FF00E51EA9 /* ApplicationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +370,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Pacman Agent/Pacman_Agent.entitlements";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 35RV9RPQY7;
@@ -350,6 +378,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jackarendt.pacman-agent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pacman Agent/Pacman Agent-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -358,7 +388,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Pacman Agent/Pacman_Agent.entitlements";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 35RV9RPQY7;
@@ -366,6 +396,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jackarendt.pacman-agent";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pacman Agent/Pacman Agent-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
