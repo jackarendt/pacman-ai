@@ -54,10 +54,6 @@ class ApplicationManager {
 extension ApplicationManager: WindowCaptureDelegate {
   func didCaptureWindow(window: NSImage) {
     delegate?.didUpdateWindowCapture(window: window)
-    /**if let desktopPath =
-          NSSearchPathForDirectoriesInDomains(.desktopDirectory, .userDomainMask, true).first {
-      window.saveToPath(path: desktopPath + "/" + Date().description + ".png")
-    } */
   }
   
   func didAcquireWindowMetadata(metadata: [String : Any]) {

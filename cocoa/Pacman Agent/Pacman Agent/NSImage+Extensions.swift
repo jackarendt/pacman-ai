@@ -1,6 +1,7 @@
 import Cocoa
 
 extension NSImage {
+  /// Saves an image to a specified path.
   func saveToPath(path: String) -> Bool {
     if let imageRef = cgImage(forProposedRect: nil, context: nil, hints: nil) {
       let bitmap = NSBitmapImageRep(cgImage: imageRef)
@@ -14,5 +15,18 @@ extension NSImage {
       }
     }
     return false
+  }
+  
+  /// Crops an image to a specified rect.
+  func crop(newRect: NSRect) -> NSImage {    
+    guard let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
+      return self
+    }
+    
+    guard let cropped = cgImage.cropping(to: newRect) else {
+      return self
+    }
+    
+    return NSImage(cgImage: cropped, size: newRect.size)
   }
 }

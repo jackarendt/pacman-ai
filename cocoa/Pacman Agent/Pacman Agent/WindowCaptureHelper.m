@@ -50,7 +50,6 @@ NSArray<NSDictionary<NSString *, id> *> *CaptureWindowMetadata() {
                        CFRangeMake(0, windowCount),
                        &WindowListApplierFunction,
                        (void *)windows);
-  
   return [windows copy];
 }
 
@@ -67,5 +66,7 @@ NSImage *CaptureWindowForWindowID(CGWindowID windowID) {
   NSBitmapImageRep *bitmap = [[NSBitmapImageRep alloc] initWithCGImage:windowImage];
   NSImage *image = [[NSImage alloc] init];
   [image addRepresentation:bitmap];
+  
+  CGImageRelease(windowImage);
   return image;
 }

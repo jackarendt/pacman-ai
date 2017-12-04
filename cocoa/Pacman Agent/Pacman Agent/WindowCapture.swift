@@ -19,9 +19,11 @@ class WindowCapture {
   // Wait 5 seconds before timing out.
   let acquisitionTimeout: TimeInterval = 5.0
   var acquisitionTimer: Timer?
-  let acquisitionStartTime = Date()
+  lazy var acquisitionStartTime = Date()
   
   var targetWindowMetadata: [String: Any]?
+  let gameAspectRatio: CGFloat = 26.0 / 36.0
+  let imageScaleFactor: CGFloat = 0.5
   
   init(targetWindow: String, targetApplication: String) {
     self.targetWindow = targetWindow
@@ -58,7 +60,9 @@ class WindowCapture {
     
     let timerBlock: ((Timer) -> ()) = { timer -> Void in
       if let image = CaptureWindowForWindowID(windowID) {
-        self.delegate?.didCaptureWindow(window: image)
+        let cropped = self.cropGameWindow(image: image)
+        let resized = self.resize(image: cropped, scale: self.imageScaleFactor)
+        self.delegate?.didCaptureWindow(window: resized)
       }
     }
     
@@ -96,5 +100,23 @@ class WindowCapture {
 
 // Image post-processing.
 extension WindowCapture {
+  func cropGameWindow(image: NSImage) -> NSImage {
+    let targetWidth = image.size.height * gameAspectRatio
+    let targetHeight = image.size.height
+    let targetXOrigin = (image.size.width - targetWidth) / 2
+    
+    let imageRect = CGRect(x: targetXOrigin, y: 0, width: targetWidth, height: targetHeight)
+    return image.crop(newRect: imageRect)
+  }
   
+  func resize(image: NSImage, scale: CGFloat) -> NSImage {
+    let newSize = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+    var newRect = CGRect(origin: CGPoint.zero, size: newSize)
+    
+    guard let imageRef = image.cgImage(forProposedRect: &newRect, context: nil, hints: nil) else {
+      return image
+    }
+    
+    return NSImage(cgImage: imageRef, size: newSize)
+  }
 }

@@ -9,7 +9,7 @@ class ViewController: NSViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.widthAnchor.constraint(equalToConstant: 600).isActive = true
+    view.widthAnchor.constraint(equalToConstant: 500).isActive = true
     view.heightAnchor.constraint(equalToConstant: 600).isActive = true
     
     view.addSubview(launchAIButton)
@@ -17,7 +17,8 @@ class ViewController: NSViewController {
     launchAIButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
     launchAIButton.widthAnchor.constraint(equalToConstant: 75).isActive = true
     launchAIButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    launchAIButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+    launchAIButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                            constant: 20).isActive = true
     
     view.addSubview(debugImagePreview)
     debugImagePreview.imageScaling = .scaleProportionallyDown
