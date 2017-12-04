@@ -16,6 +16,7 @@
 		2E7AA0C41FD0F30500E51EA9 /* WindowCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0C31FD0F30500E51EA9 /* WindowCapture.swift */; };
 		2E7AA0C81FD1FEEB00E51EA9 /* WindowCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0C71FD1FEEB00E51EA9 /* WindowCaptureHelper.m */; };
 		2E7AA0CA1FD3191500E51EA9 /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0C91FD3191500E51EA9 /* NSImage+Extensions.swift */; };
+		2E7AA0CD1FD5068500E51EA9 /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0CC1FD5068500E51EA9 /* GameConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		2E7AA0C71FD1FEEB00E51EA9 /* WindowCaptureHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowCaptureHelper.m; sourceTree = "<group>"; };
 		2E7AA0C91FD3191500E51EA9 /* NSImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extensions.swift"; sourceTree = "<group>"; };
 		2E7AA0CB1FD31D3100E51EA9 /* Pacman Agent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pacman Agent.entitlements"; sourceTree = "<group>"; };
+		2E7AA0CC1FD5068500E51EA9 /* GameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,12 +91,13 @@
 			children = (
 				2E7AA0CB1FD31D3100E51EA9 /* Pacman Agent.entitlements */,
 				2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */,
-				2E7AA0A51FCFB84200E51EA9 /* ViewController.swift */,
 				2E7AA0C11FD068FF00E51EA9 /* ApplicationManager.swift */,
 				2E7AA0C91FD3191500E51EA9 /* NSImage+Extensions.swift */,
+				2E7AA0CC1FD5068500E51EA9 /* GameConstants.swift */,
 				2E7AA0C31FD0F30500E51EA9 /* WindowCapture.swift */,
 				2E7AA0C61FD1FEEB00E51EA9 /* WindowCaptureHelper.h */,
 				2E7AA0C71FD1FEEB00E51EA9 /* WindowCaptureHelper.m */,
+				2E7AA0A51FCFB84200E51EA9 /* ViewController.swift */,
 				2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */,
 				2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */,
 				2E7AA0AC1FCFB84200E51EA9 /* Info.plist */,
@@ -225,6 +228,7 @@
 				2E7AA0C81FD1FEEB00E51EA9 /* WindowCaptureHelper.m in Sources */,
 				2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */,
 				2E7AA0C41FD0F30500E51EA9 /* WindowCapture.swift in Sources */,
+				2E7AA0CD1FD5068500E51EA9 /* GameConstants.swift in Sources */,
 				2E7AA0CA1FD3191500E51EA9 /* NSImage+Extensions.swift in Sources */,
 				2E7AA0C21FD068FF00E51EA9 /* ApplicationManager.swift in Sources */,
 			);

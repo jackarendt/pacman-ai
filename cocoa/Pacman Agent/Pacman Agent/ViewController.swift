@@ -8,9 +8,15 @@ class ViewController: NSViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(didUpdateWindowCapture),
+                                           name: kDidUpdateWindowCaptureNotification,
+                                           object: nil)
+    
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.widthAnchor.constraint(equalToConstant: 500).isActive = true
-    view.heightAnchor.constraint(equalToConstant: 600).isActive = true
+    view.widthAnchor.constraint(equalToConstant: 350).isActive = true
+    view.heightAnchor.constraint(equalToConstant: 400).isActive = true
     
     view.addSubview(launchAIButton)
     launchAIButton.translatesAutoresizingMaskIntoConstraints = false
@@ -39,18 +45,15 @@ class ViewController: NSViewController {
   }
   
   @objc func launchAI() {
-    ApplicationManager.current.delegate = self
     if ApplicationManager.current.open() {
       print("Application Opened")
     } else {
       print("OpenEmu not installed.")
     }
   }
-}
-
-extension ViewController: ApplicationManagerDelegate {
-  func didUpdateWindowCapture(window: NSImage) {
-    debugImagePreview.image = window
+  
+  @objc func didUpdateWindowCapture(notification: Notification) {
+    debugImagePreview.image = notification.object as? NSImage
   }
 }
 

@@ -5,6 +5,7 @@ NSString const *kWindowIDKey = @"kWindowID";  // Window ID.
 NSString const *kWindowNameKey = @"kWindowName"; // Name of the window.
 NSString const *kApplicationPIDKey = @"kApplicationPID"; // PID of the window owner
 
+/** Filters the full metadata dictionary, and converts it from a CFDictionary to NSDictionary. */
 void WindowListApplierFunction(const void *inputDictionary, void *context);
 void WindowListApplierFunction(const void *inputDictionary, void *context) {
   CFDictionaryRef input = (CFDictionaryRef)inputDictionary;
