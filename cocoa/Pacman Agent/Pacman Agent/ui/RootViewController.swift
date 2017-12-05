@@ -1,6 +1,6 @@
 import Cocoa
 
-class ViewController: NSViewController {
+class RootViewController: NSViewController {
   
   let launchAIButton = NSButton(title: "Launch AI", target: self, action: #selector(launchAI))
   

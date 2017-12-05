@@ -71,3 +71,4 @@ NSImage *CaptureWindowForWindowID(CGWindowID windowID) {
   CGImageRelease(windowImage);
   return image;
 }
+

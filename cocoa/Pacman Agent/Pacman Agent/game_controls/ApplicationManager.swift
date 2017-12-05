@@ -19,11 +19,15 @@ class ApplicationManager {
   private var timer: Timer?
   
   /// The window capture handles capturing screenshots of the target window.
-  private lazy var windowCapture : WindowCapture = {
+  private lazy var windowCapture: WindowCapture = {
     let capture = WindowCapture(targetWindow: kTargetWindowTitle,
                                 targetApplication: kEmulatorApplication)
     capture.delegate = self
     return capture
+  }()
+  
+  private lazy var regularWindowSlider: WindowSlider = {
+    return WindowSlider(tileSize: kGameTileSize)
   }()
   
   /// Opens the emulator with pacman open.
@@ -41,7 +45,6 @@ class ApplicationManager {
         }
       }
     })
-    
     return true
   }
 }
@@ -49,6 +52,7 @@ class ApplicationManager {
 extension ApplicationManager: WindowCaptureDelegate {
   func didCaptureWindow(window: NSImage) {
     NotificationCenter.default.post(name: kDidUpdateWindowCaptureNotification, object: window)
+    let tiles = regularWindowSlider.tiles(image: window)
   }
   
   func didAcquireWindowMetadata(metadata: [String : Any]) {

@@ -1,8 +1,13 @@
 import Cocoa
 
 protocol WindowCaptureDelegate: class {
+  /// Invoked when the target window was captured.
   func didCaptureWindow(window: NSImage)
+  
+  // Invoked when the target window cannot be found.
   func didFailToAcquireWindowMetadata()
+  
+  /// Invoked when the target window's metadata was acquired.
   func didAcquireWindowMetadata(metadata: [String: Any])
 }
 
@@ -107,11 +112,13 @@ class WindowCapture {
 extension WindowCapture {
   /// Crops window screenshot to the correct aspect ratio.
   func cropGameWindow(image: NSImage) -> NSImage {
-    let width = image.size.height * kGameWidth / kGameHeight
-    let height = image.size.height
+    let topBorder: CGFloat = 22.0 * NSScreen.main!.backingScaleFactor
+    let bottomBorder: CGFloat = 2.0 * NSScreen.main!.backingScaleFactor
+    let height = image.size.height - topBorder - bottomBorder
+    let width = floor(height * (kGameWidth - kGameTileSize.width) / kGameHeight)
     let targetXOrigin = (image.size.width - width) / 2
     
-    let imageRect = CGRect(x: targetXOrigin, y: 0, width: width, height: height)
+    let imageRect = CGRect(x: targetXOrigin, y: topBorder, width: width, height: height)
     return image.crop(newRect: imageRect)
   }
   
@@ -120,13 +127,20 @@ extension WindowCapture {
   /// is only 288 pixels tall. By resizing the image, the number of input pixels to the tile matcher
   /// decreases from ~916 to 64 without decreasing accuracy.
   func resize(image: NSImage) -> NSImage {
-    let newSize = CGSize(width: kGameWidth, height: kGameHeight)
-    var newRect = CGRect(origin: CGPoint.zero, size: newSize)
-    
-    guard let imageRef = image.cgImage(forProposedRect: &newRect, context: nil, hints: nil) else {
+    guard let scale = NSScreen.main?.backingScaleFactor else {
       return image
     }
     
-    return NSImage(cgImage: imageRef, size: newSize)
+    let newSize = CGSize(width: kGameWidth / scale, height: kGameHeight / scale)
+    let resized = CGRect(origin: CGPoint.zero, size: newSize)
+    let original = CGRect(origin: CGPoint.zero, size: image.size)
+
+    let smallImage = NSImage(size: newSize)
+    smallImage.lockFocus()
+    NSGraphicsContext.current?.imageInterpolation = .none
+    NSGraphicsContext.current?.shouldAntialias = true
+    image.draw(in: resized, from: original, operation: .copy, fraction: 1.0)
+    smallImage.unlockFocus()
+    return smallImage
   }
 }
