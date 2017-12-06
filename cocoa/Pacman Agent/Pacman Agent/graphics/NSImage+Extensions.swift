@@ -29,4 +29,16 @@ extension NSImage {
     
     return NSImage(cgImage: cropped, size: newRect.size)
   }
+  
+  // Resizes an image to the specified dimensions.
+  func resize(newSize: CGSize) -> NSImage {
+    let resized = CGRect(origin: CGPoint.zero, size: newSize)
+    let original = CGRect(origin: CGPoint.zero, size: size)
+    
+    let smallImage = NSImage(size: newSize)
+    smallImage.lockFocus()
+    draw(in: resized, from: original, operation: .copy, fraction: 1.0)
+    smallImage.unlockFocus()
+    return smallImage
+  }
 }

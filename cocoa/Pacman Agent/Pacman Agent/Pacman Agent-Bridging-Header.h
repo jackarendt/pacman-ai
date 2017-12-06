@@ -3,3 +3,4 @@
 //
 
 #import "WindowCaptureHelper.h"
+#import "WindowSliderHelper.h"

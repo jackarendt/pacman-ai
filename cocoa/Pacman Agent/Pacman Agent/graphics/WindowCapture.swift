@@ -1,4 +1,5 @@
 import Cocoa
+import Accelerate
 
 protocol WindowCaptureDelegate: class {
   /// Invoked when the target window was captured.
@@ -12,13 +13,13 @@ protocol WindowCaptureDelegate: class {
 }
 
 /// Window capture is a class that captures a target window
-class WindowCapture {
+final class WindowCapture {
   
   weak var delegate: WindowCaptureDelegate?
 
   let targetWindow: String
   let targetApplication: String
-  let refreshInterval: TimeInterval = 1.0 / 22.0
+  let refreshInterval: TimeInterval = 1.0 / 11.0
   var captureTimer: Timer?
   
   // Wait 5 seconds before timing out.
@@ -125,22 +126,13 @@ extension WindowCapture {
   /// Resizes the game window so that it matches the original dimensions of the game.
   /// - Note: The average window size is just over 1000 pixels tall, but the original pac-man game
   /// is only 288 pixels tall. By resizing the image, the number of input pixels to the tile matcher
-  /// decreases from ~916 to 64 without decreasing accuracy.
+  /// decreases from 3500+ to 256 without decreasing accuracy.
   func resize(image: NSImage) -> NSImage {
     guard let scale = NSScreen.main?.backingScaleFactor else {
       return image
     }
-    
-    let newSize = CGSize(width: kGameWidth / scale, height: kGameHeight / scale)
-    let resized = CGRect(origin: CGPoint.zero, size: newSize)
-    let original = CGRect(origin: CGPoint.zero, size: image.size)
 
-    let smallImage = NSImage(size: newSize)
-    smallImage.lockFocus()
-    NSGraphicsContext.current?.imageInterpolation = .none
-    NSGraphicsContext.current?.shouldAntialias = true
-    image.draw(in: resized, from: original, operation: .copy, fraction: 1.0)
-    smallImage.unlockFocus()
-    return smallImage
+    let newSize = CGSize(width: kGameWidth / scale, height: kGameHeight / scale)
+    return image.resize(newSize: newSize)
   }
 }

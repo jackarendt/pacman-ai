@@ -2,7 +2,7 @@ import Cocoa
 
 /// Class to represent the pacman game, and perform a bunch of game operations such as opening and
 /// closing the game.
-class ApplicationManager {
+final class ApplicationManager {
   
   /// Shared instance.
   static let current = ApplicationManager()
@@ -51,8 +51,8 @@ class ApplicationManager {
 
 extension ApplicationManager: WindowCaptureDelegate {
   func didCaptureWindow(window: NSImage) {
+    let _ = regularWindowSlider.tiles(image: window)
     NotificationCenter.default.post(name: kDidUpdateWindowCaptureNotification, object: window)
-    let tiles = regularWindowSlider.tiles(image: window)
   }
   
   func didAcquireWindowMetadata(metadata: [String : Any]) {

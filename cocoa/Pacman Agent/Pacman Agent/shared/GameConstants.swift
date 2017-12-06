@@ -19,6 +19,9 @@ public let kGameTileHeight: CGFloat = 36.0
 /// The size of each tile.
 public let kGameTileSize: CGSize = CGSize(width: 8.0, height: 8.0)
 
+/// The number of samples per pixel.
+public let kSamplesPerPixel: Int = 4
+
 /// The total width of the game screen.
 public var kGameWidth: CGFloat = {
   return kGameTileWidth * kGameTileSize.width

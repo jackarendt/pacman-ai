@@ -51,6 +51,7 @@ NSArray<NSDictionary<NSString *, id> *> *CaptureWindowMetadata() {
                        CFRangeMake(0, windowCount),
                        &WindowListApplierFunction,
                        (void *)windows);
+  CFRelease(windowList);
   return [windows copy];
 }
 
