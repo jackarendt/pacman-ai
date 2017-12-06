@@ -8,6 +8,19 @@ public let kEmulatorApplication = "OpenEmu"
 /// The name of the window where pacman will be played.
 public let kTargetWindowTitle = "pacman"
 
+/// Directory for retrieving saved tiles.
+public var kTileDirectory: String = {
+  guard let documentDirectory =
+      NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+      return ""
+  }
+  
+  return documentDirectory + "/pacman/vision/data/"
+}()
+
+/// Directory for saving unknown tile images.
+public let kTileUnknownDirectory: String = "/tmp/pacman/tiles/unknown/"
+
 // MARK: - Game Graphics Constants.
 
 /// The number of horizontal game tiles.
@@ -34,4 +47,9 @@ public var kGameHeight: CGFloat = {
 
 // MARK: - Notificiations
 
+/// Notification that is posted when the window is captured.
 public let kDidUpdateWindowCaptureNotification = Notification.Name("did_update_window_capture")
+
+// MARK: - Settings keys
+public let kSaveUnknownImagesKey = "save_unknown_images"
+public let kMaxUnknownImagesPerCell = "max_unknown_images_per_cell"

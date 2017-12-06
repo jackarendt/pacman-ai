@@ -12,7 +12,6 @@
 		2E7AA0AB1FCFB84200E51EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */; };
 		2E7AA0B71FCFB84200E51EA9 /* Pacman_AgentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0B61FCFB84200E51EA9 /* Pacman_AgentTests.swift */; };
 		2E7AA0D91FD51FE700E51EA9 /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0CF1FD51FE700E51EA9 /* ApplicationManager.swift */; };
-		2E7AA0DA1FD51FE700E51EA9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0D11FD51FE700E51EA9 /* RootViewController.swift */; };
 		2E7AA0DB1FD51FE700E51EA9 /* NSImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0D31FD51FE700E51EA9 /* NSImage+Extensions.swift */; };
 		2E7AA0DC1FD51FE700E51EA9 /* WindowCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0D41FD51FE700E51EA9 /* WindowCapture.swift */; };
 		2E7AA0DD1FD51FE700E51EA9 /* WindowCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0D51FD51FE700E51EA9 /* WindowCaptureHelper.m */; };
@@ -21,6 +20,15 @@
 		2E7AA0E21FD5215400E51EA9 /* GameTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E11FD5215400E51EA9 /* GameTile.swift */; };
 		2E7AA0E41FD6300200E51EA9 /* GamePiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E31FD6300200E51EA9 /* GamePiece.swift */; };
 		2E7AA0E71FD71E8A00E51EA9 /* WindowSliderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */; };
+		2ECB2E9E1FD8568700A81539 /* AgentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */; };
+		2ECB2EA31FD8574300A81539 /* RootWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EA21FD8574300A81539 /* RootWindowController.swift */; };
+		2ECB2EA51FD8581B00A81539 /* ImageClassifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */; };
+		2ECB2EA91FD870EE00A81539 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EA81FD870EE00A81539 /* SettingsCell.swift */; };
+		2ECB2EAB1FD8803000A81539 /* CheckboxSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EAA1FD8803000A81539 /* CheckboxSettingCell.swift */; };
+		2ECB2EAD1FD8838300A81539 /* NSView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EAC1FD8838300A81539 /* NSView+Extensions.swift */; };
+		2ECB2EAF1FD8875900A81539 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EAE1FD8875900A81539 /* Settings.swift */; };
+		2ECB2EB11FD88A5100A81539 /* NumericalInputSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EB01FD88A5100A81539 /* NumericalInputSettingCell.swift */; };
+		2ECB2EB31FD8911100A81539 /* NSTextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EB21FD8911100A81539 /* NSTextField+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +54,6 @@
 		2E7AA0C51FD1FEEB00E51EA9 /* Pacman Agent-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pacman Agent-Bridging-Header.h"; sourceTree = "<group>"; };
 		2E7AA0CB1FD31D3100E51EA9 /* Pacman Agent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Pacman Agent.entitlements"; sourceTree = "<group>"; };
 		2E7AA0CF1FD51FE700E51EA9 /* ApplicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
-		2E7AA0D11FD51FE700E51EA9 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		2E7AA0D31FD51FE700E51EA9 /* NSImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+Extensions.swift"; sourceTree = "<group>"; };
 		2E7AA0D41FD51FE700E51EA9 /* WindowCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowCapture.swift; sourceTree = "<group>"; };
 		2E7AA0D51FD51FE700E51EA9 /* WindowCaptureHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowCaptureHelper.m; sourceTree = "<group>"; };
@@ -57,6 +64,15 @@
 		2E7AA0E31FD6300200E51EA9 /* GamePiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePiece.swift; sourceTree = "<group>"; };
 		2E7AA0E51FD71E8A00E51EA9 /* WindowSliderHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowSliderHelper.h; sourceTree = "<group>"; };
 		2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowSliderHelper.m; sourceTree = "<group>"; };
+		2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentSettingsViewController.swift; sourceTree = "<group>"; };
+		2ECB2EA21FD8574300A81539 /* RootWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowController.swift; sourceTree = "<group>"; };
+		2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassifierViewController.swift; sourceTree = "<group>"; };
+		2ECB2EA81FD870EE00A81539 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		2ECB2EAA1FD8803000A81539 /* CheckboxSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxSettingCell.swift; sourceTree = "<group>"; };
+		2ECB2EAC1FD8838300A81539 /* NSView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Extensions.swift"; sourceTree = "<group>"; };
+		2ECB2EAE1FD8875900A81539 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		2ECB2EB01FD88A5100A81539 /* NumericalInputSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericalInputSettingCell.swift; sourceTree = "<group>"; };
+		2ECB2EB21FD8911100A81539 /* NSTextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +149,14 @@
 		2E7AA0D01FD51FE700E51EA9 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				2E7AA0D11FD51FE700E51EA9 /* RootViewController.swift */,
+				2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */,
+				2ECB2EA21FD8574300A81539 /* RootWindowController.swift */,
+				2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */,
+				2ECB2EA81FD870EE00A81539 /* SettingsCell.swift */,
+				2ECB2EAA1FD8803000A81539 /* CheckboxSettingCell.swift */,
+				2ECB2EB01FD88A5100A81539 /* NumericalInputSettingCell.swift */,
+				2ECB2EAC1FD8838300A81539 /* NSView+Extensions.swift */,
+				2ECB2EB21FD8911100A81539 /* NSTextField+Extensions.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -158,6 +181,7 @@
 				2E7AA0D81FD51FE700E51EA9 /* GameConstants.swift */,
 				2E7AA0E11FD5215400E51EA9 /* GameTile.swift */,
 				2E7AA0E31FD6300200E51EA9 /* GamePiece.swift */,
+				2ECB2EAE1FD8875900A81539 /* Settings.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -270,17 +294,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ECB2EAB1FD8803000A81539 /* CheckboxSettingCell.swift in Sources */,
+				2ECB2EA91FD870EE00A81539 /* SettingsCell.swift in Sources */,
 				2E7AA0E01FD5213C00E51EA9 /* WindowSlider.swift in Sources */,
+				2ECB2EA31FD8574300A81539 /* RootWindowController.swift in Sources */,
 				2E7AA0E21FD5215400E51EA9 /* GameTile.swift in Sources */,
 				2E7AA0E41FD6300200E51EA9 /* GamePiece.swift in Sources */,
 				2E7AA0E71FD71E8A00E51EA9 /* WindowSliderHelper.m in Sources */,
+				2ECB2E9E1FD8568700A81539 /* AgentSettingsViewController.swift in Sources */,
 				2E7AA0D91FD51FE700E51EA9 /* ApplicationManager.swift in Sources */,
+				2ECB2EAD1FD8838300A81539 /* NSView+Extensions.swift in Sources */,
+				2ECB2EAF1FD8875900A81539 /* Settings.swift in Sources */,
 				2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */,
 				2E7AA0DD1FD51FE700E51EA9 /* WindowCaptureHelper.m in Sources */,
 				2E7AA0DC1FD51FE700E51EA9 /* WindowCapture.swift in Sources */,
+				2ECB2EB11FD88A5100A81539 /* NumericalInputSettingCell.swift in Sources */,
+				2ECB2EA51FD8581B00A81539 /* ImageClassifierViewController.swift in Sources */,
 				2E7AA0DE1FD51FE700E51EA9 /* GameConstants.swift in Sources */,
+				2ECB2EB31FD8911100A81539 /* NSTextField+Extensions.swift in Sources */,
 				2E7AA0DB1FD51FE700E51EA9 /* NSImage+Extensions.swift in Sources */,
-				2E7AA0DA1FD51FE700E51EA9 /* RootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
