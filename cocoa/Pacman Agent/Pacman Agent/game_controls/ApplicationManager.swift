@@ -51,8 +51,10 @@ final class ApplicationManager {
 
 extension ApplicationManager: WindowCaptureDelegate {
   func didCaptureWindow(window: NSImage) {
-    let _ = regularWindowSlider.tiles(image: window)
     NotificationCenter.default.post(name: kDidUpdateWindowCaptureNotification, object: window)
+    let tiles = regularWindowSlider.tiles(image: window)
+    // TODO: Classify image tiles.
+    saveUnknownTiles(tiles: tiles)
   }
   
   func didAcquireWindowMetadata(metadata: [String : Any]) {
@@ -61,5 +63,38 @@ extension ApplicationManager: WindowCaptureDelegate {
   
   func didFailToAcquireWindowMetadata() {
     print("Window not acquired")
+  }
+  
+  /// Saves unknown tile images to a temp directory.
+  private func saveUnknownTiles(tiles: [GameTile]) {
+    if !Settings.saveUnknownImages {
+      return
+    }
+    
+    let unknownTiles = tiles.filter({ $0.piece == .unknown })
+    
+    if unknownTiles.count == 0 {
+      return
+    }
+    
+    let basePath = kTileUnknownDirectory
+
+    // Create the tmp directory if one doesn't exist.
+    if !FileManager.default.fileExists(atPath: basePath) {
+      do {
+        try FileManager.default.createDirectory(atPath: basePath,
+                                                withIntermediateDirectories: true,
+                                                attributes: nil)
+      } catch {
+        return
+      }
+    }
+    
+    
+    for tile in unknownTiles {
+      let filename = "\(Int(tile.position.x))_\(Int(tile.position.y))"
+      let fullPath = basePath + filename + ".tiff"
+      let _ = tile.bitmap()?.saveToPath(path: fullPath)
+    }
   }
 }

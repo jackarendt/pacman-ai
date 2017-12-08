@@ -1,18 +1,23 @@
 import Cocoa
 
+extension NSBitmapImageRep {
+  func saveToPath(path: String) -> Bool {
+    do {
+      try tiffRepresentation?.write(to: URL(fileURLWithPath: path), options: .atomicWrite)
+      return true
+    } catch {
+      return false
+    }
+  }
+}
+
 extension NSImage {
   /// Saves an image to a specified path.
   func saveToPath(path: String) -> Bool {
     if let imageRef = cgImage(forProposedRect: nil, context: nil, hints: nil) {
       let bitmap = NSBitmapImageRep(cgImage: imageRef)
       bitmap.size = size
-      let data = bitmap.representation(using: .png, properties: [:])
-      do {
-        try data?.write(to: URL(fileURLWithPath: path))
-        return true
-      } catch {
-        return false
-      }
+      return bitmap.saveToPath(path: path)
     }
     return false
   }

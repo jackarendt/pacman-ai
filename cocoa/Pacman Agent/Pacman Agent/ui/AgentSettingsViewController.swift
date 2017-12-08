@@ -3,14 +3,12 @@ import Cocoa
 /// View controller for manipulating the agent's learning and performance settings.
 class AgentSettingsViewController: NSViewController {
   
-  let launchAIButton = NSButton(title: "Launch AI", target: self, action: #selector(launchAI))
+  lazy var launchAIButton = {
+    NSButton(title: "Launch AI", target: self, action: #selector(launchAI))
+  }()
   
   let saveImagesSetting =
       CheckboxSettingCell(title: "Save unknown images", identifier: kSaveUnknownImagesKey)
-  
-  let maxSavedImagesPerTileSetting =
-      NumericalInputSettingCell(title: "Maximum unknown images per cell",
-                                identifier: kMaxUnknownImagesPerCell)
   
   let stackView = NSStackView()
   
@@ -28,7 +26,6 @@ class AgentSettingsViewController: NSViewController {
     
     addArrangedSubview(view: launchAIButton)
     addArrangedSubview(view: saveImagesSetting)
-    addArrangedSubview(view: maxSavedImagesPerTileSetting)
   }
   
   @objc func launchAI() {

@@ -67,10 +67,12 @@ final class WindowCapture {
     
     let timerBlock: ((Timer) -> ()) = { timer -> Void in
       if let image = CaptureWindowForWindowID(windowID) {
-        // Crop and resize the image so that it is ready for post-processing.
-        let cropped = self.cropGameWindow(image: image)
-        let resized = self.resize(image: cropped)
-        self.delegate?.didCaptureWindow(window: resized)
+        autoreleasepool {
+          // Crop and resize the image so that it is ready for post-processing.
+          let cropped = self.cropGameWindow(image: image)
+          let resized = self.resize(image: cropped)
+          self.delegate?.didCaptureWindow(window: resized)
+        }
       }
     }
     

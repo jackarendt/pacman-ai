@@ -14,7 +14,6 @@ public var kTileDirectory: String = {
       NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
       return ""
   }
-  
   return documentDirectory + "/pacman/vision/data/"
 }()
 
@@ -52,4 +51,3 @@ public let kDidUpdateWindowCaptureNotification = Notification.Name("did_update_w
 
 // MARK: - Settings keys
 public let kSaveUnknownImagesKey = "save_unknown_images"
-public let kMaxUnknownImagesPerCell = "max_unknown_images_per_cell"

@@ -6,7 +6,7 @@ class GameTile: CustomStringConvertible {
   /// The center pixel coordinate of the tile.
   var centerPixelCoordinate = CGPoint.zero
   /// The type of game piece.
-  var piece: GamePiece = .unknown
+  var piece: TileType = .unknown
   /// The pixels that make up the image. They are organized as [a, r, g, b, a, r, g, b....], and
   /// move horizontally across the image before moving to the next row.
   let pixels: UnsafeMutablePointer<UInt8>
@@ -24,9 +24,9 @@ class GameTile: CustomStringConvertible {
   }
   
   /// Returns an image representation of the tile.
-  func image() -> NSImage {
+  func bitmap() -> NSBitmapImageRep? {
     guard bufferLength > 0 else {
-      return NSImage()
+      return nil
     }
     
     // Create an bitmap image representation of the tile.
@@ -43,27 +43,26 @@ class GameTile: CustomStringConvertible {
                                           bytesPerRow: 8,
                                           bitsPerPixel: 8)
     
-    /// Copy bitmap data to the new image's pixel data.
-    let image = NSImage(size: kGameTileSize)
-    if let bitmap = bitmapImageRep {
-      let rowLength = Int(kGameTileSize.width) * kSamplesPerPixel
-      for i in 0..<dimensions {
-        for j in 0..<dimensions {
-          let pixelBuffer = UnsafeMutablePointer<Int>.allocate(capacity: kSamplesPerPixel)
-          for k in 0..<kSamplesPerPixel {
-            pixelBuffer[k] = Int(pixels[i * rowLength + j * kSamplesPerPixel + k])
-          }
-          bitmap.setPixel(pixelBuffer, atX: j, y: i)
-          pixelBuffer.deallocate(capacity: kSamplesPerPixel)
-        }
-      }
-      image.addRepresentation(bitmap)
+    guard let bm = bitmapImageRep else {
+      return nil
     }
     
-    return image
+    /// Copy bitmap data to the new image's pixel data.
+    let rowLength = Int(kGameTileSize.width) * kSamplesPerPixel
+    for i in 0..<dimensions {
+      for j in 0..<dimensions {
+        let pixelBuffer = UnsafeMutablePointer<Int>.allocate(capacity: kSamplesPerPixel)
+        for k in 0..<kSamplesPerPixel {
+          pixelBuffer[k] = Int(pixels[i * rowLength + j * kSamplesPerPixel + k])
+        }
+        bm.setPixel(pixelBuffer, atX: j, y: i)
+        pixelBuffer.deallocate(capacity: kSamplesPerPixel)
+      }
+    }
+    return bm
   }
   
   var description: String {
-    return "x: \(position.x), y: \(position.y)\n\(piece.description)"
+    return "x: \(position.x), y: \(position.y)\n\(TileMatcher.description(for: piece))"
   }
 }
