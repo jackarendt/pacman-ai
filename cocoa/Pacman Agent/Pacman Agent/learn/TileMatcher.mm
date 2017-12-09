@@ -1,6 +1,6 @@
 #import "TileMatcher.h"
 
-const NSInteger kTileTypeCount = 13;
+const NSInteger kTileTypeCount = 14;
 
 @implementation TileMatcher
 
@@ -32,6 +32,8 @@ const NSInteger kTileTypeCount = 13;
       return @"Power Pellet";
     case TileTypeText:
       return @"Text";
+    case TileTypeIgnore:
+      return @"Ignore";
     default:
       return @"";
   }
@@ -51,7 +53,8 @@ const NSInteger kTileTypeCount = 13;
     TileTypeFrightenedGhost,
     TileTypePellet,
     TileTypePowerPellet,
-    TileTypeText
+    TileTypeText,
+    TileTypeIgnore,
   };
   
   for (NSInteger i = 0; i < kTileTypeCount; i++) {

@@ -42,6 +42,8 @@ extension NSImage {
     
     let smallImage = NSImage(size: newSize)
     smallImage.lockFocus()
+    NSGraphicsContext.current?.imageInterpolation = .none
+    NSGraphicsContext.current?.shouldAntialias = false
     draw(in: resized, from: original, operation: .copy, fraction: 1.0)
     smallImage.unlockFocus()
     return smallImage

@@ -31,6 +31,8 @@ typedef NS_ENUM(NSInteger, TileType) {
   TileTypePowerPellet = 11,
   /** Text of any kind. */
   TileTypeText = 12,
+  /** Not important tile. */
+  TileTypeIgnore = 13,
 };
 
 /** Matches a bitmap image with a tile type. */

@@ -17,6 +17,8 @@ public var kTileDirectory: String = {
   return documentDirectory + "/pacman/vision/data/"
 }()
 
+public let kImageMappingCSVFilename = "labels.csv"
+
 /// Directory for saving unknown tile images.
 public let kTileUnknownDirectory: String = "/tmp/pacman/tiles/unknown/"
 
