@@ -1,15 +1,18 @@
 """Reads input data from the tiles and segments it into training and  test sets."""
 
-from math import *
+from constants import *
+from data_set import *
 import itertools
+from math import *
+import numpy as np
 import os
 import pandas as pd
 from PIL import Image
 
-COLUMNS = ["image", "label"]
-LABEL = "label"
+from tensorflow.contrib.learn.python.learn.datasets import base
+from tensorflow.python.framework import dtypes
 
-RELATIVE_DATA_DIR = "../data/"
+RELATIVE_DATA_DIR = os.path.dirname(os.path.realpath(__file__)) + "/../data/"
 
 # Indices of different color bands stored in RGBA format.
 RGBA_R = 0
@@ -17,17 +20,25 @@ RGBA_G = 1
 RGBA_B = 2
 RGBA_A = 3
 
+def _convert_label_to_one_hot(label):
+  """ Converts an index to a one-hot encoded list. """
+  one_hot = np.zeros(NUM_LABELS, dtype=np.float32)
+  one_hot[label] = 1
+  return one_hot
+
 def read_input_data():
   """
   Reads the input data and converts it to a 1D array of image data in ARGB format, with the
   appropriate label.
   """
   data_set = pd.read_csv(RELATIVE_DATA_DIR + "labels.csv", skipinitialspace=True,
-                         skiprows=1, names=COLUMNS)
+                         skiprows=1, names=[IMAGE, LABEL])
+
+  data_set[LABEL] = data_set[LABEL].astype(object)
 
   for image_idx, row in data_set.iterrows():
     # Load the image, and get the RBGA pixel data.
-    im = Image.open(RELATIVE_DATA_DIR + row[COLUMNS[0]])
+    im = Image.open(RELATIVE_DATA_DIR + row[IMAGE])
     rgba_pixels = im.getdata()
 
     # Convert the rgba pixel data to ARGB (the macOS default for screen captures), and flatten it
@@ -37,7 +48,8 @@ def read_input_data():
     argb_data = [x for sets in argb_pixels for x in sets]
 
     # Change the image column so that it is a 1D array of pixel values instead of an image name.
-    data_set.at[image_idx, COLUMNS[0]] = argb_data
+    data_set.at[image_idx, IMAGE] = np.array(argb_data, dtype=np.float32)
+    data_set.at[image_idx, LABEL] = _convert_label_to_one_hot(row[LABEL])
 
   # Return the processed data set.
   return data_set
@@ -58,17 +70,19 @@ def split_data_set(data_set, train_percentage=0.64, cv_percentage=0.16, test_per
   train_idx = floor(train_percentage * len(data_set.index))
   cv_idx = train_idx + floor(cv_percentage * len(data_set.index))
 
-  train = data_set[0:train_idx].reset_index(drop=True)
-  cv = data_set[train_idx:cv_idx].reset_index(drop=True)
-  test = data_set[cv_idx:].reset_index(drop=True)
+  train = DataSet(data_set[0:train_idx].reset_index(drop=True))
+  cv = DataSet(data_set[train_idx:cv_idx].reset_index(drop=True))
+  test = DataSet(data_set[cv_idx:].reset_index(drop=True))
 
-  return (train, cv, test)
+
+
+  return base.Datasets(train=train, validation=cv, test=test)
 
 if __name__ == '__main__':
   # Reads in the data, splits it into 3 data sets, and prints a description.
   data = read_input_data()
-  train, cv, test = split_data_set(data, cv_percentage=0)
+  data_set = split_data_set(data, cv_percentage=0)
 
-  print("train", train)
-  print("cv", cv)
-  print("test", test)
+  print("train", data_set.train)
+  print("cv", data_set.validation)
+  print("test", data_set.test)
