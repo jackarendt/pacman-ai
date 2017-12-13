@@ -13,7 +13,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 FLAGS = None
 
-HIDDEN_UNIT_SIZE = 200
+HIDDEN_UNIT_SIZE = 196
 
 def _weight_variable(shape):
   """Create a weight variable with appropriate initialization"""
@@ -45,45 +45,69 @@ def _nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
 
 def _evaluations(predictions, labels):
   """Returns a group of operations to calculate accuracy and other evaluation metrics."""
-  return tf.group(metrics.accuracy(predictions, labels),
-                  metrics.confusion_matrix(predictions, labels),
-                  metrics.class_metrics(predictions, labels))
+  ops = [metrics.accuracy(predictions, labels),
+         metrics.confusion_matrix(predictions, labels),
+         metrics.class_metrics(predictions, labels)]
+  return tf.group(*ops)
 
 def _train():
-  """ Trains a vision model and saves it to disk. """
+  """
+    Trains a vision model. It takes in a 2D matrix of image pixel values, and constructs a DNN with
+    one hidden layer, and one output for each class. To determine the most likely class of the DNN,
+    simply call tf.argmax(y, 1). This will return the index of the DNN's prediction.
+  """
   full_data_set = read_input_data()
   data_set = split_data_set(full_data_set,
                             train_percentage=FLAGS.train_ratio,
                             cv_percentage=FLAGS.cv_ratio,
                             test_percentage=FLAGS.test_ratio)
+  print('data set read from disk. creating tensor graph.')
 
   sess = tf.InteractiveSession()
 
   with tf.name_scope('input'):
     x = tf.placeholder(tf.float32, [None, IMAGE_BUFFER_LENGTH], name='x-input')
-    y_ = tf.placeholder(tf.float32, [None, NUM_LABELS], name='y-input')
+    y_ = tf.placeholder(tf.float32, [None, NUM_CLASSES], name='y-input')
+    # Add a histogram of the different labels that are passed in for each iteration. This helps
+    # determine how evenly distributed labels are across epochs.
+    tf.summary.histogram('labels', tf.argmax(y_, 1))
 
+  # Have the input layer feed into a hidden layer, and dropout some values to make the DNN sparser
+  # and quicker.
   hidden1 = _nn_layer(x, IMAGE_BUFFER_LENGTH, HIDDEN_UNIT_SIZE, 'hidden')
   with tf.name_scope('dropout'):
     keep_prob = tf.placeholder(tf.float32)
     dropped = tf.nn.dropout(hidden1, keep_prob)
 
-  y = _nn_layer(dropped, HIDDEN_UNIT_SIZE, NUM_LABELS, 'output', act=tf.identity)
+  # Create an output layer that has the NUM_CLASSES different outputs.
+  y = _nn_layer(dropped, HIDDEN_UNIT_SIZE, NUM_CLASSES, 'output', act=tf.identity)
+
+  # Compute the loss of the iteration.
   with tf.name_scope('cross_entropy'):
     diff = tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y)
     with tf.name_scope('total'):
       cross_entropy = tf.reduce_mean(diff)
   tf.summary.scalar('cross_entropy', cross_entropy)
 
+  # Add histogram for predictions.
+  with tf.name_scope('predictions'):
+    tf.summary.histogram('labels', tf.argmax(y, 1))
+
+  # Use the Adam optimizer to train the DNN.
   with tf.name_scope('train'):
     train_step = tf.train.AdamOptimizer(FLAGS.learning_rate).minimize(cross_entropy)
 
+  # Evaluate the performance of the DNN, such as per-class accuracy, overall accuracy, and a
+  # confusion matrix.
   with tf.name_scope('evaluation'):
     eval_metrics = _evaluations(y, y_)
 
+  # Merge all of the summaries, and write them to the proper directory.
   merged = tf.summary.merge_all()
   train_writer = tf.summary.FileWriter(FLAGS.log_dir + '/train', sess.graph)
   test_writer = tf.summary.FileWriter(FLAGS.log_dir + '/test')
+
+  # Initialize the proper variables.
   tf.global_variables_initializer().run()
   tf.local_variables_initializer().run()
 
@@ -101,12 +125,13 @@ def _train():
         tf.summary.histogram('train_labels', ys)
     return {x: xs, y_:ys, keep_prob: k}
 
+  print('graph created. begin training.')
+  # Train for the max number of steps.
   for i in range(FLAGS.max_steps):
     # Record summaries and test-set accuracies.
     if i % 10 ==0:
       summary, _ = sess.run([merged, eval_metrics], feed_dict=feed_dict(False))
       test_writer.add_summary(summary, i)
-      print('Finished step %s' % (i))
     else:
       if i % 100 == 99:
         run_options = tf.RunOptions(trace_level=tf.RunOptions.FULL_TRACE)
@@ -127,9 +152,11 @@ def _train():
   test_writer.close()
 
 def main(_):
+  print('loading...')
   if tf.gfile.Exists(FLAGS.log_dir):
     tf.gfile.DeleteRecursively(FLAGS.log_dir)
   tf.gfile.MakeDirs(FLAGS.log_dir)
+  print('logs dir created')
   _train()
 
 if __name__ == '__main__':

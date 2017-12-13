@@ -22,7 +22,7 @@ RGBA_A = 3
 
 def _convert_label_to_one_hot(label):
   """ Converts an index to a one-hot encoded list. """
-  one_hot = np.zeros(NUM_LABELS, dtype=np.float32)
+  one_hot = np.zeros(NUM_CLASSES, dtype=np.float32)
   one_hot[label] = 1
   return one_hot
 

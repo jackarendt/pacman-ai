@@ -6,11 +6,12 @@ from constants import *
 
 
 class DataSet(object):
+  """Object that represents a collection of data."""
   def __init__(self, data_set):
     """ Creates a dataset with a list of images and labels. """
     self._num_examples = data_set.shape[0]
     self._images = np.zeros(shape=(self._num_examples, IMAGE_BUFFER_LENGTH), dtype=np.float32)
-    self._labels = np.zeros(shape=(self._num_examples, NUM_LABELS), dtype=np.float32)
+    self._labels = np.zeros(shape=(self._num_examples, NUM_CLASSES), dtype=np.float32)
 
     self._epochs_completed = 0
     self._index_in_epoch = 0
@@ -25,18 +26,22 @@ class DataSet(object):
 
   @property
   def images(self):
+    """A 2D matrix containing the pixel data for each example."""
     return self._images
 
   @property
   def labels(self):
+    """A one-hot encoded 2D matrix of labels."""
     return self._labels
 
   @property
   def num_examples(self):
+    """The number of examples in the data set."""
     return self._num_examples
 
   @property
   def epochs_completed(self):
+    """The number of epochs that have been created."""
     return self._epochs_completed
 
 
@@ -48,11 +53,13 @@ class DataSet(object):
     if self._epochs_completed == 0 and start == 0 and shuffle:
       self._shuffle()
 
+    # Return the next `batch_size` examples from the current epoch.
     if start + batch_size < self._num_examples:
       self._index_in_epoch += batch_size
       end = self._index_in_epoch
       return self._images[start:end], self._labels[start:end]
     else:
+      # Get the remaining examples from the current epoch.
       remaining_examples = self._num_examples - start
       remaining_images = self._images[start:self._num_examples]
       remaining_labels = self._labels[start:self._num_examples]
@@ -60,6 +67,7 @@ class DataSet(object):
       if shuffle:
         self._shuffle()
 
+      # Append the examples from the new epoch to the old epoch.
       start = 0
       self._index_in_epoch = batch_size - remaining_examples
       end = self._index_in_epoch
