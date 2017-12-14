@@ -151,6 +151,33 @@ def _train():
   train_writer.close()
   test_writer.close()
 
+  print('Exporting trained model to: ', FLAGS.export_dir)
+
+  # Create builder to save the model.
+  builder = tf.saved_model.builder.SavedModelBuilder(FLAGS.export_dir)
+
+  # Create tensor descriptors for the input and output.
+  prediction_inputs = tf.saved_model.utils.build_tensor_info(x)
+  prediction_outputs = tf.saved_model.utils.build_tensor_info(y)
+
+  # Create a prediction signature of the inputs and outputs.
+  prediction_signature = (
+      tf.saved_model.signature_def_utils.build_signature_def(
+          inputs={'images': prediction_inputs},
+          outputs={'scores': prediction_outputs},
+          method_name=tf.saved_model.signature_constants.PREDICT_METHOD_NAME)
+  )
+
+  # Save the model.
+  legacy_init_op = tf.group(tf.tables_initializer(), name='legacy_init_op')
+
+  builder.add_meta_graph_and_variables(sess,
+                                       [tf.saved_model.tag_constants.SERVING],
+                                       signature_def_map={'predict_images': prediction_signature},
+                                       legacy_init_op=legacy_init_op)
+  builder.save()
+  print('successfully saved model to: ', FLAGS.export_dir)
+
 def main(_):
   print('loading...')
   if tf.gfile.Exists(FLAGS.log_dir):
@@ -178,5 +205,10 @@ if __name__ == '__main__':
         type=str,
         default=os.path.join(os.getenv('TEST_TMPDIR', '/tmp'), 'pacman/vision/logs/'),
         help='Summaries log directory')
+  parser.add_argument(
+        '--export_dir',
+        type=str,
+        default=os.path.dirname(os.path.realpath(__file__)) + '/../model/',
+        help='Model export directory')
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
