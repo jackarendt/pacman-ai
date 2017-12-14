@@ -76,11 +76,14 @@ def _train():
   # and quicker.
   hidden1 = _nn_layer(x, IMAGE_BUFFER_LENGTH, HIDDEN_UNIT_SIZE, 'hidden')
   with tf.name_scope('dropout'):
-    keep_prob = tf.placeholder(tf.float32)
+    keep_prob = tf.placeholder(tf.float32, name='dropout')
     dropped = tf.nn.dropout(hidden1, keep_prob)
 
   # Create an output layer that has the NUM_CLASSES different outputs.
   y = _nn_layer(dropped, HIDDEN_UNIT_SIZE, NUM_CLASSES, 'output', act=tf.identity)
+
+  with tf.name_scope('prediction'):
+    prediction = tf.nn.softmax(logits=y, name='prediction')
 
   # Compute the loss of the iteration.
   with tf.name_scope('cross_entropy'):
@@ -100,7 +103,7 @@ def _train():
   # Evaluate the performance of the DNN, such as per-class accuracy, overall accuracy, and a
   # confusion matrix.
   with tf.name_scope('evaluation'):
-    eval_metrics = _evaluations(y, y_)
+    eval_metrics = _evaluations(prediction, y_)
 
   # Merge all of the summaries, and write them to the proper directory.
   merged = tf.summary.merge_all()
@@ -116,13 +119,9 @@ def _train():
     if train:
       xs, ys = data_set.train.next_batch(100)
       k = FLAGS.dropout
-      with tf.name_scope('labels'):
-        tf.summary.histogram('test_labels', ys)
     else:
       xs, ys = data_set.test.images, data_set.test.labels
       k = 1.0
-      with tf.name_scope('labels'):
-        tf.summary.histogram('train_labels', ys)
     return {x: xs, y_:ys, keep_prob: k}
 
   print('graph created. begin training.')
@@ -153,8 +152,22 @@ def _train():
 
   print('Exporting trained model to: ', FLAGS.export_dir)
 
+  if tf.gfile.Exists(FLAGS.export_dir):
+    tf.gfile.DeleteRecursively(FLAGS.export_dir)
+
   # Create builder to save the model.
   builder = tf.saved_model.builder.SavedModelBuilder(FLAGS.export_dir)
+
+
+  classification_inputs = tf.saved_model.utils.build_tensor_info(x)
+  classification_outputs_classes = tf.saved_model.utils.build_tensor_info(y)
+  classification_signature = (
+      tf.saved_model.signature_def_utils.build_signature_def(
+          inputs={tf.saved_model.signature_constants.CLASSIFY_INPUTS: classification_inputs},
+          outputs={tf.saved_model.signature_constants.CLASSIFY_OUTPUT_CLASSES:
+              classification_outputs_classes},
+          method_name=tf.saved_model.signature_constants.CLASSIFY_METHOD_NAME)
+  )
 
   # Create tensor descriptors for the input and output.
   prediction_inputs = tf.saved_model.utils.build_tensor_info(x)
@@ -169,12 +182,16 @@ def _train():
   )
 
   # Save the model.
-  legacy_init_op = tf.group(tf.tables_initializer(), name='legacy_init_op')
+  builder.add_meta_graph_and_variables(
+      sess,
+      [tf.saved_model.tag_constants.SERVING],
+      signature_def_map={
+          'predict_images' : prediction_signature,
+          tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY:
+              classification_signature,
+      },
+      legacy_init_op=tf.group(tf.tables_initializer(), name='legacy_init_op'))
 
-  builder.add_meta_graph_and_variables(sess,
-                                       [tf.saved_model.tag_constants.SERVING],
-                                       signature_def_map={'predict_images': prediction_signature},
-                                       legacy_init_op=legacy_init_op)
   builder.save()
   print('successfully saved model to: ', FLAGS.export_dir)
 
