@@ -53,3 +53,7 @@ public let kDidUpdateWindowCaptureNotification = Notification.Name("did_update_w
 
 // MARK: - Settings keys
 public let kSaveUnknownImagesKey = "save_unknown_images"
+
+public let kClassificationConfidenceThresholdKey = "classification_confidence_threshold"
+
+public let kRandomImageSamplingFrequencyKey = "random_image_sampling_frequency"

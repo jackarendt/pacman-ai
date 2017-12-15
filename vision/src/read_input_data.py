@@ -56,7 +56,6 @@ def read_input_data():
 
 def split_data_set(data_set, train_percentage=0.64, cv_percentage=0.16, test_percentage=0.2):
   """ Splits the data set into a training, cross validation, and test training group. """
-
   original_sum = train_percentage + cv_percentage + test_percentage
   if original_sum != 1:
     train_percentage = train_percentage / original_sum
@@ -73,8 +72,6 @@ def split_data_set(data_set, train_percentage=0.64, cv_percentage=0.16, test_per
   train = DataSet(data_set[0:train_idx].reset_index(drop=True))
   cv = DataSet(data_set[train_idx:cv_idx].reset_index(drop=True))
   test = DataSet(data_set[cv_idx:].reset_index(drop=True))
-
-
 
   return base.Datasets(train=train, validation=cv, test=test)
 

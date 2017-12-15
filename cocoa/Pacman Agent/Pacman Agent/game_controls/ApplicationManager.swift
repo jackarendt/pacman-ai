@@ -55,6 +55,7 @@ extension ApplicationManager: WindowCaptureDelegate {
     let tiles = regularWindowSlider.tiles(image: window)
     // TODO: Classify image tiles.
     saveUnknownTiles(tiles: tiles)
+    saveRandomTiles(tiles: tiles)
   }
   
   func didAcquireWindowMetadata(metadata: [String : Any]) {
@@ -67,34 +68,62 @@ extension ApplicationManager: WindowCaptureDelegate {
   
   /// Saves unknown tile images to a temp directory.
   private func saveUnknownTiles(tiles: [GameTile]) {
-    if !Settings.saveUnknownImages {
+    guard Settings.saveUnknownImages else {
       return
     }
     
     let unknownTiles = tiles.filter({ $0.piece == .unknown })
-    
     if unknownTiles.count == 0 {
       return
     }
     
-    let basePath = kTileUnknownDirectory
-
+    if createUnknownTilesDirectoryIfNecessary() {
+       for tile in unknownTiles {
+        saveTile(tile: tile)
+      }
+    }
+  }
+  
+  /// Shuffles the first n% tiles, and saves those to disk.
+  private func saveRandomTiles(tiles: [GameTile]) {
+    var shuffledTiles = tiles
+    
+    // Get the number of tiles that will be saved.
+    let shuffledTileCount = Int(floor(Float(tiles.count) * Settings.imageRandomSamplingFrequency))
+    
+    // Randomly swap indices until the first n% of tiles are shuffled.
+    for i in 0..<shuffledTileCount {
+      let j = Int(arc4random_uniform(UInt32(tiles.count - i))) + i
+      shuffledTiles.swapAt(i, j)
+    }
+    
+    // Save the shuffled tiles to disk.
+    if createUnknownTilesDirectoryIfNecessary() {
+      for i in 0..<shuffledTileCount {
+        saveTile(tile: shuffledTiles[i])
+      }
+    }
+  }
+  
+  /// Saves a tile to disk.
+  private func saveTile(tile: GameTile) {
+    let filename = "\(Int(tile.position.x))_\(Int(tile.position.y))"
+    let fullPath = kTileUnknownDirectory + filename + ".tiff"
+    let _ = tile.bitmap()?.saveToPath(path: fullPath)
+  }
+  
+  /// Creates an temp directory with all of the unknown tiles if necessary.
+  private func createUnknownTilesDirectoryIfNecessary() -> Bool {
     // Create the tmp directory if one doesn't exist.
-    if !FileManager.default.fileExists(atPath: basePath) {
+    if !FileManager.default.fileExists(atPath: kTileUnknownDirectory) {
       do {
-        try FileManager.default.createDirectory(atPath: basePath,
+        try FileManager.default.createDirectory(atPath: kTileUnknownDirectory,
                                                 withIntermediateDirectories: true,
                                                 attributes: nil)
       } catch {
-        return
+        return false
       }
     }
-    
-    
-    for tile in unknownTiles {
-      let filename = "\(Int(tile.position.x))_\(Int(tile.position.y))"
-      let fullPath = basePath + filename + ".tiff"
-      let _ = tile.bitmap()?.saveToPath(path: fullPath)
-    }
+    return true
   }
 }

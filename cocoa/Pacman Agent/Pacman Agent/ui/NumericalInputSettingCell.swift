@@ -4,7 +4,7 @@ import Cocoa
 class NumericalInputSettingCell: NSView, SettingsCell {
   var settingsIdentifier: String
   
-  var value: Int {
+  var value: Float {
     didSet {
       UserDefaults.standard.set(value, forKey: settingsIdentifier)
     }
@@ -15,7 +15,7 @@ class NumericalInputSettingCell: NSView, SettingsCell {
   
   required init(title: String, identifier: String) {
     self.settingsIdentifier = identifier
-    self.value = UserDefaults.standard.integer(forKey: settingsIdentifier)
+    self.value = UserDefaults.standard.float(forKey: settingsIdentifier)
     super.init(frame: CGRect.zero)
     
     label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,7 +34,7 @@ class NumericalInputSettingCell: NSView, SettingsCell {
     textInput.activateFullHeightConstraints(padding: 0)
     
     textInput.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-    textInput.widthAnchor.constraint(equalToConstant: 30).isActive = true
+    textInput.widthAnchor.constraint(equalToConstant: 50).isActive = true
     label.leadingAnchor.constraint(equalTo: textInput.trailingAnchor, constant: 10).isActive = true
     label.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
   }
@@ -46,6 +46,6 @@ class NumericalInputSettingCell: NSView, SettingsCell {
 
 extension NumericalInputSettingCell: NSTextFieldDelegate {
   override func controlTextDidChange(_ obj: Notification) {
-      value = textInput.integerValue
+      value = textInput.floatValue
   }
 }

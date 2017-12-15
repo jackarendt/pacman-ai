@@ -10,6 +10,14 @@ class AgentSettingsViewController: NSViewController {
   let saveImagesSetting =
       CheckboxSettingCell(title: "Save unknown images", identifier: kSaveUnknownImagesKey)
   
+  let confidenceThresholdSetting =
+      NumericalInputSettingCell(title: "Minimum classification confidence",
+                                identifier: kClassificationConfidenceThresholdKey)
+  
+  let randomSamplePercentage =
+      NumericalInputSettingCell(title: "Random image sampling ratio",
+                                identifier: kRandomImageSamplingFrequencyKey)
+  
   let stackView = NSStackView()
   
   private let margin: CGFloat = 20
@@ -26,6 +34,8 @@ class AgentSettingsViewController: NSViewController {
     
     addArrangedSubview(view: launchAIButton)
     addArrangedSubview(view: saveImagesSetting)
+    addArrangedSubview(view: confidenceThresholdSetting)
+    addArrangedSubview(view: randomSamplePercentage)
   }
   
   @objc func launchAI() {
