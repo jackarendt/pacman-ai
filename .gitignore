@@ -29,8 +29,9 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 
-# Uncompressed Data
+# ML Data.
 vision/data/
+vision/model/
 
 # Python
 __pycache__/
