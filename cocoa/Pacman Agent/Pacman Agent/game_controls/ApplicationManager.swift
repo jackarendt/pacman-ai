@@ -16,6 +16,8 @@ final class ApplicationManager {
     return ""
   }
   
+  private lazy var tileMatcher = TileMatcher()
+  
   private var timer: Timer?
   
   /// The window capture handles capturing screenshots of the target window.
@@ -46,6 +48,10 @@ final class ApplicationManager {
       }
     })
     return true
+  }
+  
+  func initializeTensorflowModels() {
+    tileMatcher.loadVisionModel()
   }
 }
 

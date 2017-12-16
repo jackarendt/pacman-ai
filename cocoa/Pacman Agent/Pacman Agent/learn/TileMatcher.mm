@@ -1,65 +1,56 @@
 #import "TileMatcher.h"
 
-const NSInteger kTileTypeCount = 14;
+#include <tensorflow/core/lib/core/status.h>
+#include <tensorflow/core/public/session.h>
+#include <tensorflow/core/protobuf/meta_graph.pb.h>
 
-@implementation TileMatcher
+using namespace std;
+using namespace tensorflow;
 
-+ (NSString *)descriptionForTileType:(enum TileType)tileType {
-  switch (tileType) {
-    case TileTypeUnknown:
-      return @"Unknown";
-    case TileTypePacman:
-      return @"PacMan";
-    case TileTypeWall:
-      return @"Wall";
-    case TileTypeBlank:
-      return @"Blank";
-    case TileTypeFruit:
-      return @"Fruit";
-    case TileTypeBlinky:
-      return @"Blinky";
-    case TileTypeInky:
-      return @"Inky";
-    case TileTypePinky:
-      return @"Pinky";
-    case TileTypeClyde:
-      return @"Clyde";
-    case TileTypeFrightenedGhost:
-      return @"Frightened Ghost";
-    case TileTypePellet:
-      return @"Pellet";
-    case TileTypePowerPellet:
-      return @"Power Pellet";
-    case TileTypeText:
-      return @"Text";
-    case TileTypeIgnore:
-      return @"Ignore";
-    default:
-      return @"";
+const string kModelName = "model.meta";
+
+@implementation TileMatcher {
+  Session *session_;
+}
+
+- (void)dealloc {
+  if (session_ != nullptr) {
+    delete session_;
   }
 }
 
-+ (void)allTileTypes:(TileType *)typeBuffer {
-  TileType types[kTileTypeCount] = {
-    TileTypeUnknown,
-    TileTypePacman,
-    TileTypeWall,
-    TileTypeBlank,
-    TileTypeFruit,
-    TileTypeBlinky,
-    TileTypeInky,
-    TileTypePinky,
-    TileTypeClyde,
-    TileTypeFrightenedGhost,
-    TileTypePellet,
-    TileTypePowerPellet,
-    TileTypeText,
-    TileTypeIgnore,
-  };
+- (BOOL)loadVisionModel {
+  NSString *documentsDirectory =
+  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+  NSString *modelDirectory =
+  [documentsDirectory stringByAppendingString:@"/pacman/vision/model/"];
   
-  for (NSInteger i = 0; i < kTileTypeCount; i++) {
-    typeBuffer[i] = types[i];
+  string model_dir = std::string([modelDirectory UTF8String]);
+  
+  SessionOptions session_options;
+  Status status;
+  
+  Status session_status = NewSession(session_options, &session_);
+  if (!session_status.ok()) {
+    std::string status_string = session_status.ToString();
+    NSLog(@"Session create failed - %s", status_string.c_str());
+    return NO;
   }
+  
+  MetaGraphDef graph_def;
+  status = ReadBinaryProto(Env::Default(), model_dir + kModelName, &graph_def);
+  
+  if (!status.ok()) {
+    return NO;
+  }
+
+  status = session_->Create(graph_def.graph_def());
+  if (!status.ok()) {
+    cout << "Error creating graph: " + status.ToString() << endl;
+    return NO;
+  }
+  
+  return YES;
 }
 
 @end

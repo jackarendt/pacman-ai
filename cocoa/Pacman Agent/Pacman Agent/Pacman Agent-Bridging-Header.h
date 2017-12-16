@@ -4,5 +4,5 @@
 
 #import "WindowCaptureHelper.h"
 #import "WindowSliderHelper.h"
-#import "ModelLoader.h"
 #import "TileMatcher.h"
+#import "TileMatcher+Descriptions.h"

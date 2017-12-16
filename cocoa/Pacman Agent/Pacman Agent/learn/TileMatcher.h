@@ -1,8 +1,5 @@
 #import <Foundation/Foundation.h>
 
-/** The number of tile types. */
-extern const NSInteger kTileTypeCount;
-
 /** Enumeration of all of the different tile types. */
 typedef NS_ENUM(NSInteger, TileType) {
   /** Unknown Tile. */
@@ -38,10 +35,6 @@ typedef NS_ENUM(NSInteger, TileType) {
 /** Matches a bitmap image with a tile type. */
 @interface TileMatcher : NSObject
 
-/** Returns the description of a tile type. */
-+ (NSString *)descriptionForTileType:(enum TileType)tileType;
-
-/** Populates a buffer with all of the different tile types. */
-+ (void)allTileTypes:(enum TileType *)typeBuffer;
+- (BOOL)loadVisionModel;
 
 @end

@@ -24,7 +24,10 @@ def _verify_performance():
   print('data set read, loading saved model from:', FLAGS.export_dir)
 
   with tf.Session(graph=tf.Graph()) as sess:
-    tf.saved_model.loader.load(sess, [tf.saved_model.tag_constants.SERVING], FLAGS.export_dir)
+    # tf.saved_model.loader.load(sess, [tf.saved_model.tag_constants.SERVING], FLAGS.export_dir)
+    saver = tf.train.import_meta_graph(FLAGS.export_dir + 'variables.meta')
+    saver.restore(sess, tf.train.latest_checkpoint(FLAGS.export_dir))
+
     print('model successfully loaded.')
     graph = tf.get_default_graph()
 

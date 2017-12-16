@@ -155,44 +155,10 @@ def _train():
   if tf.gfile.Exists(FLAGS.export_dir):
     tf.gfile.DeleteRecursively(FLAGS.export_dir)
 
-  # Create builder to save the model.
-  builder = tf.saved_model.builder.SavedModelBuilder(FLAGS.export_dir)
+  saver = tf.train.Saver(tf.trainable_variables())
+  saver.save(sess, FLAGS.export_dir + 'model')
+  tf.train.write_graph(sess.graph.as_graph_def(), FLAGS.export_dir, 'graph.pb')
 
-
-  classification_inputs = tf.saved_model.utils.build_tensor_info(x)
-  classification_outputs_classes = tf.saved_model.utils.build_tensor_info(y)
-  classification_signature = (
-      tf.saved_model.signature_def_utils.build_signature_def(
-          inputs={tf.saved_model.signature_constants.CLASSIFY_INPUTS: classification_inputs},
-          outputs={tf.saved_model.signature_constants.CLASSIFY_OUTPUT_CLASSES:
-              classification_outputs_classes},
-          method_name=tf.saved_model.signature_constants.CLASSIFY_METHOD_NAME)
-  )
-
-  # Create tensor descriptors for the input and output.
-  prediction_inputs = tf.saved_model.utils.build_tensor_info(x)
-  prediction_outputs = tf.saved_model.utils.build_tensor_info(y)
-
-  # Create a prediction signature of the inputs and outputs.
-  prediction_signature = (
-      tf.saved_model.signature_def_utils.build_signature_def(
-          inputs={'images': prediction_inputs},
-          outputs={'scores': prediction_outputs},
-          method_name=tf.saved_model.signature_constants.PREDICT_METHOD_NAME)
-  )
-
-  # Save the model.
-  builder.add_meta_graph_and_variables(
-      sess,
-      [tf.saved_model.tag_constants.SERVING],
-      signature_def_map={
-          'predict_images' : prediction_signature,
-          tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY:
-              classification_signature,
-      },
-      legacy_init_op=tf.group(tf.tables_initializer(), name='legacy_init_op'))
-
-  builder.save()
   print('successfully saved model to: ', FLAGS.export_dir)
 
 def main(_):
