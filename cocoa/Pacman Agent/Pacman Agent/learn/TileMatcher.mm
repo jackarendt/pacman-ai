@@ -7,7 +7,7 @@
 using namespace std;
 using namespace tensorflow;
 
-const string kModelName = "model.meta";
+const string kModelName = "finalized_model.pb";
 
 @implementation TileMatcher {
   Session *session_;
@@ -21,35 +21,35 @@ const string kModelName = "model.meta";
 
 - (BOOL)loadVisionModel {
   NSString *documentsDirectory =
-  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+      NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
   NSString *modelDirectory =
-  [documentsDirectory stringByAppendingString:@"/pacman/vision/model/"];
+      [documentsDirectory stringByAppendingString:@"/pacman/vision/model/"];
   
-  string model_dir = std::string([modelDirectory UTF8String]);
+  const string model_dir = std::string([modelDirectory UTF8String]);
   
   SessionOptions session_options;
-  Status status;
   
   Status session_status = NewSession(session_options, &session_);
   if (!session_status.ok()) {
-    std::string status_string = session_status.ToString();
-    NSLog(@"Session create failed - %s", status_string.c_str());
+    NSLog(@"Session create failed - %s", session_status.ToString().c_str());
     return NO;
   }
   
-  MetaGraphDef graph_def;
+  GraphDef graph_def;
+  Status status;
   status = ReadBinaryProto(Env::Default(), model_dir + kModelName, &graph_def);
-  
   if (!status.ok()) {
+    cout << "Error creating graph: " + status.ToString() << endl;
     return NO;
   }
 
-  status = session_->Create(graph_def.graph_def());
+  status = session_->Create(graph_def);
   if (!status.ok()) {
     cout << "Error creating graph: " + status.ToString() << endl;
     return NO;
   }
   
+  NSLog(@"IT WORKS IT WORKS");
   return YES;
 }
 

@@ -5,6 +5,7 @@ import os
 import pandas as pd
 import sys
 import tensorflow as tf
+from tensorflow.python.framework import graph_io
 import metrics
 from read_input_data import *
 
@@ -155,9 +156,9 @@ def _train():
   if tf.gfile.Exists(FLAGS.export_dir):
     tf.gfile.DeleteRecursively(FLAGS.export_dir)
 
+  graph_io.write_graph(sess.graph, FLAGS.export_dir, GRAPH_PB_NAME)
   saver = tf.train.Saver(tf.trainable_variables())
-  saver.save(sess, FLAGS.export_dir + 'model')
-  tf.train.write_graph(sess.graph.as_graph_def(), FLAGS.export_dir, 'graph.pb')
+  saver.save(sess, FLAGS.export_dir + MODEL_NAME, write_meta_graph=True)
 
   print('successfully saved model to: ', FLAGS.export_dir)
 
@@ -191,7 +192,7 @@ if __name__ == '__main__':
   parser.add_argument(
         '--export_dir',
         type=str,
-        default=os.path.dirname(os.path.realpath(__file__)) + '/../model/',
+        default=os.path.dirname(os.path.realpath(__file__)) + RELATIVE_EXPORT_DIR,
         help='Model export directory')
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)

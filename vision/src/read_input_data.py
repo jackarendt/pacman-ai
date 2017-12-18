@@ -12,7 +12,7 @@ from PIL import Image
 from tensorflow.contrib.learn.python.learn.datasets import base
 from tensorflow.python.framework import dtypes
 
-RELATIVE_DATA_DIR = os.path.dirname(os.path.realpath(__file__)) + "/../data/"
+RELATIVE_DATA_DIR = os.path.dirname(os.path.realpath(__file__)) + '/../data/'
 
 # Indices of different color bands stored in RGBA format.
 RGBA_R = 0
@@ -21,7 +21,7 @@ RGBA_B = 2
 RGBA_A = 3
 
 def _convert_label_to_one_hot(label):
-  """ Converts an index to a one-hot encoded list. """
+  """Converts an index to a one-hot encoded list."""
   one_hot = np.zeros(NUM_CLASSES, dtype=np.float32)
   one_hot[label] = 1
   return one_hot
@@ -31,7 +31,7 @@ def read_input_data():
   Reads the input data and converts it to a 1D array of image data in ARGB format, with the
   appropriate label.
   """
-  data_set = pd.read_csv(RELATIVE_DATA_DIR + "labels.csv", skipinitialspace=True,
+  data_set = pd.read_csv(RELATIVE_DATA_DIR + 'labels.csv', skipinitialspace=True,
                          skiprows=1, names=[IMAGE, LABEL])
 
   data_set[LABEL] = data_set[LABEL].astype(object)
@@ -55,14 +55,14 @@ def read_input_data():
   return data_set
 
 def split_data_set(data_set, train_percentage=0.64, cv_percentage=0.16, test_percentage=0.2):
-  """ Splits the data set into a training, cross validation, and test training group. """
+  """Splits the data set into a training, cross validation, and test training group. """
   original_sum = train_percentage + cv_percentage + test_percentage
   if original_sum != 1:
     train_percentage = train_percentage / original_sum
     cv_percentage = cv_percentage / original_sum
     test_percentage = test_percentage / original_sum
-    print("Dataset partition ratios do not total 1. They have been normalized to:\n" +
-          "train: %f\ncv: %f\ntest: %f\n" % (train_percentage, cv_percentage, test_percentage))
+    print('Dataset partition ratios do not total 1. They have been normalized to:\n' +
+          'train: %f\ncv: %f\ntest: %f\n' % (train_percentage, cv_percentage, test_percentage))
 
   data_set = data_set.sample(frac=1).reset_index(drop=True)
 
@@ -74,12 +74,3 @@ def split_data_set(data_set, train_percentage=0.64, cv_percentage=0.16, test_per
   test = DataSet(data_set[cv_idx:].reset_index(drop=True))
 
   return base.Datasets(train=train, validation=cv, test=test)
-
-if __name__ == '__main__':
-  # Reads in the data, splits it into 3 data sets, and prints a description.
-  data = read_input_data()
-  data_set = split_data_set(data, cv_percentage=0)
-
-  print("train", data_set.train)
-  print("cv", data_set.validation)
-  print("test", data_set.test)
