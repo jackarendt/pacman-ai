@@ -48,8 +48,6 @@ const string kModelName = "finalized_model.pb";
     cout << "Error creating graph: " + status.ToString() << endl;
     return NO;
   }
-  
-  NSLog(@"IT WORKS IT WORKS");
   return YES;
 }
 

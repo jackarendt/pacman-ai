@@ -34,6 +34,11 @@ final class ApplicationManager {
   
   /// Opens the emulator with pacman open.
   func open() -> Bool {
+    guard initializeTensorflowModels() else {
+      print("Tensorflow model failed to load.")
+      return false
+    }
+    
     guard NSWorkspace.shared.openFile(gamePath, withApplication: kEmulatorApplication) else {
       return false
     }
@@ -50,8 +55,8 @@ final class ApplicationManager {
     return true
   }
   
-  func initializeTensorflowModels() {
-    tileMatcher.loadVisionModel()
+  private func initializeTensorflowModels() -> Bool {
+    return tileMatcher.loadVisionModel()
   }
 }
 

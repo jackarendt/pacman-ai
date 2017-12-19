@@ -33,12 +33,9 @@ if __name__ == '__main__':
   # This is a super crude way to strip out the dropout nodes from the frozen model. The general idea
   # is to identify the block of nodes that have the 'dropout/' prefix and remove them. Then take the
   # output layer's input and assign it to the hidden layer's output.
-  input_graph_def = graph_pb2.GraphDef()
+  graph_def = graph_pb2.GraphDef()
   with tf.gfile.Open(output_frozen_graph_name, 'rb') as f:
-    input_graph_def.ParseFromString(f.read())
-    _ = importer.import_graph_def(input_graph_def, name='')
-
-    graph = tf.get_default_graph()
+    graph_def.ParseFromString(f.read())
 
     # The first index that dropout appears.
     dropout_start_index = -1
@@ -50,7 +47,7 @@ if __name__ == '__main__':
     dropout_input_index = -1
 
     dropout_name_scope = 'dropout'
-    for i, node in enumerate(graph.as_graph_def().node):
+    for i, node in enumerate(graph_def.node):
       # Get the index where dropout nodes begin.
       if dropout_start_index == -1 and dropout_name_scope in node.name:
         dropout_start_index = i
@@ -69,14 +66,18 @@ if __name__ == '__main__':
 
     # Modify the graph_def to remove the dropout nodes and connect the hidden layer directly to the
     # output.
-    graph_def = graph.as_graph_def()
     graph_def.node[dropout_output_index].input[dropout_input_index] = (
         graph_def.node[dropout_start_index - 1].name
     )
-    new_nodes = graph_def.node[:dropout_start_index] + graph_def.node[dropout_end_index:]
+    nodes = graph_def.node[:dropout_start_index] + graph_def.node[dropout_end_index:]
 
     # Save the finalized graph.
     output_graph = graph_pb2.GraphDef()
-    output_graph.node.extend(new_nodes)
-    with tf.gfile.GFile(export_path + FINALIZED_PB_NAME, 'wb') as f:
-      f.write(output_graph.SerializeToString())
+    output_graph.node.extend(nodes)
+    with tf.gfile.GFile(export_path + FINALIZED_PB_NAME, 'wb') as wf:
+      wf.write(output_graph.SerializeToString())
+
+    print('Finalized Graph Nodes:')
+    for i, node in enumerate(output_graph.node):
+      print('%d %s %s' % (i, node.name, node.op))
+      [print(u'└─── %d ─ %s' % (i, n)) for i, n in enumerate(node.input)]
