@@ -11,14 +11,12 @@ void FillPixelBuffer(PixelComponent *buffer,
                      NSInteger x,
                      NSInteger y,
                      const unsigned char *bitmap,
-                     CGSize tileSize,
                      NSInteger imageWidth) {
+  NSInteger width = (NSInteger)kGameTileSize.width;
+  NSInteger height = (NSInteger)kGameTileSize.height;
   
-  NSInteger bufferRowMax = kSamplesPerPixel * (NSInteger)tileSize.width;
+  NSInteger bufferRowMax = kSamplesPerPixel * width;
   NSInteger imageRowMax = kSamplesPerPixel * imageWidth;
-  
-  int width = (int)tileSize.width;
-  int height = (int)tileSize.height;
   
   // The image is populated [a, r, g, b, a, r, g, b] moving from (0, 0) to (n, 0) then over each row
   // until it hits (n, m). This populates the tile buffer with the correct pixel values.
@@ -36,14 +34,13 @@ void FillPixelBuffer(PixelComponent *buffer,
 }
 
 void TileBitmap(NSBitmapImageRep *bitmap,
-                CGSize tileSize,
                 void (^callback)(PixelComponent *, NSInteger, NSInteger, NSInteger)) {
   unsigned char *bitmapData = bitmap.bitmapData;
   NSInteger width = bitmap.pixelsWide;
   
   // Get the number of tiles for each axis.
-  int xTiles = floor(bitmap.pixelsWide / tileSize.width);
-  int yTiles = floor(bitmap.pixelsHigh / tileSize.height);
+  int xTiles = floor(bitmap.pixelsWide / kGameTileSize.width);
+  int yTiles = floor(bitmap.pixelsHigh / kGameTileSize.height);
   
   
   // Iterate over tiles, moving row by row.
@@ -52,11 +49,11 @@ void TileBitmap(NSBitmapImageRep *bitmap,
       // Create a buffer for the tile's pixel data.
       // bufferSize = width * height * samples per pixel.
       NSInteger bufferSize =
-          (NSInteger)tileSize.width * (NSInteger)tileSize.height * kSamplesPerPixel;
+          (NSInteger)kGameTileSize.width * (NSInteger)kGameTileSize.height * kSamplesPerPixel;
       PixelComponent *buffer = malloc(bufferSize * sizeof(PixelComponent));
       
       // Fill the pixel buffer and invoke the callback block.
-      FillPixelBuffer(buffer, j, i, bitmapData, tileSize, width);
+      FillPixelBuffer(buffer, j, i, bitmapData, width);
       callback(buffer, j, i, bufferSize);
     }
   }

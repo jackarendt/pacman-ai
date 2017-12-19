@@ -64,7 +64,7 @@ extension ApplicationManager: WindowCaptureDelegate {
   func didCaptureWindow(window: NSImage) {
     NotificationCenter.default.post(name: kDidUpdateWindowCaptureNotification, object: window)
     let tiles = regularWindowSlider.tiles(image: window)
-    // TODO: Classify image tiles.
+    classifyTiles(tiles: tiles)
     saveUnknownTiles(tiles: tiles)
     saveRandomTiles(tiles: tiles)
   }
@@ -77,12 +77,45 @@ extension ApplicationManager: WindowCaptureDelegate {
     print("Window not acquired")
   }
   
+  /// Classifies each tile as a given type.
+  private func classifyTiles(tiles: [GameTile]) {
+    // Buffer size is the number of pixels in the image * samples per pixel.
+    let bufferSize = Int(kGameWidth * kGameHeight) * kSamplesPerPixel
+    let pixelBuffer = UnsafeMutablePointer<PixelComponent>.allocate(capacity: bufferSize)
+    
+    // Copy the pixel values to a 1D buffer containing all pixel values.
+    for (i, tile) in tiles.enumerated() {
+      for j in 0..<tile.bufferLength {
+        pixelBuffer[i * tile.bufferLength + j] = tile.pixels[j]
+      }
+    }
+    
+    // Classification buffer is the number of tiles.
+    let classificationBufferSize = kGameTileWidth * kGameTileHeight
+    let classificationBuffer =
+      UnsafeMutablePointer<TileType>.allocate(capacity: classificationBufferSize)
+    
+    // Predict what tiles are being shown currently.
+    tileMatcher.predictions(forTiles: pixelBuffer,
+                            tileBuffer: classificationBuffer,
+                            confidenceThreshold: Settings.imageClassificationConfidenceThreshold)
+    
+    // Update what tiles are being shown.
+    for i in 0..<classificationBufferSize {
+      tiles[i].piece = classificationBuffer[i]
+    }
+    
+    // Deallocate buffers.
+    pixelBuffer.deallocate(capacity: bufferSize)
+    classificationBuffer.deallocate(capacity: classificationBufferSize)
+  }
+  
   /// Saves unknown tile images to a temp directory.
   private func saveUnknownTiles(tiles: [GameTile]) {
     guard Settings.saveUnknownImages else {
       return
     }
-    
+
     let unknownTiles = tiles.filter({ $0.piece == .unknown })
     if unknownTiles.count == 0 {
       return
@@ -100,7 +133,16 @@ extension ApplicationManager: WindowCaptureDelegate {
     var shuffledTiles = tiles
     
     // Get the number of tiles that will be saved.
-    let shuffledTileCount = Int(floor(Float(tiles.count) * Settings.imageRandomSamplingFrequency))
+    var shuffledTileCount = Int(floor(Float(tiles.count) * Settings.imageRandomSamplingFrequency))
+    
+    // Adjust the number of tiles to keep if the keep ratio is less than 1/count.
+    // Ex) 100 tiles, .005 keep percentage -> 0.5 chance of keeping 1 tile.
+    if shuffledTileCount == 0 {
+      let updatedFrequency = Settings.imageRandomSamplingFrequency * Float(tiles.count)
+      if UInt32(updatedFrequency * 1000) < arc4random_uniform(1000) {
+        shuffledTileCount = 1
+      }
+    }
     
     // Randomly swap indices until the first n% of tiles are shuffled.
     for i in 0..<shuffledTileCount {

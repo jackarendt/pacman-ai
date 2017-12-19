@@ -24,7 +24,8 @@ final class WindowSlider {
     tiles.reserveCapacity(kGameTileWidth * kGameTileHeight)
     
     weak var weakSelf = self
-    let callback: (BitmapPointer?, Int, Int, Int) -> Void = { (buffer, x, y, size) -> Void in
+    // Create tiles from the bitmap.
+    TileBitmap(bitmap, { (buffer, x, y, size) -> Void in
       guard let buffer = buffer, let strongSelf = weakSelf else {
         return
       }
@@ -34,10 +35,7 @@ final class WindowSlider {
       tile.centerPixelCoordinate = CGPoint(x: CGFloat(2 * x + 1) * strongSelf.tileSize.width / 2.0,
                                            y: CGFloat(2 * y + 1) * strongSelf.tileSize.height / 2.0)
       tiles.append(tile)
-    }
-    
-    // Create tiles from the bitmap.
-    TileBitmap(bitmap, kGameTileSize, callback)
+    })
 
     return tiles
   }
