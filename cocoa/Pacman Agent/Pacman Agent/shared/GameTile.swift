@@ -9,11 +9,11 @@ class GameTile: CustomStringConvertible {
   var piece: TileType = .unknown
   /// The pixels that make up the image. They are organized as [a, r, g, b, a, r, g, b....], and
   /// move horizontally across the image before moving to the next row.
-  let pixels: UnsafeMutablePointer<UInt8>
+  let pixels: UnsafeMutablePointer<PixelComponent>
   /// The length of the buffer.
   let bufferLength: Int
   
-  init(position: CGPoint, pixels: UnsafeMutablePointer<UInt8>, bufferLength: Int) {
+  init(position: CGPoint, pixels: UnsafeMutablePointer<PixelComponent>, bufferLength: Int) {
     self.position = position
     self.pixels = pixels
     self.bufferLength = bufferLength

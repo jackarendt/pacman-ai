@@ -24,26 +24,14 @@ public let kTileUnknownDirectory: String = "/tmp/pacman/tiles/unknown/"
 
 // MARK: - Game Graphics Constants.
 
-/// The number of horizontal game tiles.
-public let kGameTileWidth: CGFloat = 28.0
-
-/// The number of vertical game tiles.
-public let kGameTileHeight: CGFloat = 36.0
-
-/// The size of each tile.
-public let kGameTileSize: CGSize = CGSize(width: 8.0, height: 8.0)
-
-/// The number of samples per pixel.
-public let kSamplesPerPixel: Int = 4
-
 /// The total width of the game screen.
 public var kGameWidth: CGFloat = {
-  return kGameTileWidth * kGameTileSize.width
+  return CGFloat(kGameTileWidth) * kGameTileSize.width
 }()
 
 /// The total height of the game screen.
 public var kGameHeight: CGFloat = {
-  return kGameTileHeight * kGameTileSize.height
+  return CGFloat(kGameTileHeight) * kGameTileSize.height
 }()
 
 // MARK: - Notificiations

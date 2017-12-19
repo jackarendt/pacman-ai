@@ -1,4 +1,5 @@
 #import <AppKit/AppKit.h>
+#import "VisionConstants.h"
 
 /** Slides across an image given by the size of the tile, and invokes a callback block after each
  *  tile is captured.
@@ -8,4 +9,4 @@
  */
 void TileBitmap(NSBitmapImageRep *bitmap,
                 CGSize tileSize,
-                void (^callback)(unsigned char *, int, int, int));
+                void (^callback)(PixelComponent *, NSInteger, NSInteger, NSInteger));

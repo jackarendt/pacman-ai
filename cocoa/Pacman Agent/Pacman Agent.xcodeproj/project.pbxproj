@@ -19,7 +19,8 @@
 		2E7AA0E01FD5213C00E51EA9 /* WindowSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0DF1FD5213C00E51EA9 /* WindowSlider.swift */; };
 		2E7AA0E21FD5215400E51EA9 /* GameTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E11FD5215400E51EA9 /* GameTile.swift */; };
 		2E7AA0E71FD71E8A00E51EA9 /* WindowSliderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */; };
-		2E98FE131FE495A40080EA10 /* TileMatcher+Descriptions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E98FE121FE495A40080EA10 /* TileMatcher+Descriptions.mm */; };
+		2E98FE161FE979CD0080EA10 /* VisionConstants.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E98FE151FE979CD0080EA10 /* VisionConstants.mm */; };
+		2E98FE191FE97A000080EA10 /* TileMatcher+Descriptions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */; };
 		2ECB2E9E1FD8568700A81539 /* AgentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */; };
 		2ECB2EA31FD8574300A81539 /* RootWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EA21FD8574300A81539 /* RootWindowController.swift */; };
 		2ECB2EA51FD8581B00A81539 /* ImageClassifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */; };
@@ -69,8 +70,10 @@
 		2E7AA0E11FD5215400E51EA9 /* GameTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTile.swift; sourceTree = "<group>"; };
 		2E7AA0E51FD71E8A00E51EA9 /* WindowSliderHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowSliderHelper.h; sourceTree = "<group>"; };
 		2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowSliderHelper.m; sourceTree = "<group>"; };
-		2E98FE111FE495A40080EA10 /* TileMatcher+Descriptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TileMatcher+Descriptions.h"; sourceTree = SOURCE_ROOT; };
-		2E98FE121FE495A40080EA10 /* TileMatcher+Descriptions.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "TileMatcher+Descriptions.mm"; sourceTree = SOURCE_ROOT; };
+		2E98FE141FE979CD0080EA10 /* VisionConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VisionConstants.h; path = "Pacman Agent/learn/VisionConstants.h"; sourceTree = SOURCE_ROOT; };
+		2E98FE151FE979CD0080EA10 /* VisionConstants.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = VisionConstants.mm; path = "Pacman Agent/learn/VisionConstants.mm"; sourceTree = SOURCE_ROOT; };
+		2E98FE171FE97A000080EA10 /* TileMatcher+Descriptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TileMatcher+Descriptions.h"; path = "Pacman Agent/learn/TileMatcher+Descriptions.h"; sourceTree = SOURCE_ROOT; };
+		2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "TileMatcher+Descriptions.mm"; path = "Pacman Agent/learn/TileMatcher+Descriptions.mm"; sourceTree = SOURCE_ROOT; };
 		2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentSettingsViewController.swift; sourceTree = "<group>"; };
 		2ECB2EA21FD8574300A81539 /* RootWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowController.swift; sourceTree = "<group>"; };
 		2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassifierViewController.swift; sourceTree = "<group>"; };
@@ -221,10 +224,12 @@
 		2ECB2EC11FD8BEF800A81539 /* learn */ = {
 			isa = PBXGroup;
 			children = (
+				2E98FE141FE979CD0080EA10 /* VisionConstants.h */,
+				2E98FE151FE979CD0080EA10 /* VisionConstants.mm */,
 				2ECB2EC71FDA523300A81539 /* TileMatcher.h */,
 				2ECB2EC81FDA523300A81539 /* TileMatcher.mm */,
-				2E98FE111FE495A40080EA10 /* TileMatcher+Descriptions.h */,
-				2E98FE121FE495A40080EA10 /* TileMatcher+Descriptions.mm */,
+				2E98FE171FE97A000080EA10 /* TileMatcher+Descriptions.h */,
+				2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */,
 			);
 			name = learn;
 			path = "New Group";
@@ -339,16 +344,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ECB2EAB1FD8803000A81539 /* CheckboxSettingCell.swift in Sources */,
-				2E98FE131FE495A40080EA10 /* TileMatcher+Descriptions.mm in Sources */,
 				2ECB2EC91FDA523300A81539 /* TileMatcher.mm in Sources */,
 				2ECB2EA91FD870EE00A81539 /* SettingsCell.swift in Sources */,
 				2E7AA0E01FD5213C00E51EA9 /* WindowSlider.swift in Sources */,
 				2ECB2EA31FD8574300A81539 /* RootWindowController.swift in Sources */,
 				2E7AA0E21FD5215400E51EA9 /* GameTile.swift in Sources */,
+				2E98FE191FE97A000080EA10 /* TileMatcher+Descriptions.mm in Sources */,
 				2E7AA0E71FD71E8A00E51EA9 /* WindowSliderHelper.m in Sources */,
 				2ECB2E9E1FD8568700A81539 /* AgentSettingsViewController.swift in Sources */,
 				2E7AA0D91FD51FE700E51EA9 /* ApplicationManager.swift in Sources */,
 				2ECB2EAD1FD8838300A81539 /* NSView+Extensions.swift in Sources */,
+				2E98FE161FE979CD0080EA10 /* VisionConstants.mm in Sources */,
 				2ECB2EAF1FD8875900A81539 /* Settings.swift in Sources */,
 				2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */,
 				2E7AA0DD1FD51FE700E51EA9 /* WindowCaptureHelper.m in Sources */,

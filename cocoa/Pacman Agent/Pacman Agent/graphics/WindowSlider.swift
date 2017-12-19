@@ -1,6 +1,6 @@
 import Foundation
 
-typealias BitmapPointer = UnsafeMutablePointer<UInt8>
+typealias BitmapPointer = UnsafeMutablePointer<PixelComponent>
 
 /// Slides over an image for a given tile size. Each tile has an array of pixel data that will be
 /// sent to the vision model.
@@ -21,16 +21,16 @@ final class WindowSlider {
     
     let bitmap = NSBitmapImageRep(cgImage: cgImage)
     var tiles = [GameTile]()
-    tiles.reserveCapacity(Int(kGameTileWidth) * Int(kGameTileHeight))
+    tiles.reserveCapacity(kGameTileWidth * kGameTileHeight)
     
     weak var weakSelf = self
-    let callback: (BitmapPointer?, Int32, Int32, Int32) -> Void = { (buffer, x, y, size) -> Void in
+    let callback: (BitmapPointer?, Int, Int, Int) -> Void = { (buffer, x, y, size) -> Void in
       guard let buffer = buffer, let strongSelf = weakSelf else {
         return
       }
       
       let tile =
-          GameTile(position: CGPoint(x: Int(x), y: Int(y)), pixels: buffer, bufferLength: Int(size))
+          GameTile(position: CGPoint(x: x, y: y), pixels: buffer, bufferLength: size)
       tile.centerPixelCoordinate = CGPoint(x: CGFloat(2 * x + 1) * strongSelf.tileSize.width / 2.0,
                                            y: CGFloat(2 * y + 1) * strongSelf.tileSize.height / 2.0)
       tiles.append(tile)

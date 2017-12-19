@@ -51,4 +51,21 @@ const string kModelName = "finalized_model.pb";
   return YES;
 }
 
+- (void)predictionsForTiles:(const PixelComponent *)pixelBuffer
+                 tileBuffer:(enum TileType *)buffer
+        confidenceThreshold:(float)threshold {
+  if (!session_ || !buffer || !pixelBuffer) {
+    NSLog(@"Error: cannot predict tiles."
+          @"One of the following inputs is NULL, session_, buffer, pixelBuffer.");
+    return;
+  }
+  
+  // Convert this to a 2D vector of floats.
+  // Create tensor.
+  // Run inference.
+  // Dealloc vector/tensor.
+  // Check thresholds
+  // Populate buffer of classifications.
+}
+
 @end

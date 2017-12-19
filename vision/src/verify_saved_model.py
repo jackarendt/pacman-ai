@@ -16,6 +16,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 FLAGS = None
 
 def _display_nodes(nodes):
+  """Displays all nodes in a graph."""
   for i, node in enumerate(nodes):
     print('%d %s %s' % (i, node.name, node.op))
     [print(u'└─── %d ─ %s' % (i, n)) for i, n in enumerate(node.input)]
