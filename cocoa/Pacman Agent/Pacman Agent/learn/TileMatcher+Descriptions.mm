@@ -34,8 +34,6 @@ const NSInteger kTileTypeCount = 14;
       return @"Text";
     case TileTypeIgnore:
       return @"Ignore";
-    default:
-      return @"";
   }
 }
 
@@ -59,6 +57,39 @@ const NSInteger kTileTypeCount = 14;
   
   for (NSInteger i = 0; i < kTileTypeCount; i++) {
     typeBuffer[i] = types[i];
+  }
+}
+
++ (NSString *)characterForTileType:(enum TileType)tileType {
+  switch (tileType) {
+    case TileTypeUnknown:
+      return @"?";
+    case TileTypePacman:
+      return @"@";
+    case TileTypeWall:
+      return @"X";
+    case TileTypeBlank:
+      return @" ";
+    case TileTypeFruit:
+      return @"f";
+    case TileTypeBlinky:
+      return @"b";
+    case TileTypeInky:
+      return @"i";
+    case TileTypePinky:
+      return @"p";
+    case TileTypeClyde:
+      return @"c";
+    case TileTypeFrightenedGhost:
+      return @"f";
+    case TileTypePellet:
+      return @"·";
+    case TileTypePowerPellet:
+      return @"•";
+    case TileTypeText:
+      return @"T";
+    case TileTypeIgnore:
+      return @"/";
   }
 }
 

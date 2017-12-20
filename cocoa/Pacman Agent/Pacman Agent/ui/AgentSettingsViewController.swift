@@ -6,7 +6,7 @@ class AgentSettingsViewController: NSViewController {
   lazy var launchAIButton = {
     NSButton(title: "Launch AI", target: self, action: #selector(launchAI))
   }()
-  
+
   let saveImagesSetting =
       CheckboxSettingCell(title: "Save unknown images", identifier: kSaveUnknownImagesKey)
   
@@ -17,6 +17,8 @@ class AgentSettingsViewController: NSViewController {
   let randomSamplePercentage =
       NumericalInputSettingCell(title: "Random image sampling ratio",
                                 identifier: kRandomImageSamplingFrequencyKey)
+  
+  let debugTextView = TileDebugTextView(frame: CGRect.zero)
   
   let stackView = NSStackView()
   
@@ -36,6 +38,10 @@ class AgentSettingsViewController: NSViewController {
     addArrangedSubview(view: saveImagesSetting)
     addArrangedSubview(view: confidenceThresholdSetting)
     addArrangedSubview(view: randomSamplePercentage)
+    
+    debugTextView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.addArrangedSubview(debugTextView)
+    debugTextView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
   }
   
   @objc func launchAI() {
@@ -46,7 +52,7 @@ class AgentSettingsViewController: NSViewController {
       print("OpenEmu not installed.")
     }
   }
-  
+
   private func addArrangedSubview(view: NSView) {
     stackView.addArrangedSubview(view)
     view.translatesAutoresizingMaskIntoConstraints = false

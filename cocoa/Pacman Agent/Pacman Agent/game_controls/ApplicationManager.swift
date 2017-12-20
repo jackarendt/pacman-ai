@@ -62,11 +62,12 @@ final class ApplicationManager {
 
 extension ApplicationManager: WindowCaptureDelegate {
   func didCaptureWindow(window: NSImage) {
-    NotificationCenter.default.post(name: kDidUpdateWindowCaptureNotification, object: window)
     let tiles = regularWindowSlider.tiles(image: window)
     classifyTiles(tiles: tiles)
     saveUnknownTiles(tiles: tiles)
     saveRandomTiles(tiles: tiles)
+    let description = tiles.reduce("", { $0 + TileMatcher.character(for: $1.piece) })
+    NotificationCenter.default.post(name: kDidUpdateWindowCaptureNotification, object: description)
   }
   
   func didAcquireWindowMetadata(metadata: [String : Any]) {
@@ -130,6 +131,9 @@ extension ApplicationManager: WindowCaptureDelegate {
   
   /// Shuffles the first n% tiles, and saves those to disk.
   private func saveRandomTiles(tiles: [GameTile]) {
+    guard Settings.imageRandomSamplingFrequency > 0 else{
+      return
+    }
     var shuffledTiles = tiles
     
     // Get the number of tiles that will be saved.

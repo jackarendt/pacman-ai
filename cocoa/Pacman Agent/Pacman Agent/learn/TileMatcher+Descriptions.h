@@ -11,4 +11,7 @@ extern const NSInteger kTileTypeCount;
 /** Populates a buffer with all of the different tile types. */
 + (void)allTileTypes:(enum TileType *)typeBuffer;
 
+/** Returns a single character describing the tile. */
++ (NSString *)characterForTileType:(enum TileType)tileType;
+
 @end

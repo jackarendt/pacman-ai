@@ -112,10 +112,7 @@ class ImageClassifierViewController: NSViewController {
 
   /// Shows the next image and resets the controller's state.
   private func showNextImage() {
-    if let imageURL = unknownImageURLs.first {
-      imageView.image = NSImage(byReferencing: imageURL).resize(newSize: imageView.frame.size)
-      descriptionLabel.stringValue = imageURL.lastPathComponent
-      
+    defer {
       selectedType = .unknown
       classifyImageButton.isEnabled = false
       imagesRemainingLabel.stringValue = "\(unknownImageURLs.count) images remaining."
@@ -124,6 +121,12 @@ class ImageClassifierViewController: NSViewController {
         button.state = .off
       }
     }
+    
+    guard let imageURL = unknownImageURLs.first else {
+      return
+    }
+    imageView.image = NSImage(byReferencing: imageURL).resize(newSize: imageView.frame.size)
+    descriptionLabel.stringValue = imageURL.lastPathComponent
   }
   
   /// Loads the different tile types from a buffer.
