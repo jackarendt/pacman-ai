@@ -102,8 +102,14 @@ extension ApplicationManager: WindowCaptureDelegate {
                             confidenceThreshold: Settings.imageClassificationConfidenceThreshold)
     
     // Update what tiles are being shown.
+    // Map ignore tiles to blank. This makes the vision sparser, and simpler for the AI to
+    // understand.
     for i in 0..<classificationBufferSize {
-      tiles[i].piece = classificationBuffer[i]
+      var piece = classificationBuffer[i]
+      if piece == .ignore {
+        piece = .blank
+      }
+      tiles[i].piece = piece
     }
     
     // Deallocate buffers.

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -708,6 +708,7 @@
                     <tabViewItems>
                         <tabViewItem identifier="" id="iwx-9T-ZhT"/>
                         <tabViewItem identifier="" id="qe2-UD-Ga1"/>
+                        <tabViewItem id="Cwq-2w-7AO"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="1Jg-Gq-Z3x">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -722,16 +723,17 @@
                         <outlet property="tabView" destination="1Jg-Gq-Z3x" id="l09-CT-SiL"/>
                         <segue destination="ddZ-we-KNO" kind="relationship" relationship="tabItems" id="d9B-Zj-sEo"/>
                         <segue destination="vwv-N1-I0n" kind="relationship" relationship="tabItems" id="1Gn-te-Ffr"/>
+                        <segue destination="1uE-Fa-hcO" kind="relationship" relationship="tabItems" id="m53-gj-eog"/>
                     </connections>
                 </tabViewController>
                 <customObject id="2Rd-EC-jWR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="672"/>
         </scene>
-        <!--Reinforcement Agent-->
+        <!--Agent-->
         <scene sceneID="pcc-3n-gih">
             <objects>
-                <viewController title="Reinforcement Agent" id="ddZ-we-KNO" customClass="AgentSettingsViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Agent" id="ddZ-we-KNO" customClass="AgentSettingsViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="lu6-KJ-3qO">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -741,10 +743,10 @@
             </objects>
             <point key="canvasLocation" x="706" y="672"/>
         </scene>
-        <!--Image Classifier-->
+        <!--Classifier-->
         <scene sceneID="5Xr-Pg-vQg">
             <objects>
-                <viewController title="Image Classifier" id="vwv-N1-I0n" customClass="ImageClassifierViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Classifier" id="vwv-N1-I0n" customClass="ImageClassifierViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P5v-GL-d1I">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -753,6 +755,19 @@
                 <customObject id="vyD-Gd-O5P" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="761" y="1183"/>
+        </scene>
+        <!--Cleaner-->
+        <scene sceneID="5Tf-aR-j3j">
+            <objects>
+                <viewController title="Cleaner" id="1uE-Fa-hcO" customClass="DataCleanerViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="er8-gv-3ff">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="6M3-ya-4Ly" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="761" y="1562"/>
         </scene>
     </scenes>
 </document>

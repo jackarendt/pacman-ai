@@ -71,7 +71,7 @@ const NSInteger kTileTypeCount = 14;
     case TileTypeBlank:
       return @" ";
     case TileTypeFruit:
-      return @"f";
+      return @"r";
     case TileTypeBlinky:
       return @"b";
     case TileTypeInky:
