@@ -16,7 +16,6 @@
 		2E7AA0DC1FD51FE700E51EA9 /* WindowCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0D41FD51FE700E51EA9 /* WindowCapture.swift */; };
 		2E7AA0DD1FD51FE700E51EA9 /* WindowCaptureHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0D51FD51FE700E51EA9 /* WindowCaptureHelper.m */; };
 		2E7AA0DE1FD51FE700E51EA9 /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0D81FD51FE700E51EA9 /* GameConstants.swift */; };
-		2E7AA0E01FD5213C00E51EA9 /* WindowSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0DF1FD5213C00E51EA9 /* WindowSlider.swift */; };
 		2E7AA0E21FD5215400E51EA9 /* GameTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E11FD5215400E51EA9 /* GameTile.swift */; };
 		2E7AA0E71FD71E8A00E51EA9 /* WindowSliderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */; };
 		2E98FE161FE979CD0080EA10 /* VisionConstants.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E98FE151FE979CD0080EA10 /* VisionConstants.mm */; };
@@ -39,6 +38,15 @@
 		2EFCDBB41FE9EC4C009C15E7 /* TileDebugTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB31FE9EC4C009C15E7 /* TileDebugTextView.swift */; };
 		2EFCDBB61FEB6AD3009C15E7 /* DataCleanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB51FEB6AD3009C15E7 /* DataCleanerViewController.swift */; };
 		2EFCDBB81FEB6B01009C15E7 /* ClassificationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB71FEB6B01009C15E7 /* ClassificationSelectionView.swift */; };
+		2EFCDBC11FEDAA8B009C15E7 /* PipelineNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBC01FEDAA8A009C15E7 /* PipelineNode.swift */; };
+		2EFCDBC31FEDAAAD009C15E7 /* WindowCaptureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBC21FEDAAAD009C15E7 /* WindowCaptureNode.swift */; };
+		2EFCDBC71FEDABE3009C15E7 /* Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBC61FEDABE3009C15E7 /* Pipeline.swift */; };
+		2EFCDBC91FEDAC1E009C15E7 /* WindowSliderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBC81FEDAC1E009C15E7 /* WindowSliderNode.swift */; };
+		2EFCDBCB1FEDAC2B009C15E7 /* TileClassifierNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBCA1FEDAC2B009C15E7 /* TileClassifierNode.swift */; };
+		2EFCDBCD1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBCC1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift */; };
+		2EFCDBCF1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */; };
+		2EFCDBD11FEDAC72009C15E7 /* DebugProcessingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */; };
+		2EFCDBD51FEF524B009C15E7 /* VisionPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,14 +77,13 @@
 		2E7AA0D51FD51FE700E51EA9 /* WindowCaptureHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowCaptureHelper.m; sourceTree = "<group>"; };
 		2E7AA0D61FD51FE700E51EA9 /* WindowCaptureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowCaptureHelper.h; sourceTree = "<group>"; };
 		2E7AA0D81FD51FE700E51EA9 /* GameConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
-		2E7AA0DF1FD5213C00E51EA9 /* WindowSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSlider.swift; sourceTree = "<group>"; };
 		2E7AA0E11FD5215400E51EA9 /* GameTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTile.swift; sourceTree = "<group>"; };
 		2E7AA0E51FD71E8A00E51EA9 /* WindowSliderHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowSliderHelper.h; sourceTree = "<group>"; };
 		2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowSliderHelper.m; sourceTree = "<group>"; };
-		2E98FE141FE979CD0080EA10 /* VisionConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VisionConstants.h; path = "Pacman Agent/learn/VisionConstants.h"; sourceTree = SOURCE_ROOT; };
-		2E98FE151FE979CD0080EA10 /* VisionConstants.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = VisionConstants.mm; path = "Pacman Agent/learn/VisionConstants.mm"; sourceTree = SOURCE_ROOT; };
-		2E98FE171FE97A000080EA10 /* TileMatcher+Descriptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TileMatcher+Descriptions.h"; path = "Pacman Agent/learn/TileMatcher+Descriptions.h"; sourceTree = SOURCE_ROOT; };
-		2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "TileMatcher+Descriptions.mm"; path = "Pacman Agent/learn/TileMatcher+Descriptions.mm"; sourceTree = SOURCE_ROOT; };
+		2E98FE141FE979CD0080EA10 /* VisionConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VisionConstants.h; path = "Pacman Agent/vision_helpers/VisionConstants.h"; sourceTree = SOURCE_ROOT; };
+		2E98FE151FE979CD0080EA10 /* VisionConstants.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = VisionConstants.mm; path = "Pacman Agent/vision_helpers/VisionConstants.mm"; sourceTree = SOURCE_ROOT; };
+		2E98FE171FE97A000080EA10 /* TileMatcher+Descriptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TileMatcher+Descriptions.h"; path = "Pacman Agent/vision_helpers/TileMatcher+Descriptions.h"; sourceTree = SOURCE_ROOT; };
+		2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "TileMatcher+Descriptions.mm"; path = "Pacman Agent/vision_helpers/TileMatcher+Descriptions.mm"; sourceTree = SOURCE_ROOT; };
 		2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentSettingsViewController.swift; sourceTree = "<group>"; };
 		2ECB2EA21FD8574300A81539 /* RootWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowController.swift; sourceTree = "<group>"; };
 		2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassifierViewController.swift; sourceTree = "<group>"; };
@@ -91,11 +98,20 @@
 		2ECB2EBA1FD8BC3800A81539 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = ../../../../tensorflow/tensorflow/tensorflow/contrib/makefile/gen/protobuf/lib/libprotobuf.a; sourceTree = "<group>"; };
 		2ECB2EBD1FD8BD7900A81539 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		2ECB2EC51FD8C36F00A81539 /* nsync.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = nsync.a; path = "../../../../tensorflow/tensorflow/tensorflow/contrib/makefile/downloads/nsync/builds/default.macos.c++11/nsync.a"; sourceTree = "<group>"; };
-		2ECB2EC71FDA523300A81539 /* TileMatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TileMatcher.h; path = "Pacman Agent/learn/TileMatcher.h"; sourceTree = SOURCE_ROOT; };
-		2ECB2EC81FDA523300A81539 /* TileMatcher.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = TileMatcher.mm; path = "Pacman Agent/learn/TileMatcher.mm"; sourceTree = SOURCE_ROOT; };
+		2ECB2EC71FDA523300A81539 /* TileMatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TileMatcher.h; path = "Pacman Agent/vision_helpers/TileMatcher.h"; sourceTree = SOURCE_ROOT; };
+		2ECB2EC81FDA523300A81539 /* TileMatcher.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = TileMatcher.mm; path = "Pacman Agent/vision_helpers/TileMatcher.mm"; sourceTree = SOURCE_ROOT; };
 		2EFCDBB31FE9EC4C009C15E7 /* TileDebugTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileDebugTextView.swift; sourceTree = "<group>"; };
 		2EFCDBB51FEB6AD3009C15E7 /* DataCleanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCleanerViewController.swift; sourceTree = "<group>"; };
 		2EFCDBB71FEB6B01009C15E7 /* ClassificationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationSelectionView.swift; sourceTree = "<group>"; };
+		2EFCDBC01FEDAA8A009C15E7 /* PipelineNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PipelineNode.swift; path = "Pacman Agent/pipeline/PipelineNode.swift"; sourceTree = SOURCE_ROOT; };
+		2EFCDBC21FEDAAAD009C15E7 /* WindowCaptureNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCaptureNode.swift; sourceTree = "<group>"; };
+		2EFCDBC61FEDABE3009C15E7 /* Pipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Pipeline.swift; path = "Pacman Agent/pipeline/Pipeline.swift"; sourceTree = SOURCE_ROOT; };
+		2EFCDBC81FEDAC1E009C15E7 /* WindowSliderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSliderNode.swift; sourceTree = "<group>"; };
+		2EFCDBCA1FEDAC2B009C15E7 /* TileClassifierNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileClassifierNode.swift; sourceTree = "<group>"; };
+		2EFCDBCC1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownTileSaverNode.swift; sourceTree = "<group>"; };
+		2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTrainingCollectionNode.swift; sourceTree = "<group>"; };
+		2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugProcessingNode.swift; sourceTree = "<group>"; };
+		2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionPipeline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,10 +161,11 @@
 			children = (
 				2E7AA0CB1FD31D3100E51EA9 /* Pacman Agent.entitlements */,
 				2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */,
+				2EFCDBD61FEF64A1009C15E7 /* vision_helpers */,
+				2EFCDBC51FEDAABA009C15E7 /* vision */,
+				2EFCDBBF1FEDA8A6009C15E7 /* pipeline */,
 				2E7AA0CE1FD51FE700E51EA9 /* game_controls */,
-				2E7AA0D21FD51FE700E51EA9 /* graphics */,
 				2E7AA0D71FD51FE700E51EA9 /* shared */,
-				2ECB2EC11FD8BEF800A81539 /* learn */,
 				2E7AA0D01FD51FE700E51EA9 /* ui */,
 				2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */,
 				2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */,
@@ -194,26 +211,13 @@
 			path = ui;
 			sourceTree = "<group>";
 		};
-		2E7AA0D21FD51FE700E51EA9 /* graphics */ = {
-			isa = PBXGroup;
-			children = (
-				2E7AA0D31FD51FE700E51EA9 /* NSImage+Extensions.swift */,
-				2E7AA0D41FD51FE700E51EA9 /* WindowCapture.swift */,
-				2E7AA0DF1FD5213C00E51EA9 /* WindowSlider.swift */,
-				2E7AA0D51FD51FE700E51EA9 /* WindowCaptureHelper.m */,
-				2E7AA0D61FD51FE700E51EA9 /* WindowCaptureHelper.h */,
-				2E7AA0E51FD71E8A00E51EA9 /* WindowSliderHelper.h */,
-				2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */,
-			);
-			path = graphics;
-			sourceTree = "<group>";
-		};
 		2E7AA0D71FD51FE700E51EA9 /* shared */ = {
 			isa = PBXGroup;
 			children = (
 				2E7AA0D81FD51FE700E51EA9 /* GameConstants.swift */,
 				2E7AA0E11FD5215400E51EA9 /* GameTile.swift */,
 				2ECB2EAE1FD8875900A81539 /* Settings.swift */,
+				2E7AA0D31FD51FE700E51EA9 /* NSImage+Extensions.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -230,9 +234,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2ECB2EC11FD8BEF800A81539 /* learn */ = {
+		2EFCDBBF1FEDA8A6009C15E7 /* pipeline */ = {
 			isa = PBXGroup;
 			children = (
+				2EFCDBC01FEDAA8A009C15E7 /* PipelineNode.swift */,
+				2EFCDBC61FEDABE3009C15E7 /* Pipeline.swift */,
+			);
+			name = pipeline;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		2EFCDBC51FEDAABA009C15E7 /* vision */ = {
+			isa = PBXGroup;
+			children = (
+				2EFCDBC21FEDAAAD009C15E7 /* WindowCaptureNode.swift */,
+				2EFCDBC81FEDAC1E009C15E7 /* WindowSliderNode.swift */,
+				2EFCDBCA1FEDAC2B009C15E7 /* TileClassifierNode.swift */,
+				2EFCDBCC1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift */,
+				2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */,
+				2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */,
+				2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */,
+			);
+			path = vision;
+			sourceTree = "<group>";
+		};
+		2EFCDBD61FEF64A1009C15E7 /* vision_helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2E7AA0D41FD51FE700E51EA9 /* WindowCapture.swift */,
+				2E7AA0D51FD51FE700E51EA9 /* WindowCaptureHelper.m */,
+				2E7AA0D61FD51FE700E51EA9 /* WindowCaptureHelper.h */,
+				2E7AA0E51FD71E8A00E51EA9 /* WindowSliderHelper.h */,
+				2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */,
 				2E98FE141FE979CD0080EA10 /* VisionConstants.h */,
 				2E98FE151FE979CD0080EA10 /* VisionConstants.mm */,
 				2ECB2EC71FDA523300A81539 /* TileMatcher.h */,
@@ -240,8 +273,7 @@
 				2E98FE171FE97A000080EA10 /* TileMatcher+Descriptions.h */,
 				2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */,
 			);
-			name = learn;
-			path = "New Group";
+			path = vision_helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,28 +385,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ECB2EAB1FD8803000A81539 /* CheckboxSettingCell.swift in Sources */,
+				2EFCDBC11FEDAA8B009C15E7 /* PipelineNode.swift in Sources */,
 				2ECB2EC91FDA523300A81539 /* TileMatcher.mm in Sources */,
 				2ECB2EA91FD870EE00A81539 /* SettingsCell.swift in Sources */,
 				2EFCDBB81FEB6B01009C15E7 /* ClassificationSelectionView.swift in Sources */,
 				2EFCDBB61FEB6AD3009C15E7 /* DataCleanerViewController.swift in Sources */,
-				2E7AA0E01FD5213C00E51EA9 /* WindowSlider.swift in Sources */,
 				2ECB2EA31FD8574300A81539 /* RootWindowController.swift in Sources */,
+				2EFCDBCF1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift in Sources */,
 				2E7AA0E21FD5215400E51EA9 /* GameTile.swift in Sources */,
+				2EFCDBC71FEDABE3009C15E7 /* Pipeline.swift in Sources */,
 				2E98FE191FE97A000080EA10 /* TileMatcher+Descriptions.mm in Sources */,
 				2E7AA0E71FD71E8A00E51EA9 /* WindowSliderHelper.m in Sources */,
 				2ECB2E9E1FD8568700A81539 /* AgentSettingsViewController.swift in Sources */,
 				2E7AA0D91FD51FE700E51EA9 /* ApplicationManager.swift in Sources */,
+				2EFCDBC91FEDAC1E009C15E7 /* WindowSliderNode.swift in Sources */,
 				2ECB2EAD1FD8838300A81539 /* NSView+Extensions.swift in Sources */,
 				2EFCDBB41FE9EC4C009C15E7 /* TileDebugTextView.swift in Sources */,
 				2E98FE161FE979CD0080EA10 /* VisionConstants.mm in Sources */,
+				2EFCDBCD1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift in Sources */,
+				2EFCDBC31FEDAAAD009C15E7 /* WindowCaptureNode.swift in Sources */,
+				2EFCDBCB1FEDAC2B009C15E7 /* TileClassifierNode.swift in Sources */,
 				2ECB2EAF1FD8875900A81539 /* Settings.swift in Sources */,
 				2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */,
 				2E7AA0DD1FD51FE700E51EA9 /* WindowCaptureHelper.m in Sources */,
+				2EFCDBD51FEF524B009C15E7 /* VisionPipeline.swift in Sources */,
 				2E7AA0DC1FD51FE700E51EA9 /* WindowCapture.swift in Sources */,
 				2ECB2EB11FD88A5100A81539 /* NumericalInputSettingCell.swift in Sources */,
 				2ECB2EA51FD8581B00A81539 /* ImageClassifierViewController.swift in Sources */,
 				2E7AA0DE1FD51FE700E51EA9 /* GameConstants.swift in Sources */,
 				2ECB2EB31FD8911100A81539 /* NSTextField+Extensions.swift in Sources */,
+				2EFCDBD11FEDAC72009C15E7 /* DebugProcessingNode.swift in Sources */,
 				2E7AA0DB1FD51FE700E51EA9 /* NSImage+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

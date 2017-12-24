@@ -37,17 +37,8 @@ class TileDebugTextView: NSTextView {
   }
   
   @objc func updateTextView(notification: Notification) {
-    guard let description = notification.object as? String else {
-      return
+    if let description = notification.object as? String {
+      string = description
     }
-    
-    var formattedString = ""
-    for row in 0..<kGameTileHeight {
-      let startIndex = description.index(description.startIndex, offsetBy: row * kGameTileWidth)
-      let endIndex = description.index(description.startIndex, offsetBy: (row + 1) * kGameTileWidth)
-      formattedString += description[startIndex..<endIndex] + "\n"
-    }
-    
-    string = formattedString
   }
 }
