@@ -47,6 +47,7 @@
 		2EFCDBCF1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */; };
 		2EFCDBD11FEDAC72009C15E7 /* DebugProcessingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */; };
 		2EFCDBD51FEF524B009C15E7 /* VisionPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */; };
+		2EFCDBD81FEF6768009C15E7 /* DatasetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBD71FEF6768009C15E7 /* DatasetManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTrainingCollectionNode.swift; sourceTree = "<group>"; };
 		2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugProcessingNode.swift; sourceTree = "<group>"; };
 		2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionPipeline.swift; sourceTree = "<group>"; };
+		2EFCDBD71FEF6768009C15E7 /* DatasetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasetManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,12 +163,12 @@
 			children = (
 				2E7AA0CB1FD31D3100E51EA9 /* Pacman Agent.entitlements */,
 				2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */,
-				2EFCDBD61FEF64A1009C15E7 /* vision_helpers */,
-				2EFCDBC51FEDAABA009C15E7 /* vision */,
-				2EFCDBBF1FEDA8A6009C15E7 /* pipeline */,
 				2E7AA0CE1FD51FE700E51EA9 /* game_controls */,
+				2EFCDBBF1FEDA8A6009C15E7 /* pipeline */,
 				2E7AA0D71FD51FE700E51EA9 /* shared */,
 				2E7AA0D01FD51FE700E51EA9 /* ui */,
+				2EFCDBC51FEDAABA009C15E7 /* vision */,
+				2EFCDBD61FEF64A1009C15E7 /* vision_helpers */,
 				2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */,
 				2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */,
 				2E7AA0AC1FCFB84200E51EA9 /* Info.plist */,
@@ -218,6 +220,7 @@
 				2E7AA0E11FD5215400E51EA9 /* GameTile.swift */,
 				2ECB2EAE1FD8875900A81539 /* Settings.swift */,
 				2E7AA0D31FD51FE700E51EA9 /* NSImage+Extensions.swift */,
+				2EFCDBD71FEF6768009C15E7 /* DatasetManager.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				2EFCDBC11FEDAA8B009C15E7 /* PipelineNode.swift in Sources */,
 				2ECB2EC91FDA523300A81539 /* TileMatcher.mm in Sources */,
 				2ECB2EA91FD870EE00A81539 /* SettingsCell.swift in Sources */,
+				2EFCDBD81FEF6768009C15E7 /* DatasetManager.swift in Sources */,
 				2EFCDBB81FEB6B01009C15E7 /* ClassificationSelectionView.swift in Sources */,
 				2EFCDBB61FEB6AD3009C15E7 /* DataCleanerViewController.swift in Sources */,
 				2ECB2EA31FD8574300A81539 /* RootWindowController.swift in Sources */,

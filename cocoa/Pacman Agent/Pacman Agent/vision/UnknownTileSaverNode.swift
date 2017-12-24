@@ -4,6 +4,8 @@ import Foundation
 final class UnknownTileSaverNode: PipelineNode {
   var dependencyIdentifiers: [String]? = [TileClassifierNode.identifier]
   
+  // This is checked when the pipeline begins. Modifying it after a session starts will have no
+  // effect.
   var enabled: Bool = {
     return Settings.saveUnknownImages
   }()
@@ -16,6 +18,9 @@ final class UnknownTileSaverNode: PipelineNode {
   
   var executionLevel: Int = -1
   
+  let datasetManager = DatasetManager(classifiedDirectory: kTileDirectory,
+                                      unknownDirectory: kTileUnknownDirectory)
+
   func execute(_ input: [String : Any]) -> (output: Any, status: ExecutionStatus) {
     guard let tiles = input[TileClassifierNode.identifier] as? [GameTile] else {
       return (output: 0, status: .failure)
@@ -28,27 +33,10 @@ final class UnknownTileSaverNode: PipelineNode {
     }
     
     // Save each unknown tile to the unknown tiles directory.
-    if createUnknownTilesDirectoryIfNecessary() {
-      for tile in unknownTiles {
-        let _ = tile.saveBitmap(directory: kTileUnknownDirectory)
-      }
+    for tile in unknownTiles {
+      datasetManager.saveUnknownTile(tile: tile)
     }
     
     return (output: 0, status: .success)
-  }
-  
-  /// Creates an temp directory with all of the unknown tiles if necessary.
-  private func createUnknownTilesDirectoryIfNecessary() -> Bool {
-    // Create the tmp directory if one doesn't exist.
-    if !FileManager.default.fileExists(atPath: kTileUnknownDirectory) {
-      do {
-        try FileManager.default.createDirectory(atPath: kTileUnknownDirectory,
-                                                withIntermediateDirectories: true,
-                                                attributes: nil)
-      } catch {
-        return false
-      }
-    }
-    return true
   }
 }

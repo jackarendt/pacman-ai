@@ -18,4 +18,9 @@ class Settings {
   class var imageRandomSamplingFrequency: Float {
     return UserDefaults.standard.float(forKey: kRandomImageSamplingFrequencyKey)
   }
+  
+  /// Whether all images that have been classified as text should be saved to train the OCR model.
+  class var saveAllTextImages: Bool {
+    return UserDefaults.standard.bool(forKey: kSaveAllTextImagesKey)
+  }
 }

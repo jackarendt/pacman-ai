@@ -17,10 +17,22 @@ public var kTileDirectory: String = {
   return documentDirectory + "/pacman/vision/data/"
 }()
 
+/// Directory for retrieving saved OCR images.
+public var kOCRDirectory: String = {
+  guard let documentDirectory =
+    NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
+      return ""
+  }
+  return documentDirectory + "/pacman/vision/ocr/"
+}()
+
 public let kImageMappingCSVFilename = "labels.csv"
 
 /// Directory for saving unknown tile images.
 public let kTileUnknownDirectory: String = "/tmp/pacman/tiles/unknown/"
+
+/// Directory for saving unknown OCR images.
+public let kOCRUnknownDirectory: String = "/tmp/pacman/ocr/unknown/"
 
 // MARK: - Game Graphics Constants.
 
@@ -45,3 +57,5 @@ public let kSaveUnknownImagesKey = "save_unknown_images"
 public let kClassificationConfidenceThresholdKey = "classification_confidence_threshold"
 
 public let kRandomImageSamplingFrequencyKey = "random_image_sampling_frequency"
+
+public let kSaveAllTextImagesKey = "save_text_ocr"
