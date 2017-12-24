@@ -12,8 +12,6 @@ final class WindowCaptureNode: PipelineNode {
   
   static var identifier: String = "window_capture_node"
   
-  var localIdentifier: String = WindowCaptureNode.identifier
-  
   var executionLevel: Int = -1
   
   private let windowID: CGWindowID

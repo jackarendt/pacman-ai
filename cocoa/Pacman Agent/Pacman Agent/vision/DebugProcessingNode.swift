@@ -10,8 +10,6 @@ final class DebugProcessingNode: PipelineNode {
   
   static var identifier: String = "debug_processing_node"
   
-  var localIdentifier: String = DebugProcessingNode.identifier
-  
   var executionLevel: Int = -1
 
   func execute(_ input: [String : Any]) -> (output: Any, status: ExecutionStatus) {
@@ -21,6 +19,7 @@ final class DebugProcessingNode: PipelineNode {
     
     let description = tiles.reduce("", { $0 + TileMatcher.character(for: $1.piece) })
     
+    // Format the string so that it is ordered in as a game board.
     var formattedString = ""
     for row in 0..<kGameTileHeight {
       let startIndex = description.index(description.startIndex, offsetBy: row * kGameTileWidth)

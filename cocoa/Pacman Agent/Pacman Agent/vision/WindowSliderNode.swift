@@ -15,8 +15,6 @@ final class WindowSliderNode: PipelineNode {
   
   static var identifier: String = "window_slider_node"
   
-  var localIdentifier: String = WindowSliderNode.identifier
-  
   var executionLevel: Int = -1
   
   func execute(_ input: [String : Any]) -> (output: Any, status: ExecutionStatus) {

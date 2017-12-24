@@ -4,17 +4,15 @@ import Foundation
 final class UnknownTileSaverNode: PipelineNode {
   var dependencyIdentifiers: [String]? = [TileClassifierNode.identifier]
   
-  // This is checked when the pipeline begins. Modifying it after a session starts will have no
-  // effect.
-  var enabled: Bool = {
-    return Settings.saveUnknownImages
-  }()
+  var enabled: Bool {
+    get {
+      return Settings.saveUnknownImages
+    }
+  }
   
   var isOutput: Bool = true
   
   static var identifier: String = "save_unknown_tiles_node"
-  
-  var localIdentifier: String = UnknownTileSaverNode.identifier
   
   var executionLevel: Int = -1
   

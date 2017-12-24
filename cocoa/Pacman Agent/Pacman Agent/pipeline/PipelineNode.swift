@@ -25,9 +25,6 @@ protocol PipelineNode: class {
   /// The identifier for a node.
   static var identifier: String { get }
   
-  /// The local identifier of the node. This allows for direct comparison of nodes when analyzing.
-  var localIdentifier: String { get }
-  
   /// Executes the operation of the node. This needs to be performed
   func execute(_ input: [String: Any]) -> (output: Any, status: ExecutionStatus)
 }

@@ -10,8 +10,6 @@ final class TileClassifierNode: PipelineNode {
   
   static var identifier: String = "tile_classifier_node"
   
-  var localIdentifier: String = TileClassifierNode.identifier
-  
   var executionLevel: Int = -1
   
   private let matcher = TileMatcher()

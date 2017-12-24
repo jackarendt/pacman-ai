@@ -35,13 +35,13 @@ class Pipeline {
       level += 1
       // Get the dependencies from the previous level.
       let dependencies = dependencySet(nodes: currentLevelNodes)
-      currentLevelNodes = nodes.filter { dependencies.contains($0.localIdentifier) }
+      currentLevelNodes = nodes.filter { dependencies.contains(self.identifier(node: $0)) }
       
       // Loop through the nodes for the next level and assign the new level. Optionally add the
       // nodes to staging if they haven't been added before.
       for node in currentLevelNodes {
         node.executionLevel = level
-        if !staging.contains(where: { $0.localIdentifier == node.localIdentifier }) {
+        if !staging.contains(where: { self.identifier(node: $0) == self.identifier(node: node) }) {
           staging.append(node)
         }
       }
@@ -92,9 +92,9 @@ class Pipeline {
         let (nOut, status) = node.execute(output)
         if status == .success {
           // On success, add the output to the output dictionary.
-          output[node.localIdentifier] = nOut
+          output[self.identifier(node: node)] = nOut
         } else {
-          print("node \(node.localIdentifier) failed.\nHalting pipeline.")
+          print("node \(self.identifier(node: node)) failed.\nHalting pipeline.")
           self.stop()
         }
       }
@@ -115,5 +115,9 @@ class Pipeline {
       }
     }
     return dependencies
+  }
+  
+  private func identifier(node: PipelineNode) -> String {
+    return type(of: node).identifier
   }
 }
