@@ -1,8 +1,9 @@
 import Foundation
 
-enum ExecutionStatus {
-  case success
-  case failure
+enum PipelineExecutionError: Error {
+  case executionFailed
+  case invalidInput
+  case fileNotFound
 }
 
 /// Protocol for defining a node in the execution pipeline.
@@ -26,5 +27,5 @@ protocol PipelineNode: class {
   static var identifier: String { get }
   
   /// Executes the operation of the node. This needs to be performed
-  func execute(_ input: [String: Any]) -> (output: Any, status: ExecutionStatus)
+  func execute(_ input: [String: Any]) throws -> Any
 }

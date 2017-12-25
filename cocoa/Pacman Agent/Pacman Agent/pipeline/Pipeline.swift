@@ -88,12 +88,10 @@ class Pipeline {
           continue
         }
         
-        // Execute the node.
-        let (nOut, status) = node.execute(output)
-        if status == .success {
-          // On success, add the output to the output dictionary.
-          output[self.identifier(node: node)] = nOut
-        } else {
+        do {
+          // Execute the node and add the output to the output directory.
+          output[self.identifier(node: node)] = try node.execute(output)
+        } catch {
           print("node \(self.identifier(node: node)) failed.\nHalting pipeline.")
           self.stop()
         }

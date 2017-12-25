@@ -17,10 +17,10 @@ final class WindowSliderNode: PipelineNode {
   
   var executionLevel: Int = -1
   
-  func execute(_ input: [String : Any]) -> (output: Any, status: ExecutionStatus) {
+  func execute(_ input: [String : Any]) throws -> Any {
     guard let image = input[WindowCaptureNode.identifier] as? NSImage,
           let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
-      return (output: [GameTile](), status: .failure)
+      throw PipelineExecutionError.invalidInput
     }
     
     let bitmap = NSBitmapImageRep(cgImage: cgImage)
@@ -39,6 +39,6 @@ final class WindowSliderNode: PipelineNode {
       tiles.append(tile)
     })
     
-    return (output: tiles, status: .success)
+    return tiles
   }
 }

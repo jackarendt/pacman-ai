@@ -62,20 +62,6 @@ class GameTile: CustomStringConvertible {
     return bm
   }
   
-  /// Saves a bitmap to the specified directory.
-  /// Returns the filename of the bitmap.
-  func saveBitmap(directory: String, hashedFilename: Bool=false) -> String {
-    var filename = "\(Int(position.x))_\(Int(position.y))"
-    
-    if (hashedFilename) {
-      filename = abs((filename + Date().description + arc4random().description).hash).description
-    }
-    
-    let fullPath = directory + filename + ".tiff"
-    let _ = bitmap()?.saveToPath(path: fullPath)
-    return filename
-  }
-  
   var description: String {
     return "x: \(position.x), y: \(position.y)\n\(TileMatcher.description(for: piece))"
   }

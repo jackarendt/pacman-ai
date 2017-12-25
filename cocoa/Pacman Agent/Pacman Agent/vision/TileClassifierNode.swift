@@ -18,9 +18,9 @@ final class TileClassifierNode: PipelineNode {
     let _ = matcher.loadVisionModel()
   }
   
-  func execute(_ input: [String : Any]) -> (output: Any, status: ExecutionStatus) {
+  func execute(_ input: [String : Any]) throws -> Any {
     guard let tiles = input[WindowSliderNode.identifier] as? [GameTile] else {
-      return (output: [GameTile](), status: .failure)
+      throw PipelineExecutionError.invalidInput
     }
     
     let bufferSize = Int(kGameWidth * kGameHeight) * kSamplesPerPixel
@@ -58,6 +58,6 @@ final class TileClassifierNode: PipelineNode {
     pixelBuffer.deallocate(capacity: bufferSize)
     classificationBuffer.deallocate(capacity: classificationBufferSize)
     
-    return (output: tiles, status: .success)
+    return tiles
   }
 }

@@ -25,12 +25,12 @@ final class WindowCaptureNode: PipelineNode {
     }
   }
   
-  func execute(_ input: [String: Any]) -> (output: Any, status: ExecutionStatus)  {
+  func execute(_ input: [String: Any]) throws -> Any  {
     if let image = CaptureWindowForWindowID(windowID) {
       let cropped = cropGameWindow(image: image)
-      return (output: resize(image: cropped), status: .success)
+      return resize(image: cropped)
     }
-    return (output: NSImage(), status: .failure)
+    throw PipelineExecutionError.executionFailed
   }
   
   /// Crops window screenshot to the correct aspect ratio.

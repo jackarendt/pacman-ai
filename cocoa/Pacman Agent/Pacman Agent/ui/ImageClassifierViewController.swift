@@ -22,6 +22,9 @@ class ImageClassifierViewController: NSViewController {
   /// URLs for where the unknown images are located.
   var unknownImageURLs = [URL]()
   
+  let dataset =
+    DatasetManager(classifiedDirectory: kTileDirectory, unknownDirectory: kTileUnknownDirectory)
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -73,31 +76,10 @@ class ImageClassifierViewController: NSViewController {
     super.viewDidAppear()
     // Set image interpolation to none.
     NSGraphicsContext.current?.imageInterpolation = .none
-    
-    let url = URL(fileURLWithPath: kTileUnknownDirectory)
-    if let images = try? FileManager.default.contentsOfDirectory(at: url,
-                                                                 includingPropertiesForKeys: nil,
-                                                                 options: .skipsHiddenFiles) {
-      unknownImageURLs = images.sorted(by: { (url1, url2) -> Bool in
-        let firstPath = url1.lastPathComponent.replacingOccurrences(of: "tiff", with: "")
-                            .replacingOccurrences(of: ".", with: "_")
-        let secondPath = url2.lastPathComponent.replacingOccurrences(of: "tiff", with: "")
-                             .replacingOccurrences(of: ".", with: "_")
-        
-        let firstDigits = firstPath.components(separatedBy: "_").map { Int($0) }
-        let secondDigits = secondPath.components(separatedBy: "_").map { Int($0) }
-        
-        for i in 0..<firstDigits.count {
-          if let firstDigit = firstDigits[i], let secondDigit = secondDigits[i] {
-            if firstDigit != secondDigit {
-              return firstDigit < secondDigit
-            }
-          }
-        }
-        
-        return true
-      })
-      showNextImage()
+    do {
+      unknownImageURLs = try dataset.loadUnknownTiles(ordered: true)
+    } catch {
+      print("cannot load unknown tiles")
     }
   }
   
@@ -126,7 +108,7 @@ class ImageClassifierViewController: NSViewController {
       return
     }
     
-    saveImageToDataset(imageURL: url)
+    dataset.classifyTile(imageURL: url, type: classifier.selectedType.rawValue)
     unknownImageURLs.removeFirst()
     showNextImage()
   }
@@ -135,51 +117,5 @@ class ImageClassifierViewController: NSViewController {
 extension ImageClassifierViewController: ClassificationSelectionViewDelegate {
   func selectionViewDidChange(selectionView: ClassificationSelectionView) {
     classifyImageButton.isEnabled = true
-  }
-}
-
-// MARK: - Image saving methods
-extension ImageClassifierViewController {
-  private func saveImageToDataset(imageURL: URL) {
-    createDataDirectoryIfNecessary()
-    
-    let saltedName = imageURL.lastPathComponent + Date().description + arc4random().description
-    let filename = abs(saltedName.hash).description + "." + imageURL.pathExtension
-    let fileURL = URL(fileURLWithPath: kTileDirectory + filename)
-    
-    do {
-      try FileManager.default.copyItem(at: imageURL, to: fileURL)
-      updateCSV(imageName: filename)
-      try FileManager.default.removeItem(at: imageURL)
-    } catch {
-      print("File not copied")
-    }
-  }
-  
-  private func updateCSV(imageName: String) {
-    let csv = kTileDirectory + kImageMappingCSVFilename
-    if !FileManager.default.fileExists(atPath: csv) {
-      FileManager.default.createFile(atPath: csv, contents: nil, attributes: nil)
-    }
-    
-    let newLine = imageName + "," + classifier.selectedType.rawValue.description + "\n"
-    
-    if let file = FileHandle(forUpdatingAtPath: csv), let data = newLine.data(using: .utf8) {
-      file.seekToEndOfFile()
-      file.write(data)
-      file.closeFile()
-    }
-  }
-  
-  private func createDataDirectoryIfNecessary() {
-    if !FileManager.default.fileExists(atPath: kTileDirectory) {
-      do {
-        try FileManager.default.createDirectory(atPath: kTileDirectory,
-                                                withIntermediateDirectories: true,
-                                                attributes: nil)
-      } catch {
-        return
-      }
-    }
   }
 }

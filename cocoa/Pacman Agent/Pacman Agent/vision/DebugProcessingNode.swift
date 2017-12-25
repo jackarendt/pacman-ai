@@ -12,9 +12,9 @@ final class DebugProcessingNode: PipelineNode {
   
   var executionLevel: Int = -1
 
-  func execute(_ input: [String : Any]) -> (output: Any, status: ExecutionStatus) {
+  func execute(_ input: [String : Any]) throws -> Any {
     guard let tiles = input[TileClassifierNode.identifier] as? [GameTile] else {
-      return (output: 0, status: .failure)
+      throw PipelineExecutionError.invalidInput
     }
     
     let description = tiles.reduce("", { $0 + TileMatcher.character(for: $1.piece) })
@@ -30,6 +30,6 @@ final class DebugProcessingNode: PipelineNode {
     NotificationCenter.default.post(name: kDidUpdateWindowCaptureNotification,
                                     object: formattedString)
     
-    return (output: 0, status: .success)
+    return 0
   }
 }

@@ -19,15 +19,15 @@ final class UnknownTileSaverNode: PipelineNode {
   let datasetManager = DatasetManager(classifiedDirectory: kTileDirectory,
                                       unknownDirectory: kTileUnknownDirectory)
 
-  func execute(_ input: [String : Any]) -> (output: Any, status: ExecutionStatus) {
+  func execute(_ input: [String : Any]) throws -> Any {
     guard let tiles = input[TileClassifierNode.identifier] as? [GameTile] else {
-      return (output: 0, status: .failure)
+      throw PipelineExecutionError.invalidInput
     }
     
     // Filter unknown tiles.
     let unknownTiles = tiles.filter({ $0.piece == .unknown })
     if unknownTiles.count == 0 {
-      return (output: 0, status: .success)
+      return 0
     }
     
     // Save each unknown tile to the unknown tiles directory.
@@ -35,6 +35,6 @@ final class UnknownTileSaverNode: PipelineNode {
       datasetManager.saveUnknownTile(tile: tile)
     }
     
-    return (output: 0, status: .success)
+    return 0
   }
 }
