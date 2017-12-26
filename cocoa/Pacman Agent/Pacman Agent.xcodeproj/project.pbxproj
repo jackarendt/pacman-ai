@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E28FA741FF1B847002A37A0 /* OCRTileSaverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA731FF1B847002A37A0 /* OCRTileSaverNode.swift */; };
+		2E28FA761FF1BF0E002A37A0 /* OCRClassifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA751FF1BF0E002A37A0 /* OCRClassifierViewController.swift */; };
 		2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */; };
 		2E7AA0A81FCFB84200E51EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */; };
 		2E7AA0AB1FCFB84200E51EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */; };
@@ -61,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E28FA731FF1B847002A37A0 /* OCRTileSaverNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRTileSaverNode.swift; sourceTree = "<group>"; };
+		2E28FA751FF1BF0E002A37A0 /* OCRClassifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRClassifierViewController.swift; sourceTree = "<group>"; };
 		2E7AA0A01FCFB84200E51EA9 /* Pacman Agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pacman Agent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 				2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */,
 				2EFCDBB51FEB6AD3009C15E7 /* DataCleanerViewController.swift */,
 				2ECB2EA21FD8574300A81539 /* RootWindowController.swift */,
+				2E28FA751FF1BF0E002A37A0 /* OCRClassifierViewController.swift */,
 				2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */,
 				2ECB2EA81FD870EE00A81539 /* SettingsCell.swift */,
 				2ECB2EAA1FD8803000A81539 /* CheckboxSettingCell.swift */,
@@ -256,6 +261,7 @@
 				2EFCDBCC1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift */,
 				2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */,
 				2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */,
+				2E28FA731FF1B847002A37A0 /* OCRTileSaverNode.swift */,
 				2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */,
 			);
 			path = vision;
@@ -387,6 +393,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E28FA741FF1B847002A37A0 /* OCRTileSaverNode.swift in Sources */,
 				2ECB2EAB1FD8803000A81539 /* CheckboxSettingCell.swift in Sources */,
 				2EFCDBC11FEDAA8B009C15E7 /* PipelineNode.swift in Sources */,
 				2ECB2EC91FDA523300A81539 /* TileMatcher.mm in Sources */,
@@ -408,6 +415,7 @@
 				2E98FE161FE979CD0080EA10 /* VisionConstants.mm in Sources */,
 				2EFCDBCD1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift in Sources */,
 				2EFCDBC31FEDAAAD009C15E7 /* WindowCaptureNode.swift in Sources */,
+				2E28FA761FF1BF0E002A37A0 /* OCRClassifierViewController.swift in Sources */,
 				2EFCDBCB1FEDAC2B009C15E7 /* TileClassifierNode.swift in Sources */,
 				2ECB2EAF1FD8875900A81539 /* Settings.swift in Sources */,
 				2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */,

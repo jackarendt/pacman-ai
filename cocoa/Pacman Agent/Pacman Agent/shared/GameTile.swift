@@ -25,7 +25,9 @@ class GameTile: CustomStringConvertible {
   
   /// Returns an image representation of the tile.
   func bitmap() -> NSBitmapImageRep? {
-    guard bufferLength > 0 else {
+    // Make sure there is an image buffer, and the first value (alpha) is 255. Don't save partially
+    // visible tiles.
+    guard bufferLength > 0 && pixels[0] == 255 else {
       return nil
     }
     

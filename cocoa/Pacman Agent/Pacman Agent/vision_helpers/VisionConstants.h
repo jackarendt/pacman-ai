@@ -14,3 +14,6 @@ extern const NSInteger kGameTileWidth;
 
 /** The number of vertical game tiles. */
 extern const NSInteger kGameTileHeight;
+
+/** Array of valid OCR characters. [A-Z, 0-9] */
+extern const NSArray<NSString *> *kOCRValidCharacters;

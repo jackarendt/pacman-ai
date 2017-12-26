@@ -10,6 +10,9 @@ class AgentSettingsViewController: NSViewController {
   let saveImagesSetting =
       CheckboxSettingCell(title: "Save unknown images", identifier: kSaveUnknownImagesKey)
   
+  let saveOCRSetting =
+      CheckboxSettingCell(title: "Save all text images", identifier: kSaveAllTextImagesKey)
+  
   let confidenceThresholdSetting =
       NumericalInputSettingCell(title: "Minimum classification confidence",
                                 identifier: kClassificationConfidenceThresholdKey)
@@ -36,6 +39,7 @@ class AgentSettingsViewController: NSViewController {
     
     addArrangedSubview(view: launchAIButton)
     addArrangedSubview(view: saveImagesSetting)
+    addArrangedSubview(view: saveOCRSetting)
     addArrangedSubview(view: confidenceThresholdSetting)
     addArrangedSubview(view: randomSamplePercentage)
     

@@ -704,11 +704,12 @@
         <!--Tab View Controller-->
         <scene sceneID="6hr-nj-hqA">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" id="hdf-h5-esx" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="3" id="hdf-h5-esx" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="iwx-9T-ZhT"/>
                         <tabViewItem identifier="" id="qe2-UD-Ga1"/>
                         <tabViewItem id="Cwq-2w-7AO"/>
+                        <tabViewItem id="K0o-Ab-977"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="1Jg-Gq-Z3x">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -724,6 +725,7 @@
                         <segue destination="ddZ-we-KNO" kind="relationship" relationship="tabItems" id="d9B-Zj-sEo"/>
                         <segue destination="vwv-N1-I0n" kind="relationship" relationship="tabItems" id="1Gn-te-Ffr"/>
                         <segue destination="1uE-Fa-hcO" kind="relationship" relationship="tabItems" id="m53-gj-eog"/>
+                        <segue destination="XkJ-pg-zUP" kind="relationship" relationship="tabItems" id="Ao6-vo-zkf"/>
                     </connections>
                 </tabViewController>
                 <customObject id="2Rd-EC-jWR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -768,6 +770,19 @@
                 <customObject id="6M3-ya-4Ly" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="761" y="1562"/>
+        </scene>
+        <!--OCR-->
+        <scene sceneID="RTa-Xo-qQY">
+            <objects>
+                <viewController title="OCR" id="XkJ-pg-zUP" customClass="OCRClassifierViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="NXj-FD-2cv">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="RkX-lV-QKd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="1934"/>
         </scene>
     </scenes>
 </document>

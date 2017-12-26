@@ -1,14 +1,13 @@
 import Cocoa
 
-/// View controller for classifying different unknown images.
-class ImageClassifierViewController: NSViewController {
-  
+class OCRClassifierViewController: NSViewController {
+
   /// Label that shows how many unclassified images are left.
   let imagesRemainingLabel = NSTextField.label()
   
   /// Button to classify an image.
   lazy var classifyImageButton = {
-     return NSButton(title: "Classify Image", target: self, action: #selector(classifyImage))
+    return NSButton(title: "Classify Text", target: self, action: #selector(classifyImage))
   }()
   
   /// Image view for showing an image.
@@ -17,17 +16,15 @@ class ImageClassifierViewController: NSViewController {
   /// Label for showing the image metadata.
   let descriptionLabel = NSTextField.label()
   
-  let classifier = ClassificationSelectionView(frame: CGRect.zero)
+  let inputTextField = NSTextField()
   
-  /// URLs for where the unknown images are located.
-  var unknownImageURLs = [URL]()
+  var unknownTextURLs = [URL]()
   
   let dataset =
-    DatasetManager(classifiedDirectory: kTileDirectory, unknownDirectory: kTileUnknownDirectory)
+      DatasetManager(classifiedDirectory: kOCRDirectory, unknownDirectory: kOCRUnknownDirectory)
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
     let padding: CGFloat = 20
     
     imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -62,14 +59,14 @@ class ImageClassifierViewController: NSViewController {
     classifyImageButton.bottomAnchor.constraint(equalTo: imagesRemainingLabel.topAnchor,
                                                 constant: -5).isActive = true
     
-    classifier.delegate = self
-    classifier.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(classifier)
-    classifier.activateFullWidthConstraints(padding: padding)
-    classifier.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor,
-                                    constant: 10).isActive = true
-    classifier.bottomAnchor.constraint(equalTo: classifyImageButton.topAnchor,
-                                       constant: -10).isActive = true
+    inputTextField.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(inputTextField)
+    inputTextField.activateFullWidthConstraints(padding: padding)
+    inputTextField.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor,
+                                        constant: padding).isActive = true
+    inputTextField.placeholderString = "Tile Text"
+    inputTextField.target = self
+    inputTextField.action = #selector(classifyImage)
   }
   
   override func viewDidAppear() {
@@ -77,46 +74,39 @@ class ImageClassifierViewController: NSViewController {
     // Set image interpolation to none.
     NSGraphicsContext.current?.imageInterpolation = .none
     do {
-      unknownImageURLs = try dataset.loadUnknownTiles(ordered: true)
+      unknownTextURLs = try dataset.loadUnknownTiles(ordered: true)
       showNextImage()
     } catch {
       print("cannot load unknown tiles")
     }
   }
   
-  // MARK: - Private functions
-
+  @objc func classifyImage() {
+    guard let url = unknownTextURLs.first, inputTextField.stringValue.count > 0 else {
+      return
+    }
+    
+    let index = kOCRValidCharacters.index(of: inputTextField.stringValue)
+    guard index != NSNotFound else {
+      return
+    }
+    
+    dataset.classifyTile(imageURL: url, type: index)
+    unknownTextURLs.removeFirst()
+    showNextImage()
+  }
+  
   /// Shows the next image and resets the controller's state.
   private func showNextImage() {
     defer {
-      classifyImageButton.isEnabled = false
-      imagesRemainingLabel.stringValue = "\(unknownImageURLs.count) images remaining."
-      classifier.clearSelection()
+      imagesRemainingLabel.stringValue = "\(unknownTextURLs.count) images remaining."
+      inputTextField.stringValue = ""
     }
     
-    guard let imageURL = unknownImageURLs.first else {
+    guard let imageURL = unknownTextURLs.first else {
       return
     }
     imageView.image = NSImage(byReferencing: imageURL).resize(newSize: imageView.frame.size)
     descriptionLabel.stringValue = imageURL.lastPathComponent
-  }
-  
-  // MARK: - Selectors
-  
-  /// Classifies an image and saves it to the dataset directory.
-  @objc func classifyImage() {
-    guard let url = unknownImageURLs.first else {
-      return
-    }
-    
-    dataset.classifyTile(imageURL: url, type: classifier.selectedType.rawValue)
-    unknownImageURLs.removeFirst()
-    showNextImage()
-  }
-}
-
-extension ImageClassifierViewController: ClassificationSelectionViewDelegate {
-  func selectionViewDidChange(selectionView: ClassificationSelectionView) {
-    classifyImageButton.isEnabled = true
   }
 }

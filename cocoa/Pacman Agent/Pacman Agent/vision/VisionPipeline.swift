@@ -11,6 +11,16 @@ final class VisionPipeline: Pipeline {
     let classifierNode = TileClassifierNode()
     let unknownNode = UnknownTileSaverNode()
     let debugNode = DebugProcessingNode()
-    initializeWithNodes(nodes: [captureNode, sliderNode, classifierNode, unknownNode, debugNode])
+    let ocrSaverNode = OCRTileSaverNode()
+    
+    let nodes: [PipelineNode] = [
+      captureNode,
+      sliderNode,
+      classifierNode,
+      unknownNode,
+      debugNode,
+      ocrSaverNode
+    ]
+    initializeWithNodes(nodes: nodes)
   }
 }

@@ -32,6 +32,7 @@ xcuserdata/
 # ML Data.
 vision/data/
 vision/model/
+vision/ocr/
 
 # Python
 __pycache__/

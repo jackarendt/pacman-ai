@@ -4,7 +4,7 @@ import Cocoa
 class RootWindowController: NSWindowController {
   override func windowDidLoad() {
     super.windowDidLoad()
-    window?.maxSize = CGSize(width: 350, height: 650)
+    window?.maxSize = CGSize(width: 350, height: 700)
     window?.minSize = CGSize(width: 350, height: 500)
   }
 }
