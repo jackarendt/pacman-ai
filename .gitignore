@@ -30,7 +30,7 @@ xcuserdata/
 *.dSYM
 
 # ML Data.
-vision/data/
+vision/tiles/
 vision/model/
 vision/ocr/
 

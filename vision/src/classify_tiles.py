@@ -118,7 +118,7 @@ def _train():
   def feed_dict(train):
     """Make a TensorFlow feed_dict: maps data onto Tensor placeholders."""
     if train:
-      xs, ys = data_set.train.next_batch(100)
+      xs, ys = data_set.train.next_batch(250)
       k = FLAGS.dropout
     else:
       xs, ys = data_set.test.images, data_set.test.labels
@@ -174,7 +174,7 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('--max_steps', type=int, default=2500,
                       help='Number of steps to run trainer.')
-  parser.add_argument('--learning_rate', type=float, default=0.001,
+  parser.add_argument('--learning_rate', type=float, default=0.003,
                       help='Initial learning rate')
   parser.add_argument('--dropout', type=float, default=0.9,
                       help='Keep probability for training dropout.')
@@ -187,7 +187,7 @@ if __name__ == '__main__':
   parser.add_argument(
         '--log_dir',
         type=str,
-        default=os.path.join(os.getenv('TEST_TMPDIR', '/tmp'), 'pacman/vision/logs/'),
+        default=os.path.join(os.getenv('TEST_TMPDIR', '/tmp'), 'pacman/tiles/logs/'),
         help='Summaries log directory')
   parser.add_argument(
         '--export_dir',

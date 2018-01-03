@@ -156,7 +156,7 @@ class DataCleanerViewController: NSViewController {
     
     let keys = Array<String>(tileLabels.keys)
     let imageURL = URL(fileURLWithPath: kTileDirectory + keys[currentIndex])
-    imageView.image = NSImage(byReferencing: imageURL)
+    imageView.image = NSImage(byReferencing: imageURL).resize(newSize: imageView.frame.size)
     imagesRemainingLabel.stringValue = "\(currentIndex) of \(tileLabels.count)"
     
     if let currentType = tileLabels[keys[currentIndex]] {

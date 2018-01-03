@@ -14,7 +14,7 @@ public var kTileDirectory: String = {
       NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
       return ""
   }
-  return documentDirectory + "/pacman/vision/data/"
+  return documentDirectory + "/pacman/vision/tiles/"
 }()
 
 /// Directory for retrieving saved OCR images.

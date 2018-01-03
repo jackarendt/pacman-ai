@@ -12,7 +12,7 @@ from PIL import Image
 from tensorflow.contrib.learn.python.learn.datasets import base
 from tensorflow.python.framework import dtypes
 
-RELATIVE_DATA_DIR = os.path.dirname(os.path.realpath(__file__)) + '/../data/'
+RELATIVE_DATA_DIR = os.path.dirname(os.path.realpath(__file__)) + '/../tiles/'
 
 # Indices of different color bands stored in RGBA format.
 RGBA_R = 0
