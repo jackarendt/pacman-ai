@@ -69,8 +69,8 @@ def split_data_set(data_set, train_percentage=0.64, cv_percentage=0.16, test_per
   train_idx = floor(train_percentage * len(data_set.index))
   cv_idx = train_idx + floor(cv_percentage * len(data_set.index))
 
-  train = DataSet(data_set[0:train_idx].reset_index(drop=True))
-  cv = DataSet(data_set[train_idx:cv_idx].reset_index(drop=True))
-  test = DataSet(data_set[cv_idx:].reset_index(drop=True))
+  train = DataSet(data_set[0:train_idx].reset_index(drop=True), NUM_CLASSES)
+  cv = DataSet(data_set[train_idx:cv_idx].reset_index(drop=True), NUM_CLASSES)
+  test = DataSet(data_set[cv_idx:].reset_index(drop=True), NUM_CLASSES)
 
   return base.Datasets(train=train, validation=cv, test=test)

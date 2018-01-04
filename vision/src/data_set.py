@@ -4,14 +4,13 @@ import os
 import pandas as pd
 from constants import *
 
-
 class DataSet(object):
   """Object that represents a collection of data."""
-  def __init__(self, data_set):
+  def __init__(self, data_set, num_labels):
     """ Creates a dataset with a list of images and labels. """
     self._num_examples = data_set.shape[0]
     self._images = np.zeros(shape=(self._num_examples, IMAGE_BUFFER_LENGTH), dtype=np.float32)
-    self._labels = np.zeros(shape=(self._num_examples, NUM_CLASSES), dtype=np.float32)
+    self._labels = np.zeros(shape=(self._num_examples, num_labels), dtype=np.float32)
 
     self._epochs_completed = 0
     self._index_in_epoch = 0
@@ -43,7 +42,6 @@ class DataSet(object):
   def epochs_completed(self):
     """The number of epochs that have been created."""
     return self._epochs_completed
-
 
   def next_batch(self, batch_size, shuffle=True):
     """Return the next `batch_size` examples from this data set."""
