@@ -704,7 +704,7 @@
         <!--Tab View Controller-->
         <scene sceneID="6hr-nj-hqA">
             <objects>
-                <tabViewController selectedTabViewItemIndex="3" id="hdf-h5-esx" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" id="hdf-h5-esx" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="iwx-9T-ZhT"/>
                         <tabViewItem identifier="" id="qe2-UD-Ga1"/>

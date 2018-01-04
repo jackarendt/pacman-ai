@@ -21,7 +21,7 @@ const std::string kModelName = "finalized_model.pb";
   NSString *documentsDirectory =
       NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
   NSString *modelDirectory =
-      [documentsDirectory stringByAppendingString:@"/pacman/vision/model/"];
+      [documentsDirectory stringByAppendingString:@"/pacman/vision/tile_model/"];
   
   const std::string model_dir = std::string([modelDirectory UTF8String]);
   
@@ -71,9 +71,6 @@ const std::string kModelName = "finalized_model.pb";
   // Map each item in the pixel buffer to the 2D input tensor.
   for (NSInteger i = 0; i < examples; i++) {
     for (NSInteger j = 0; j < imageBufferLength; j++) {
-      if (i == 646 && j == 95) {
-
-      }
       input_tensor_mapped(i, j) = pixelBuffer[i * imageBufferLength + j];
     }
   }
@@ -106,7 +103,7 @@ const std::string kModelName = "finalized_model.pb";
     }
     
     if (max_value < threshold) {
-      buffer[i] = (TileType)0;
+      buffer[i] = TileTypeUnknown;
     } else {
       buffer[i] = (TileType)max_index;
     }

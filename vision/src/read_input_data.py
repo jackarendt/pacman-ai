@@ -12,33 +12,31 @@ from PIL import Image
 from tensorflow.contrib.learn.python.learn.datasets import base
 from tensorflow.python.framework import dtypes
 
-RELATIVE_DATA_DIR = os.path.dirname(os.path.realpath(__file__)) + '/../tiles/'
-
 # Indices of different color bands stored in RGBA format.
 RGBA_R = 0
 RGBA_G = 1
 RGBA_B = 2
 RGBA_A = 3
 
-def _convert_label_to_one_hot(label):
+def _convert_label_to_one_hot(label, num_classes):
   """Converts an index to a one-hot encoded list."""
-  one_hot = np.zeros(NUM_CLASSES, dtype=np.float32)
+  one_hot = np.zeros(num_classes, dtype=np.float32)
   one_hot[label] = 1
   return one_hot
 
-def read_input_data():
+def read_input_data(data_dir, num_classes):
   """
   Reads the input data and converts it to a 1D array of image data in ARGB format, with the
   appropriate label.
   """
-  data_set = pd.read_csv(RELATIVE_DATA_DIR + 'labels.csv', skipinitialspace=True,
+  data_set = pd.read_csv(data_dir + 'labels.csv', skipinitialspace=True,
                          skiprows=1, names=[IMAGE, LABEL])
 
   data_set[LABEL] = data_set[LABEL].astype(object)
 
   for image_idx, row in data_set.iterrows():
     # Load the image, and get the RBGA pixel data.
-    im = Image.open(RELATIVE_DATA_DIR + row[IMAGE])
+    im = Image.open(data_dir + row[IMAGE])
     rgba_pixels = im.getdata()
 
     # Convert the rgba pixel data to ARGB (the macOS default for screen captures), and flatten it
@@ -49,12 +47,13 @@ def read_input_data():
 
     # Change the image column so that it is a 1D array of pixel values instead of an image name.
     data_set.at[image_idx, IMAGE] = np.array(argb_data, dtype=np.float32)
-    data_set.at[image_idx, LABEL] = _convert_label_to_one_hot(row[LABEL])
+    data_set.at[image_idx, LABEL] = _convert_label_to_one_hot(row[LABEL], num_classes)
 
   # Return the processed data set.
   return data_set
 
-def split_data_set(data_set, train_percentage=0.64, cv_percentage=0.16, test_percentage=0.2):
+def split_data_set(data_set, num_classes,
+                   train_percentage=0.64, cv_percentage=0.16, test_percentage=0.2):
   """Splits the data set into a training, cross validation, and test training group. """
   original_sum = train_percentage + cv_percentage + test_percentage
   if original_sum != 1:
@@ -69,8 +68,8 @@ def split_data_set(data_set, train_percentage=0.64, cv_percentage=0.16, test_per
   train_idx = floor(train_percentage * len(data_set.index))
   cv_idx = train_idx + floor(cv_percentage * len(data_set.index))
 
-  train = DataSet(data_set[0:train_idx].reset_index(drop=True), NUM_CLASSES)
-  cv = DataSet(data_set[train_idx:cv_idx].reset_index(drop=True), NUM_CLASSES)
-  test = DataSet(data_set[cv_idx:].reset_index(drop=True), NUM_CLASSES)
+  train = DataSet(data_set[0:train_idx].reset_index(drop=True), num_classes)
+  cv = DataSet(data_set[train_idx:cv_idx].reset_index(drop=True), num_classes)
+  test = DataSet(data_set[cv_idx:].reset_index(drop=True), num_classes)
 
   return base.Datasets(train=train, validation=cv, test=test)

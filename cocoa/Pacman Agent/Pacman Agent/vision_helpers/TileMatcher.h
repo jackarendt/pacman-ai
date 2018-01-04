@@ -4,33 +4,33 @@
 /** Enumeration of all of the different tile types. */
 typedef NS_ENUM(NSInteger, TileType) {
   /** Unknown Tile. */
-  TileTypeUnknown = 0,
+  TileTypeUnknown = -1,
   /** Contains a majority of pacman. */
-  TileTypePacman = 1,
+  TileTypePacman = 0,
   /** Contains a wall. */
-  TileTypeWall = 2,
+  TileTypeWall = 1,
   /** Empty tile. */
-  TileTypeBlank = 3,
+  TileTypeBlank = 2,
   /** Fruit. i.e. Cherry, Apple, etc. */
-  TileTypeFruit = 4,
+  TileTypeFruit = 3,
   /** Blinky, not frightened. */
-  TileTypeBlinky = 5,
+  TileTypeBlinky = 4,
   /** Inky, not frightened. */
-  TileTypeInky = 6,
+  TileTypeInky = 5,
   /** Pinky, not frightened. */
-  TileTypePinky = 7,
+  TileTypePinky = 6,
   /** Clyde, not frightened. */
-  TileTypeClyde = 8,
+  TileTypeClyde = 7,
   /** Any frightened ghost. */
-  TileTypeFrightenedGhost = 9,
+  TileTypeFrightenedGhost = 8,
   /** Regular pellet. */
-  TileTypePellet = 10,
+  TileTypePellet = 9,
   /** Power pellet. Causes ghosts to be frightened. */
-  TileTypePowerPellet = 11,
+  TileTypePowerPellet = 10,
   /** Text of any kind. */
-  TileTypeText = 12,
+  TileTypeText = 11,
   /** Not important tile. */
-  TileTypeIgnore = 13,
+  TileTypeIgnore = 12,
 };
 
 /** Matches a bitmap image with a tile type. */

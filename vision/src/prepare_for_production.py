@@ -1,7 +1,10 @@
 """Freezes the tensorflow graph, stripping any non-c++ compatible and non-inference operations."""
 
-import tensorflow as tf
+import argparse
 import os
+import sys
+import tensorflow as tf
+
 from tensorflow.python.tools import freeze_graph
 from tensorflow.core.framework import graph_pb2
 from tensorflow.python.framework import importer
@@ -10,8 +13,10 @@ from constants import *
 # Removes the "Your CPU has instructions that tf was not compiled to use" warnings.
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-if __name__ == '__main__':
-  export_path = os.path.dirname(os.path.realpath(__file__)) + RELATIVE_EXPORT_DIR
+FLAGS = None
+
+def main(_):
+  export_path = os.path.dirname(os.path.realpath(__file__)) + '/' + FLAGS.export_dir
 
   input_graph_path = export_path + GRAPH_PB_NAME
   checkpoint_path = export_path + MODEL_NAME
@@ -81,3 +86,9 @@ if __name__ == '__main__':
     for i, node in enumerate(output_graph.node):
       print('%d %s %s' % (i, node.name, node.op))
       [print(u'└─── %d ─ %s' % (i, n)) for i, n in enumerate(node.input)]
+
+if __name__ == '__main__':
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--export_dir', type=str, default="", help='Model export directory')
+  FLAGS, unparsed = parser.parse_known_args()
+  tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)

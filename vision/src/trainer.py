@@ -35,20 +35,21 @@ def _nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
     tf.summary.histogram('activations', activations)
     return activations
 
-def _evaluations(predictions, labels):
+def _evaluations(predictions, labels, num_classes, class_names):
   """Returns a group of operations to calculate accuracy and other evaluation metrics."""
-  ops = [metrics.accuracy(predictions, labels),
-         metrics.confusion_matrix(predictions, labels),
-         metrics.class_metrics(predictions, labels)]
+  ops = [metrics.accuracy(predictions, labels, num_classes),
+         metrics.confusion_matrix(predictions, labels, num_classes),
+         metrics.class_metrics(predictions, labels, class_names)]
   return tf.group(*ops)
 
-def train(data_set, num_labels, max_steps, learning_rate, hidden_unit_size, dropout, log_dir):
+def train(data_set, num_classes, max_steps, learning_rate,
+          hidden_unit_size, dropout, log_dir, class_names):
   """Trains a DNN Classifier for a given data set."""
   sess = tf.InteractiveSession()
 
   with tf.name_scope('input'):
     x = tf.placeholder(tf.float32, [None, IMAGE_BUFFER_LENGTH], name='x-input')
-    y_ = tf.placeholder(tf.float32, [None, num_labels], name='y-input')
+    y_ = tf.placeholder(tf.float32, [None, num_classes], name='y-input')
     # Add a histogram of the different labels that are passe`d in for each iteration. This helps
     # determine how evenly distributed labels are across epochs.
     tf.summary.histogram('labels', tf.argmax(y_, 1))
@@ -61,7 +62,7 @@ def train(data_set, num_labels, max_steps, learning_rate, hidden_unit_size, drop
     dropped = tf.nn.dropout(hidden1, keep_prob)
 
   # Create an output layer that has the specified number of outputs.
-  y = _nn_layer(dropped, hidden_unit_size, num_labels, 'output', act=tf.identity)
+  y = _nn_layer(dropped, hidden_unit_size, num_classes, 'output', act=tf.identity)
 
   # Compute softmax of different labels, such that the sum of all predictions = 1.
   with tf.name_scope('prediction'):
@@ -82,7 +83,7 @@ def train(data_set, num_labels, max_steps, learning_rate, hidden_unit_size, drop
   # Evaluate the performance of the DNN, such as per-class accuracy, overall accuracy, and a
   # confusion matrix.
   with tf.name_scope('evaluation'):
-    eval_metrics = _evaluations(prediction, y_)
+    eval_metrics = _evaluations(prediction, y_, num_classes, class_names)
 
   # Merge all of the summaries, and write them to the proper directory.
   merged = tf.summary.merge_all()

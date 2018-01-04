@@ -1,32 +1,44 @@
 import argparse
+import metrics
 import os
 import pandas as pd
 import sys
 import tensorflow as tf
-from tensorflow.python.framework import graph_io
-import metrics
-from read_input_data import *
 import trainer
+
+from tensorflow.python.framework import graph_io
+from read_input_data import *
 
 FLAGS = None
 
 HIDDEN_UNIT_SIZE = 196
 
+# Array of all of the string versions of the labels.
+CLASS_NAMES = ['pacman', 'wall', 'blank', 'fruit', 'blinky', 'inky', 'pinky', 'clyde',
+               'frightened_ghost', 'pellet', 'power_pellet', 'text', 'ignore']
+
+RELATIVE_TILE_EXPORT_DIR = '/../tile_model/'
+
 def main(_):
   print("loading...")
-  full_data_set = read_input_data()
+
+  data_dir = os.path.dirname(os.path.realpath(__file__)) + '/../tiles/'
+  full_data_set = read_input_data(data_dir, len(CLASS_NAMES))
   data_set = split_data_set(full_data_set,
+                            len(CLASS_NAMES),
                             train_percentage=FLAGS.train_ratio,
                             cv_percentage=FLAGS.cv_ratio,
                             test_percentage=FLAGS.test_ratio)
+
   print('data set read from disk. creating tensor graph.')
   train_session = trainer.train(data_set=data_set,
-                                num_labels=NUM_CLASSES,
+                                num_classes=len(CLASS_NAMES),
                                 max_steps=FLAGS.max_steps,
                                 learning_rate=FLAGS.learning_rate,
                                 hidden_unit_size=HIDDEN_UNIT_SIZE,
                                 dropout=FLAGS.dropout,
-                                log_dir=FLAGS.log_dir)
+                                log_dir=FLAGS.log_dir,
+                                class_names=CLASS_NAMES)
 
   trainer.export_graph(FLAGS.export_dir, train_session)
 
@@ -52,7 +64,7 @@ if __name__ == '__main__':
   parser.add_argument(
         '--export_dir',
         type=str,
-        default=os.path.dirname(os.path.realpath(__file__)) + RELATIVE_EXPORT_DIR,
+        default=os.path.dirname(os.path.realpath(__file__)) + RELATIVE_TILE_EXPORT_DIR,
         help='Model export directory')
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)

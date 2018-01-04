@@ -78,7 +78,7 @@ final class ClassificationSelectionView: NSControl {
   }
   
   @objc func radioButtonClicked(sender: NSButton) {
-    guard let type = TileType(rawValue: sender.tag) else {
+    guard let type = TileType(rawValue: sender.tag - 1) else {
       return
     }
     
