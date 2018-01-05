@@ -40,7 +40,7 @@ class DataCleanerViewController: NSViewController {
     popupClassifier.target = self
     popupClassifier.action = #selector(classifierChanged)
 
-    let tileDescriptions = classifier.tileTypes.map({ TileMatcher.description(for: $0)! })
+    let tileDescriptions = classifier.tileTypes.map({ TileModel.description(for: $0)! })
     popupClassifier.addItems(withTitles: tileDescriptions)
     popupClassifier.autoenablesItems = true
     popupClassifier.selectItem(at: 0)

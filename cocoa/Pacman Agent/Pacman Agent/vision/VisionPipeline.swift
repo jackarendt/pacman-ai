@@ -9,6 +9,7 @@ final class VisionPipeline: Pipeline {
     let captureNode = WindowCaptureNode(options: windowMetadata)
     let sliderNode = WindowSliderNode()
     let classifierNode = TileClassifierNode()
+    let ocrNode = OCRNode()
     let unknownNode = UnknownTileSaverNode()
     let debugNode = DebugProcessingNode()
     let ocrSaverNode = OCRTileSaverNode()
@@ -17,6 +18,7 @@ final class VisionPipeline: Pipeline {
       captureNode,
       sliderNode,
       classifierNode,
+      ocrNode,
       unknownNode,
       debugNode,
       ocrSaverNode

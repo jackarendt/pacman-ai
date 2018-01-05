@@ -10,7 +10,7 @@ final class ClassificationSelectionView: NSControl {
   lazy var tileTypes: [TileType] = {
     var types = [TileType]()
     let typeBuffer = UnsafeMutablePointer<TileType>.allocate(capacity: kTileTypeCount)
-    TileMatcher.allTileTypes(typeBuffer)
+    TileModel.allTileTypes(typeBuffer)
     
     for i in 0..<kTileTypeCount {
       types.append(typeBuffer[i])
@@ -50,7 +50,7 @@ final class ClassificationSelectionView: NSControl {
       columnStackView.distribution = .equalSpacing
       
       for type in tileTypes[column * rows..<(column + 1) * rows] {
-        let description = TileMatcher.description(for: type)
+        let description = TileModel.description(for: type)
         let button = NSButton(radioButtonWithTitle: description!,
                               target: self,
                               action: #selector(radioButtonClicked(sender:)))
@@ -78,7 +78,7 @@ final class ClassificationSelectionView: NSControl {
   }
   
   @objc func radioButtonClicked(sender: NSButton) {
-    guard let type = TileType(rawValue: sender.tag - 1) else {
+    guard let type = TileType(rawValue: sender.tag) else {
       return
     }
     
@@ -89,7 +89,7 @@ final class ClassificationSelectionView: NSControl {
   
   private func selectCurrentRadioButton() {
     for (idx, button) in radioButtons.enumerated() {
-      if idx == selectedType.rawValue {
+      if idx == selectedType.rawValue + 1 {
         button.state = .on
       } else {
         button.state = .off

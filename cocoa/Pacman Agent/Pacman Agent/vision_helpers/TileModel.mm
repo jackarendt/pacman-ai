@@ -1,45 +1,30 @@
-#import "TileMatcher.h"
+#import "TileModel.h"
+#import "TensorFlowUtilities.h"
 
-#include <tensorflow/core/framework/tensor.h>
-#include <tensorflow/core/lib/core/status.h>
-#include <tensorflow/core/public/session.h>
 #include <tensorflow/core/protobuf/meta_graph.pb.h>
 
-const std::string kModelName = "finalized_model.pb";
-
-@implementation TileMatcher {
+@implementation TileModel {
   tensorflow::Session *session_;
 }
 
 - (void)dealloc {
-  if (session_ != nullptr) {
-    delete session_;
-  }
+  [TensorFlowUtilities endSession];
 }
 
-- (BOOL)loadVisionModel {
+- (BOOL)loadTileModel {
   NSString *documentsDirectory =
       NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
   NSString *modelDirectory =
       [documentsDirectory stringByAppendingString:@"/pacman/vision/tile_model/"];
   
-  const std::string model_dir = std::string([modelDirectory UTF8String]);
-  
-  tensorflow::SessionOptions session_options;
-  
-  tensorflow::Status session_status = tensorflow::NewSession(session_options, &session_);
-  if (!session_status.ok()) {
-    NSLog(@"Session create failed - %s", session_status.ToString().c_str());
+  session_ = [TensorFlowUtilities createSessionIfNecessary];
+  if (!session_) {
     return NO;
   }
   
   tensorflow::GraphDef graph_def;
-  tensorflow::Status status;
-  status = ReadBinaryProto(tensorflow::Env::Default(), model_dir + kModelName, &graph_def);
-  if (!status.ok()) {
-    NSLog(@"Error creating graph - %s", status.ToString().c_str());
-    return NO;
-  }
+  tensorflow::Status status =
+      [TensorFlowUtilities loadGraphDef:graph_def fromDirectory:modelDirectory];
 
   status = session_->Create(graph_def);
   if (!status.ok()) {
@@ -59,28 +44,19 @@ const std::string kModelName = "finalized_model.pb";
   }
   
   // Create the input tensor.
-  NSInteger imageBufferLength = kGameTileSize.width * kGameTileSize.height * kSamplesPerPixel;
-  NSInteger examples = kGameTileWidth * kGameTileHeight;
-  tensorflow::Tensor input(tensorflow::DT_FLOAT,
-                           tensorflow::TensorShape({examples, imageBufferLength}));
-  
-  // input_tensor_mapped is an interface to the data of a tensor and used to copy data into the
-  // tensor.
-  auto input_tensor_mapped = input.tensor<float, 2>();
-  
-  // Map each item in the pixel buffer to the 2D input tensor.
-  for (NSInteger i = 0; i < examples; i++) {
-    for (NSInteger j = 0; j < imageBufferLength; j++) {
-      input_tensor_mapped(i, j) = pixelBuffer[i * imageBufferLength + j];
-    }
-  }
+  tensorflow::Tensor *input =
+      [TensorFlowUtilities inputTensorFromPixelBuffer:pixelBuffer
+                                     numberOfExamples:kGameTileHeight * kGameTileWidth];
   
   std::string output_name = "prediction/prediction:0";
   std::vector<tensorflow::Tensor> out_tensors;
   
   // Run inference on the input tensor.
   tensorflow::Status status;
-  status = session_->Run({{"input/x-input:0", input}}, {output_name}, {}, &out_tensors);
+  status = session_->Run({{"input/x-input:0", *input}}, {output_name}, {}, &out_tensors);
+  
+  // Remove input tensor.
+  delete input;
   
   if (!status.ok()) {
     NSLog(@"Vision Inference Failed - %s", status.ToString().c_str());
@@ -88,7 +64,6 @@ const std::string kModelName = "finalized_model.pb";
   }
   
   tensorflow::Tensor output = out_tensors[0];
-  
   auto output_tensor_mapped = output.tensor<float, 2>();
   
   for (int i = 0; i < output.shape().dim_size(0); i++) {

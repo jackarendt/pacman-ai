@@ -1,45 +1,13 @@
 #import <Foundation/Foundation.h>
 #import "VisionConstants.h"
 
-/** Enumeration of all of the different tile types. */
-typedef NS_ENUM(NSInteger, TileType) {
-  /** Unknown Tile. */
-  TileTypeUnknown = -1,
-  /** Contains a majority of pacman. */
-  TileTypePacman = 0,
-  /** Contains a wall. */
-  TileTypeWall = 1,
-  /** Empty tile. */
-  TileTypeBlank = 2,
-  /** Fruit. i.e. Cherry, Apple, etc. */
-  TileTypeFruit = 3,
-  /** Blinky, not frightened. */
-  TileTypeBlinky = 4,
-  /** Inky, not frightened. */
-  TileTypeInky = 5,
-  /** Pinky, not frightened. */
-  TileTypePinky = 6,
-  /** Clyde, not frightened. */
-  TileTypeClyde = 7,
-  /** Any frightened ghost. */
-  TileTypeFrightenedGhost = 8,
-  /** Regular pellet. */
-  TileTypePellet = 9,
-  /** Power pellet. Causes ghosts to be frightened. */
-  TileTypePowerPellet = 10,
-  /** Text of any kind. */
-  TileTypeText = 11,
-  /** Not important tile. */
-  TileTypeIgnore = 12,
-};
-
-/** Matches a bitmap image with a tile type. */
-@interface TileMatcher : NSObject
+/** The Tile classification model. Predicts what a set of tiles are given the bitmap data. */
+@interface TileModel : NSObject
 
 /** Loads the vision model and creates a new tensorflow session. Will return NO and print an error
  *  to the console if the loading fails.
  */
-- (BOOL)loadVisionModel;
+- (BOOL)loadTileModel;
 
 /** Predicts what type of tile occupies a given space.
  *  @param pixelBuffer This is an array of length NxM where N is the number of tiles to classify,

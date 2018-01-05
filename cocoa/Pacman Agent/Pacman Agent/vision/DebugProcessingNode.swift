@@ -2,7 +2,7 @@ import Foundation
 
 /// Pipeline node that outputs a formatted text description of the game tiles.
 final class DebugProcessingNode: PipelineNode {
-  var dependencyIdentifiers: [String]? = [TileClassifierNode.identifier]
+  var dependencyIdentifiers: [String]? = [TileClassifierNode.identifier, OCRNode.identifier]
   
   var enabled: Bool = true
   
@@ -17,7 +17,12 @@ final class DebugProcessingNode: PipelineNode {
       throw PipelineExecutionError.invalidInput
     }
     
-    let description = tiles.reduce("", { $0 + TileMatcher.character(for: $1.piece) })
+    let description = tiles.reduce("", { (text, tile) -> String in
+      if tile.piece == .text {
+        return text + tile.character
+      }
+      return text + TileModel.character(for: tile.piece)
+    })
     
     // Format the string so that it is ordered in as a game board.
     var formattedString = ""

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2E28FA741FF1B847002A37A0 /* OCRTileSaverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA731FF1B847002A37A0 /* OCRTileSaverNode.swift */; };
 		2E28FA761FF1BF0E002A37A0 /* OCRClassifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA751FF1BF0E002A37A0 /* OCRClassifierViewController.swift */; };
+		2E28FA7D1FFE9854002A37A0 /* OCRModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA7C1FFE9854002A37A0 /* OCRModel.mm */; };
+		2E28FA801FFE9A3B002A37A0 /* TensorFlowUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA7F1FFE9A3B002A37A0 /* TensorFlowUtilities.mm */; };
+		2E28FA821FFEF27A002A37A0 /* OCRNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA811FFEF27A002A37A0 /* OCRNode.swift */; };
 		2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */; };
 		2E7AA0A81FCFB84200E51EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */; };
 		2E7AA0AB1FCFB84200E51EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */; };
@@ -21,7 +24,7 @@
 		2E7AA0E21FD5215400E51EA9 /* GameTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E11FD5215400E51EA9 /* GameTile.swift */; };
 		2E7AA0E71FD71E8A00E51EA9 /* WindowSliderHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */; };
 		2E98FE161FE979CD0080EA10 /* VisionConstants.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E98FE151FE979CD0080EA10 /* VisionConstants.mm */; };
-		2E98FE191FE97A000080EA10 /* TileMatcher+Descriptions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */; };
+		2E98FE191FE97A000080EA10 /* TileModel+Descriptions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E98FE181FE97A000080EA10 /* TileModel+Descriptions.mm */; };
 		2ECB2E9E1FD8568700A81539 /* AgentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */; };
 		2ECB2EA31FD8574300A81539 /* RootWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EA21FD8574300A81539 /* RootWindowController.swift */; };
 		2ECB2EA51FD8581B00A81539 /* ImageClassifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */; };
@@ -36,7 +39,7 @@
 		2ECB2EBC1FD8BC3800A81539 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECB2EBA1FD8BC3800A81539 /* libprotobuf.a */; };
 		2ECB2EBE1FD8BD8000A81539 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECB2EBD1FD8BD7900A81539 /* Accelerate.framework */; };
 		2ECB2EC61FD8C36F00A81539 /* nsync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECB2EC51FD8C36F00A81539 /* nsync.a */; };
-		2ECB2EC91FDA523300A81539 /* TileMatcher.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EC81FDA523300A81539 /* TileMatcher.mm */; };
+		2ECB2EC91FDA523300A81539 /* TileModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EC81FDA523300A81539 /* TileModel.mm */; };
 		2EFCDBB41FE9EC4C009C15E7 /* TileDebugTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB31FE9EC4C009C15E7 /* TileDebugTextView.swift */; };
 		2EFCDBB61FEB6AD3009C15E7 /* DataCleanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB51FEB6AD3009C15E7 /* DataCleanerViewController.swift */; };
 		2EFCDBB81FEB6B01009C15E7 /* ClassificationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB71FEB6B01009C15E7 /* ClassificationSelectionView.swift */; };
@@ -46,7 +49,6 @@
 		2EFCDBC91FEDAC1E009C15E7 /* WindowSliderNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBC81FEDAC1E009C15E7 /* WindowSliderNode.swift */; };
 		2EFCDBCB1FEDAC2B009C15E7 /* TileClassifierNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBCA1FEDAC2B009C15E7 /* TileClassifierNode.swift */; };
 		2EFCDBCD1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBCC1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift */; };
-		2EFCDBCF1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */; };
 		2EFCDBD11FEDAC72009C15E7 /* DebugProcessingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */; };
 		2EFCDBD51FEF524B009C15E7 /* VisionPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */; };
 		2EFCDBD81FEF6768009C15E7 /* DatasetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBD71FEF6768009C15E7 /* DatasetManager.swift */; };
@@ -65,6 +67,11 @@
 /* Begin PBXFileReference section */
 		2E28FA731FF1B847002A37A0 /* OCRTileSaverNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRTileSaverNode.swift; sourceTree = "<group>"; };
 		2E28FA751FF1BF0E002A37A0 /* OCRClassifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRClassifierViewController.swift; sourceTree = "<group>"; };
+		2E28FA7B1FFE9854002A37A0 /* OCRModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCRModel.h; sourceTree = "<group>"; };
+		2E28FA7C1FFE9854002A37A0 /* OCRModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OCRModel.mm; sourceTree = "<group>"; };
+		2E28FA7E1FFE9A3B002A37A0 /* TensorFlowUtilities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TensorFlowUtilities.h; sourceTree = "<group>"; };
+		2E28FA7F1FFE9A3B002A37A0 /* TensorFlowUtilities.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TensorFlowUtilities.mm; sourceTree = "<group>"; };
+		2E28FA811FFEF27A002A37A0 /* OCRNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRNode.swift; sourceTree = "<group>"; };
 		2E7AA0A01FCFB84200E51EA9 /* Pacman Agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pacman Agent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -87,8 +94,8 @@
 		2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowSliderHelper.m; sourceTree = "<group>"; };
 		2E98FE141FE979CD0080EA10 /* VisionConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VisionConstants.h; path = "Pacman Agent/vision_helpers/VisionConstants.h"; sourceTree = SOURCE_ROOT; };
 		2E98FE151FE979CD0080EA10 /* VisionConstants.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = VisionConstants.mm; path = "Pacman Agent/vision_helpers/VisionConstants.mm"; sourceTree = SOURCE_ROOT; };
-		2E98FE171FE97A000080EA10 /* TileMatcher+Descriptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TileMatcher+Descriptions.h"; path = "Pacman Agent/vision_helpers/TileMatcher+Descriptions.h"; sourceTree = SOURCE_ROOT; };
-		2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "TileMatcher+Descriptions.mm"; path = "Pacman Agent/vision_helpers/TileMatcher+Descriptions.mm"; sourceTree = SOURCE_ROOT; };
+		2E98FE171FE97A000080EA10 /* TileModel+Descriptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TileModel+Descriptions.h"; path = "Pacman Agent/vision_helpers/TileModel+Descriptions.h"; sourceTree = SOURCE_ROOT; };
+		2E98FE181FE97A000080EA10 /* TileModel+Descriptions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "TileModel+Descriptions.mm"; path = "Pacman Agent/vision_helpers/TileModel+Descriptions.mm"; sourceTree = SOURCE_ROOT; };
 		2ECB2E9D1FD8568700A81539 /* AgentSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AgentSettingsViewController.swift; sourceTree = "<group>"; };
 		2ECB2EA21FD8574300A81539 /* RootWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowController.swift; sourceTree = "<group>"; };
 		2ECB2EA41FD8581B00A81539 /* ImageClassifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageClassifierViewController.swift; sourceTree = "<group>"; };
@@ -103,8 +110,8 @@
 		2ECB2EBA1FD8BC3800A81539 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = ../../../../tensorflow/tensorflow/tensorflow/contrib/makefile/gen/protobuf/lib/libprotobuf.a; sourceTree = "<group>"; };
 		2ECB2EBD1FD8BD7900A81539 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		2ECB2EC51FD8C36F00A81539 /* nsync.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = nsync.a; path = "../../../../tensorflow/tensorflow/tensorflow/contrib/makefile/downloads/nsync/builds/default.macos.c++11/nsync.a"; sourceTree = "<group>"; };
-		2ECB2EC71FDA523300A81539 /* TileMatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TileMatcher.h; path = "Pacman Agent/vision_helpers/TileMatcher.h"; sourceTree = SOURCE_ROOT; };
-		2ECB2EC81FDA523300A81539 /* TileMatcher.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = TileMatcher.mm; path = "Pacman Agent/vision_helpers/TileMatcher.mm"; sourceTree = SOURCE_ROOT; };
+		2ECB2EC71FDA523300A81539 /* TileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TileModel.h; path = "Pacman Agent/vision_helpers/TileModel.h"; sourceTree = SOURCE_ROOT; };
+		2ECB2EC81FDA523300A81539 /* TileModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = TileModel.mm; path = "Pacman Agent/vision_helpers/TileModel.mm"; sourceTree = SOURCE_ROOT; };
 		2EFCDBB31FE9EC4C009C15E7 /* TileDebugTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileDebugTextView.swift; sourceTree = "<group>"; };
 		2EFCDBB51FEB6AD3009C15E7 /* DataCleanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCleanerViewController.swift; sourceTree = "<group>"; };
 		2EFCDBB71FEB6B01009C15E7 /* ClassificationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationSelectionView.swift; sourceTree = "<group>"; };
@@ -114,7 +121,6 @@
 		2EFCDBC81FEDAC1E009C15E7 /* WindowSliderNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSliderNode.swift; sourceTree = "<group>"; };
 		2EFCDBCA1FEDAC2B009C15E7 /* TileClassifierNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileClassifierNode.swift; sourceTree = "<group>"; };
 		2EFCDBCC1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownTileSaverNode.swift; sourceTree = "<group>"; };
-		2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionTrainingCollectionNode.swift; sourceTree = "<group>"; };
 		2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugProcessingNode.swift; sourceTree = "<group>"; };
 		2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionPipeline.swift; sourceTree = "<group>"; };
 		2EFCDBD71FEF6768009C15E7 /* DatasetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatasetManager.swift; sourceTree = "<group>"; };
@@ -259,9 +265,9 @@
 				2EFCDBC81FEDAC1E009C15E7 /* WindowSliderNode.swift */,
 				2EFCDBCA1FEDAC2B009C15E7 /* TileClassifierNode.swift */,
 				2EFCDBCC1FEDAC3A009C15E7 /* UnknownTileSaverNode.swift */,
-				2EFCDBCE1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift */,
 				2EFCDBD01FEDAC72009C15E7 /* DebugProcessingNode.swift */,
 				2E28FA731FF1B847002A37A0 /* OCRTileSaverNode.swift */,
+				2E28FA811FFEF27A002A37A0 /* OCRNode.swift */,
 				2EFCDBD41FEF524B009C15E7 /* VisionPipeline.swift */,
 			);
 			path = vision;
@@ -277,10 +283,14 @@
 				2E7AA0E61FD71E8A00E51EA9 /* WindowSliderHelper.m */,
 				2E98FE141FE979CD0080EA10 /* VisionConstants.h */,
 				2E98FE151FE979CD0080EA10 /* VisionConstants.mm */,
-				2ECB2EC71FDA523300A81539 /* TileMatcher.h */,
-				2ECB2EC81FDA523300A81539 /* TileMatcher.mm */,
-				2E98FE171FE97A000080EA10 /* TileMatcher+Descriptions.h */,
-				2E98FE181FE97A000080EA10 /* TileMatcher+Descriptions.mm */,
+				2ECB2EC71FDA523300A81539 /* TileModel.h */,
+				2ECB2EC81FDA523300A81539 /* TileModel.mm */,
+				2E98FE171FE97A000080EA10 /* TileModel+Descriptions.h */,
+				2E98FE181FE97A000080EA10 /* TileModel+Descriptions.mm */,
+				2E28FA7B1FFE9854002A37A0 /* OCRModel.h */,
+				2E28FA7C1FFE9854002A37A0 /* OCRModel.mm */,
+				2E28FA7E1FFE9A3B002A37A0 /* TensorFlowUtilities.h */,
+				2E28FA7F1FFE9A3B002A37A0 /* TensorFlowUtilities.mm */,
 			);
 			path = vision_helpers;
 			sourceTree = "<group>";
@@ -396,17 +406,19 @@
 				2E28FA741FF1B847002A37A0 /* OCRTileSaverNode.swift in Sources */,
 				2ECB2EAB1FD8803000A81539 /* CheckboxSettingCell.swift in Sources */,
 				2EFCDBC11FEDAA8B009C15E7 /* PipelineNode.swift in Sources */,
-				2ECB2EC91FDA523300A81539 /* TileMatcher.mm in Sources */,
+				2ECB2EC91FDA523300A81539 /* TileModel.mm in Sources */,
 				2ECB2EA91FD870EE00A81539 /* SettingsCell.swift in Sources */,
 				2EFCDBD81FEF6768009C15E7 /* DatasetManager.swift in Sources */,
 				2EFCDBB81FEB6B01009C15E7 /* ClassificationSelectionView.swift in Sources */,
+				2E28FA801FFE9A3B002A37A0 /* TensorFlowUtilities.mm in Sources */,
+				2E28FA821FFEF27A002A37A0 /* OCRNode.swift in Sources */,
 				2EFCDBB61FEB6AD3009C15E7 /* DataCleanerViewController.swift in Sources */,
 				2ECB2EA31FD8574300A81539 /* RootWindowController.swift in Sources */,
-				2EFCDBCF1FEDAC59009C15E7 /* VisionTrainingCollectionNode.swift in Sources */,
 				2E7AA0E21FD5215400E51EA9 /* GameTile.swift in Sources */,
 				2EFCDBC71FEDABE3009C15E7 /* Pipeline.swift in Sources */,
-				2E98FE191FE97A000080EA10 /* TileMatcher+Descriptions.mm in Sources */,
+				2E98FE191FE97A000080EA10 /* TileModel+Descriptions.mm in Sources */,
 				2E7AA0E71FD71E8A00E51EA9 /* WindowSliderHelper.m in Sources */,
+				2E28FA7D1FFE9854002A37A0 /* OCRModel.mm in Sources */,
 				2ECB2E9E1FD8568700A81539 /* AgentSettingsViewController.swift in Sources */,
 				2E7AA0D91FD51FE700E51EA9 /* ApplicationManager.swift in Sources */,
 				2EFCDBC91FEDAC1E009C15E7 /* WindowSliderNode.swift in Sources */,

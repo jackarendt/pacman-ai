@@ -31,7 +31,8 @@ class Pipeline {
       staging.append(output)
     }
     
-    while staging.count != nodes.count {
+    var finished = false
+    while !finished {
       level += 1
       // Get the dependencies from the previous level.
       let dependencies = dependencySet(nodes: currentLevelNodes)
@@ -45,6 +46,8 @@ class Pipeline {
           staging.append(node)
         }
       }
+      
+      finished = dependencies.count == 0
     }
     
     // Sort the nodes in descending order so that output nodes (low execution level) run last, and

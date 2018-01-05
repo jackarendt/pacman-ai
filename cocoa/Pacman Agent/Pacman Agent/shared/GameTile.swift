@@ -7,6 +7,8 @@ class GameTile: CustomStringConvertible {
   var centerPixelCoordinate = CGPoint.zero
   /// The type of game piece.
   var piece: TileType = .unknown
+  /// The character of the tile, if it is a text tile.
+  var character: String = " "
   /// The pixels that make up the image. They are organized as [a, r, g, b, a, r, g, b....], and
   /// move horizontally across the image before moving to the next row.
   let pixels: UnsafeMutablePointer<PixelComponent>
@@ -65,6 +67,6 @@ class GameTile: CustomStringConvertible {
   }
   
   var description: String {
-    return "x: \(position.x), y: \(position.y)\n\(TileMatcher.description(for: piece))"
+    return "x: \(position.x), y: \(position.y)\n\(TileModel.description(for: piece))"
   }
 }

@@ -4,6 +4,7 @@
 
 #import "WindowCaptureHelper.h"
 #import "WindowSliderHelper.h"
-#import "TileMatcher.h"
-#import "TileMatcher+Descriptions.h"
+#import "TileModel.h"
+#import "TileModel+Descriptions.h"
+#import "OCRModel.h"
 #import "VisionConstants.h"

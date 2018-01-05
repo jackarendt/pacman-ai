@@ -1,8 +1,8 @@
-#import "TileMatcher+Descriptions.h"
+#import "TileModel+Descriptions.h"
 
 const NSInteger kTileTypeCount = 14;
 
-@implementation TileMatcher (Descriptions)
+@implementation TileModel (Descriptions)
 
 + (NSString *)descriptionForTileType:(enum TileType)tileType {
   switch (tileType) {
