@@ -1,7 +1,7 @@
 import Cocoa
 
 /// View controller for cleaning misclassified data.
-class DataCleanerViewController: NSViewController {
+class TileCleanerViewController: NSViewController {
   
   let popupClassifier = NSPopUpButton(frame: NSRect.zero, pullsDown: true)
   
@@ -26,8 +26,9 @@ class DataCleanerViewController: NSViewController {
   /// Label that shows how many unclassified images are left.
   let imagesRemainingLabel = NSTextField.label()
   
+  let dataset =
+        DatasetManager(classifiedDirectory: kTileDirectory, unknownDirectory: kTileUnknownDirectory)
   var allLabels = [String: TileType]()
-  
   var tileLabels = [String: TileType]()
   
   // Current index of the
@@ -155,9 +156,9 @@ class DataCleanerViewController: NSViewController {
     }
     
     let keys = Array<String>(tileLabels.keys)
-    let imageURL = URL(fileURLWithPath: kTileDirectory + keys[currentIndex])
+    let imageURL = URL(fileURLWithPath: dataset.classifiedDirectory + keys[currentIndex])
     imageView.image = NSImage(byReferencing: imageURL).resize(newSize: imageView.frame.size)
-    imagesRemainingLabel.stringValue = "\(currentIndex) of \(tileLabels.count)"
+    imagesRemainingLabel.stringValue = "\(currentIndex + 1) of \(tileLabels.count)"
     
     if let currentType = tileLabels[keys[currentIndex]] {
       classifier.selectedType = currentType
@@ -166,44 +167,23 @@ class DataCleanerViewController: NSViewController {
 }
 
 // MARK: - CSV I/O Methods.
-extension DataCleanerViewController {
+extension TileCleanerViewController {
   /// Loads the CSV file into memory, so that it can be modified.
   private func loadLabelCSV() {
-    let csvFilePath = kTileDirectory + kImageMappingCSVFilename
-    guard let data = try? Data(contentsOf: URL(fileURLWithPath: csvFilePath)) else {
-      return
-    }
-    
-    guard var rows = String(data: data, encoding: .utf8)?.components(separatedBy: "\n") else {
-      return
-    }
-    
-    // Remove the first row, since it contains the tiles.
-    let _ = rows.removeFirst()
-    
-    // Fill in all labels.
-    for row in rows {
-      let components = row.components(separatedBy: ",")
-      if components.count != 2 {
-        continue
-      }
-      allLabels[components[0]] = TileType(rawValue: Int(components[1])!)
+    let labels = dataset.loadLabelCSV()
+    for (key, value) in labels {
+      allLabels[key] = TileType(rawValue: value)!
     }
   }
   
   /// Save the updated labels to a CSV.
   private func saveLabelCSV() {
-    var textToSave = ""
-    textToSave += "image,label\n"
-    
-    // Recreate the CSV.
+    var labels = [String: Int]()
     for (key, value) in allLabels {
-      // image.tiff,4
-      textToSave += key + "," + String(value.rawValue) + "\n"
+      labels[key] = value.rawValue
     }
     
-    let data = textToSave.data(using: .utf8)
-    try? data?.write(to: URL(fileURLWithPath: kTileDirectory + kImageMappingCSVFilename))
+    dataset.saveLabelCSV(allLabels: labels)
   }
   
   /// Filters all of the labels in the CSV to only those that match the current type.

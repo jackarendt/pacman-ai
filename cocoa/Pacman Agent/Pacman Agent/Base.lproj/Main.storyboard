@@ -710,6 +710,7 @@
                         <tabViewItem identifier="" id="qe2-UD-Ga1"/>
                         <tabViewItem id="Cwq-2w-7AO"/>
                         <tabViewItem id="K0o-Ab-977"/>
+                        <tabViewItem id="a0g-cG-myL"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="1Jg-Gq-Z3x">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -726,6 +727,7 @@
                         <segue destination="vwv-N1-I0n" kind="relationship" relationship="tabItems" id="1Gn-te-Ffr"/>
                         <segue destination="1uE-Fa-hcO" kind="relationship" relationship="tabItems" id="m53-gj-eog"/>
                         <segue destination="XkJ-pg-zUP" kind="relationship" relationship="tabItems" id="Ao6-vo-zkf"/>
+                        <segue destination="xns-xO-e6h" kind="relationship" relationship="tabItems" id="lE8-dE-lwv"/>
                     </connections>
                 </tabViewController>
                 <customObject id="2Rd-EC-jWR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -748,7 +750,7 @@
         <!--Classifier-->
         <scene sceneID="5Xr-Pg-vQg">
             <objects>
-                <viewController title="Classifier" id="vwv-N1-I0n" customClass="ImageClassifierViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Classifier" id="vwv-N1-I0n" customClass="TileClassifierViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P5v-GL-d1I">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -761,7 +763,7 @@
         <!--Cleaner-->
         <scene sceneID="5Tf-aR-j3j">
             <objects>
-                <viewController title="Cleaner" id="1uE-Fa-hcO" customClass="DataCleanerViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Cleaner" id="1uE-Fa-hcO" customClass="TileCleanerViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="er8-gv-3ff">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -783,6 +785,19 @@
                 <customObject id="RkX-lV-QKd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="748" y="1934"/>
+        </scene>
+        <!--O/0-->
+        <scene sceneID="xhx-ts-mmd">
+            <objects>
+                <viewController title="O/0" id="xns-xO-e6h" customClass="OCRCleanerViewController" customModule="Pacman_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="xPr-hl-TmB">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="SIr-nT-iha" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="748" y="2301"/>
         </scene>
     </scenes>
 </document>

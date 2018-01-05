@@ -1,7 +1,7 @@
 import Cocoa
 
 /// View controller for classifying different unknown images.
-class ImageClassifierViewController: NSViewController {
+class TileClassifierViewController: NSViewController {
   
   /// Label that shows how many unclassified images are left.
   let imagesRemainingLabel = NSTextField.label()
@@ -115,7 +115,7 @@ class ImageClassifierViewController: NSViewController {
   }
 }
 
-extension ImageClassifierViewController: ClassificationSelectionViewDelegate {
+extension TileClassifierViewController: ClassificationSelectionViewDelegate {
   func selectionViewDidChange(selectionView: ClassificationSelectionView) {
     classifyImageButton.isEnabled = true
   }

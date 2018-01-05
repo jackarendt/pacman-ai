@@ -100,7 +100,46 @@ final class DatasetManager {
       print("File not copied")
     }
   }
-
+  
+  func loadLabelCSV() -> [String: Int] {
+    let csvFilePath = classifiedDirectory + kImageMappingCSVFilename
+    guard let data = try? Data(contentsOf: URL(fileURLWithPath: csvFilePath)) else {
+      return [String: Int]()
+    }
+    
+    guard var rows = String(data: data, encoding: .utf8)?.components(separatedBy: "\n") else {
+      return [String: Int]()
+    }
+    
+    // Remove the first row, since it contains the tiles.
+    let _ = rows.removeFirst()
+    
+    // Fill in all labels.
+    var allLabels = [String : Int]()
+    for row in rows {
+      let components = row.components(separatedBy: ",")
+      if components.count != 2 {
+        continue
+      }
+      allLabels[components[0]] = Int(components[1])!
+    }
+    return allLabels
+  }
+  
+  func saveLabelCSV(allLabels: [String: Int]) {
+    var textToSave = ""
+    textToSave += "image,label\n"
+    
+    // Recreate the CSV.
+    for (key, value) in allLabels {
+      // image.tiff,4
+      textToSave += key + "," + value.description + "\n"
+    }
+    
+    let data = textToSave.data(using: .utf8)
+    try? data?.write(to: URL(fileURLWithPath: classifiedDirectory + kImageMappingCSVFilename))
+  }
+  
   /// Creates an temp directory with all of the unknown tiles if necessary.
   private func createDirectoryIfNecessary(directory: String) {
     // Create the tmp directory if one doesn't exist.
