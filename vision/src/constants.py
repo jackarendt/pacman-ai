@@ -6,6 +6,9 @@ IMAGE = 'image'
 # Column name for the labels in the data_frame.
 LABEL = 'label'
 
+# Name of the labels file.
+LABEL_FILE_NAME = 'labels.csv'
+
 # The number of pixels in the tile.
 TILE_SIZE = 8 * 8
 

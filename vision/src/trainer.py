@@ -1,6 +1,7 @@
 """Trains a DNN classifier based on a set of parameters."""
 import os
 import tensorflow as tf
+import math
 from tensorflow.python.framework import graph_io
 import metrics
 from constants import *
@@ -105,10 +106,12 @@ def train(data_set, num_classes, max_steps, learning_rate,
     return {x: xs, y_:ys, keep_prob: k}
 
   print('graph created. begin training.')
+
+  test_interval = math.floor(max_steps / 100)
   # Train for the max number of steps.
   for i in range(max_steps):
     # Record summaries and test-set accuracies.
-    if i % 10 ==0:
+    if i % test_interval ==0:
       summary, _ = sess.run([merged, eval_metrics], feed_dict=feed_dict(False))
       test_writer.add_summary(summary, i)
     else:

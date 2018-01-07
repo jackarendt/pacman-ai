@@ -80,7 +80,7 @@
     }
     
     if (max_value < threshold) {
-      [textBuffer addObject:@" "];
+      [textBuffer addObject:@"_"];
     } else {
       [textBuffer addObject:kOCRValidCharacters[max_index]];
     }

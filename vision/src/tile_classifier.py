@@ -46,7 +46,7 @@ if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument('--max_steps', type=int, default=2500,
                       help='Number of steps to run trainer.')
-  parser.add_argument('--learning_rate', type=float, default=0.003,
+  parser.add_argument('--learning_rate', type=float, default=0.0045,
                       help='Initial learning rate')
   parser.add_argument('--dropout', type=float, default=0.9,
                       help='Keep probability for training dropout.')

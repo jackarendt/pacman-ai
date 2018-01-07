@@ -188,7 +188,7 @@ extension TileCleanerViewController {
   
   /// Filters all of the labels in the CSV to only those that match the current type.
   private func filterCSV() {
-    guard let activeType = TileType(rawValue: popupClassifier.indexOfSelectedItem) else {
+    guard let activeType = TileType(rawValue: popupClassifier.indexOfSelectedItem - 1) else {
       return
     }
     
