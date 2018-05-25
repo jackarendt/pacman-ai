@@ -8,3 +8,4 @@
 #import "TileModel+Descriptions.h"
 #import "OCRModel.h"
 #import "VisionConstants.h"
+#import "HardwareInterface.h"

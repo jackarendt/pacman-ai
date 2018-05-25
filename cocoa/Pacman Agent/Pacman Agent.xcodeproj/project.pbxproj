@@ -13,6 +13,8 @@
 		2E28FA801FFE9A3B002A37A0 /* TensorFlowUtilities.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA7F1FFE9A3B002A37A0 /* TensorFlowUtilities.mm */; };
 		2E28FA821FFEF27A002A37A0 /* OCRNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA811FFEF27A002A37A0 /* OCRNode.swift */; };
 		2E28FA881FFF187D002A37A0 /* OCRCleanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E28FA861FFF187D002A37A0 /* OCRCleanerViewController.swift */; };
+		2E2B2BA220B5C1CF004EDB15 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2B2BA120B5C1CF004EDB15 /* CoreGraphics.framework */; };
+		2E2B2BA720B7128E004EDB15 /* HardwareInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2E2B2BA620B7128E004EDB15 /* HardwareInterface.mm */; };
 		2E7AA0A41FCFB84200E51EA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */; };
 		2E7AA0A81FCFB84200E51EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */; };
 		2E7AA0AB1FCFB84200E51EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7AA0A91FCFB84200E51EA9 /* Main.storyboard */; };
@@ -74,6 +76,9 @@
 		2E28FA7F1FFE9A3B002A37A0 /* TensorFlowUtilities.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TensorFlowUtilities.mm; sourceTree = "<group>"; };
 		2E28FA811FFEF27A002A37A0 /* OCRNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRNode.swift; sourceTree = "<group>"; };
 		2E28FA861FFF187D002A37A0 /* OCRCleanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRCleanerViewController.swift; sourceTree = "<group>"; };
+		2E2B2BA120B5C1CF004EDB15 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2E2B2BA520B7128E004EDB15 /* HardwareInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HardwareInterface.h; sourceTree = "<group>"; };
+		2E2B2BA620B7128E004EDB15 /* HardwareInterface.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HardwareInterface.mm; sourceTree = "<group>"; };
 		2E7AA0A01FCFB84200E51EA9 /* Pacman Agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pacman Agent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E7AA0A71FCFB84200E51EA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E2B2BA220B5C1CF004EDB15 /* CoreGraphics.framework in Frameworks */,
 				2ECB2EC61FD8C36F00A81539 /* nsync.a in Frameworks */,
 				2ECB2EBE1FD8BD8000A81539 /* Accelerate.framework in Frameworks */,
 				2ECB2EBB1FD8BC3800A81539 /* libprotobuf-lite.a in Frameworks */,
@@ -151,6 +157,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E2B2B9E20B5BF28004EDB15 /* agent */ = {
+			isa = PBXGroup;
+			children = (
+				2E2B2BA520B7128E004EDB15 /* HardwareInterface.h */,
+				2E2B2BA620B7128E004EDB15 /* HardwareInterface.mm */,
+			);
+			path = agent;
+			sourceTree = "<group>";
+		};
 		2E7AA0971FCFB84200E51EA9 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +190,7 @@
 			children = (
 				2E7AA0CB1FD31D3100E51EA9 /* Pacman Agent.entitlements */,
 				2E7AA0A31FCFB84200E51EA9 /* AppDelegate.swift */,
+				2E2B2B9E20B5BF28004EDB15 /* agent */,
 				2E7AA0CE1FD51FE700E51EA9 /* game_controls */,
 				2EFCDBBF1FEDA8A6009C15E7 /* pipeline */,
 				2E7AA0D71FD51FE700E51EA9 /* shared */,
@@ -242,6 +258,7 @@
 		2ECB2EB61FD8B9CA00A81539 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2E2B2BA120B5C1CF004EDB15 /* CoreGraphics.framework */,
 				2ECB2EC51FD8C36F00A81539 /* nsync.a */,
 				2ECB2EBD1FD8BD7900A81539 /* Accelerate.framework */,
 				2ECB2EB91FD8BC3800A81539 /* libprotobuf-lite.a */,
@@ -442,6 +459,7 @@
 				2ECB2EA51FD8581B00A81539 /* TileClassifierViewController.swift in Sources */,
 				2E7AA0DE1FD51FE700E51EA9 /* GameConstants.swift in Sources */,
 				2ECB2EB31FD8911100A81539 /* NSTextField+Extensions.swift in Sources */,
+				2E2B2BA720B7128E004EDB15 /* HardwareInterface.mm in Sources */,
 				2EFCDBD11FEDAC72009C15E7 /* DebugProcessingNode.swift in Sources */,
 				2E7AA0DB1FD51FE700E51EA9 /* NSImage+Extensions.swift in Sources */,
 			);

@@ -15,7 +15,7 @@ final class ClassificationSelectionView: NSControl {
     for i in 0..<kTileTypeCount {
       types.append(typeBuffer[i])
     }
-    typeBuffer.deallocate(capacity: Int(kTileTypeCount))
+    typeBuffer.deallocate()
     return types
   }()
   

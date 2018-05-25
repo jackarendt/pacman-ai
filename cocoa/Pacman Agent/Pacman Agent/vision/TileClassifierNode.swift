@@ -55,8 +55,8 @@ final class TileClassifierNode: PipelineNode {
     }
     
     // Deallocate buffers.
-    pixelBuffer.deallocate(capacity: bufferSize)
-    classificationBuffer.deallocate(capacity: classificationBufferSize)
+    pixelBuffer.deallocate()
+    classificationBuffer.deallocate()
     
     return tiles
   }

@@ -22,7 +22,7 @@ class GameTile: CustomStringConvertible {
   }
   
   deinit {
-    pixels.deallocate(capacity: bufferLength)
+    pixels.deallocate()
   }
   
   /// Returns an image representation of the tile.
@@ -60,7 +60,7 @@ class GameTile: CustomStringConvertible {
           pixelBuffer[k] = Int(pixels[i * rowLength + j * kSamplesPerPixel + k])
         }
         bm.setPixel(pixelBuffer, atX: j, y: i)
-        pixelBuffer.deallocate(capacity: kSamplesPerPixel)
+        pixelBuffer.deallocate()
       }
     }
     return bm

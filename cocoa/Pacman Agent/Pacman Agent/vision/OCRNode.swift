@@ -51,7 +51,7 @@ final class OCRNode: PipelineNode {
     }
     
     // Deallocate buffers.
-    pixelBuffer.deallocate(capacity: bufferSize)
+    pixelBuffer.deallocate()
     
     return tiles
   }
