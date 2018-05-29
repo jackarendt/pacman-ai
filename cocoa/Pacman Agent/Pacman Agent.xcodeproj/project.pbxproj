@@ -44,6 +44,7 @@
 		2ECB2EC61FD8C36F00A81539 /* nsync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECB2EC51FD8C36F00A81539 /* nsync.a */; };
 		2ECB2EC91FDA523300A81539 /* TileModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EC81FDA523300A81539 /* TileModel.mm */; };
 		2EFCA50720BCE678009ADC4A /* UDPSocket.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCA50620BCE678009ADC4A /* UDPSocket.mm */; };
+		2EFCA50920BD20AF009ADC4A /* UDPSocketRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCA50820BD20AF009ADC4A /* UDPSocketRequest.swift */; };
 		2EFCDBB41FE9EC4C009C15E7 /* TileDebugTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB31FE9EC4C009C15E7 /* TileDebugTextView.swift */; };
 		2EFCDBB61FEB6AD3009C15E7 /* TileCleanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB51FEB6AD3009C15E7 /* TileCleanerViewController.swift */; };
 		2EFCDBB81FEB6B01009C15E7 /* ClassificationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB71FEB6B01009C15E7 /* ClassificationSelectionView.swift */; };
@@ -122,6 +123,7 @@
 		2ECB2EC81FDA523300A81539 /* TileModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = TileModel.mm; path = "Pacman Agent/vision_helpers/TileModel.mm"; sourceTree = SOURCE_ROOT; };
 		2EFCA50520BCE678009ADC4A /* UDPSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDPSocket.h; sourceTree = "<group>"; };
 		2EFCA50620BCE678009ADC4A /* UDPSocket.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UDPSocket.mm; sourceTree = "<group>"; };
+		2EFCA50820BD20AF009ADC4A /* UDPSocketRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPSocketRequest.swift; sourceTree = "<group>"; };
 		2EFCDBB31FE9EC4C009C15E7 /* TileDebugTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileDebugTextView.swift; sourceTree = "<group>"; };
 		2EFCDBB51FEB6AD3009C15E7 /* TileCleanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCleanerViewController.swift; sourceTree = "<group>"; };
 		2EFCDBB71FEB6B01009C15E7 /* ClassificationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationSelectionView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				2E2B2BA620B7128E004EDB15 /* HardwareInterface.mm */,
 				2EFCA50520BCE678009ADC4A /* UDPSocket.h */,
 				2EFCA50620BCE678009ADC4A /* UDPSocket.mm */,
+				2EFCA50820BD20AF009ADC4A /* UDPSocketRequest.swift */,
 			);
 			path = agent;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				2ECB2EAB1FD8803000A81539 /* CheckboxSettingCell.swift in Sources */,
 				2EFCDBC11FEDAA8B009C15E7 /* PipelineNode.swift in Sources */,
 				2ECB2EC91FDA523300A81539 /* TileModel.mm in Sources */,
+				2EFCA50920BD20AF009ADC4A /* UDPSocketRequest.swift in Sources */,
 				2ECB2EA91FD870EE00A81539 /* SettingsCell.swift in Sources */,
 				2EFCDBD81FEF6768009C15E7 /* DatasetManager.swift in Sources */,
 				2EFCDBB81FEB6B01009C15E7 /* ClassificationSelectionView.swift in Sources */,
