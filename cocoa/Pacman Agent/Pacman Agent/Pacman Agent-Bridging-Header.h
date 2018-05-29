@@ -9,3 +9,4 @@
 #import "OCRModel.h"
 #import "VisionConstants.h"
 #import "HardwareInterface.h"
+#import "UDPSocket.h"

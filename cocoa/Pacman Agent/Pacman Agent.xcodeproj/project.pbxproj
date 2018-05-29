@@ -43,6 +43,7 @@
 		2ECB2EBE1FD8BD8000A81539 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECB2EBD1FD8BD7900A81539 /* Accelerate.framework */; };
 		2ECB2EC61FD8C36F00A81539 /* nsync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ECB2EC51FD8C36F00A81539 /* nsync.a */; };
 		2ECB2EC91FDA523300A81539 /* TileModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB2EC81FDA523300A81539 /* TileModel.mm */; };
+		2EFCA50720BCE678009ADC4A /* UDPSocket.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCA50620BCE678009ADC4A /* UDPSocket.mm */; };
 		2EFCDBB41FE9EC4C009C15E7 /* TileDebugTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB31FE9EC4C009C15E7 /* TileDebugTextView.swift */; };
 		2EFCDBB61FEB6AD3009C15E7 /* TileCleanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB51FEB6AD3009C15E7 /* TileCleanerViewController.swift */; };
 		2EFCDBB81FEB6B01009C15E7 /* ClassificationSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFCDBB71FEB6B01009C15E7 /* ClassificationSelectionView.swift */; };
@@ -119,6 +120,8 @@
 		2ECB2EC51FD8C36F00A81539 /* nsync.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = nsync.a; path = "../../../../tensorflow/tensorflow/tensorflow/contrib/makefile/downloads/nsync/builds/default.macos.c++11/nsync.a"; sourceTree = "<group>"; };
 		2ECB2EC71FDA523300A81539 /* TileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TileModel.h; path = "Pacman Agent/vision_helpers/TileModel.h"; sourceTree = SOURCE_ROOT; };
 		2ECB2EC81FDA523300A81539 /* TileModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = TileModel.mm; path = "Pacman Agent/vision_helpers/TileModel.mm"; sourceTree = SOURCE_ROOT; };
+		2EFCA50520BCE678009ADC4A /* UDPSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDPSocket.h; sourceTree = "<group>"; };
+		2EFCA50620BCE678009ADC4A /* UDPSocket.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UDPSocket.mm; sourceTree = "<group>"; };
 		2EFCDBB31FE9EC4C009C15E7 /* TileDebugTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileDebugTextView.swift; sourceTree = "<group>"; };
 		2EFCDBB51FEB6AD3009C15E7 /* TileCleanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileCleanerViewController.swift; sourceTree = "<group>"; };
 		2EFCDBB71FEB6B01009C15E7 /* ClassificationSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationSelectionView.swift; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 			children = (
 				2E2B2BA520B7128E004EDB15 /* HardwareInterface.h */,
 				2E2B2BA620B7128E004EDB15 /* HardwareInterface.mm */,
+				2EFCA50520BCE678009ADC4A /* UDPSocket.h */,
+				2EFCA50620BCE678009ADC4A /* UDPSocket.mm */,
 			);
 			path = agent;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				2E7AA0DD1FD51FE700E51EA9 /* WindowCaptureHelper.m in Sources */,
 				2EFCDBD51FEF524B009C15E7 /* VisionPipeline.swift in Sources */,
 				2E7AA0DC1FD51FE700E51EA9 /* WindowCapture.swift in Sources */,
+				2EFCA50720BCE678009ADC4A /* UDPSocket.mm in Sources */,
 				2ECB2EB11FD88A5100A81539 /* NumericalInputSettingCell.swift in Sources */,
 				2ECB2EA51FD8581B00A81539 /* TileClassifierViewController.swift in Sources */,
 				2E7AA0DE1FD51FE700E51EA9 /* GameConstants.swift in Sources */,
